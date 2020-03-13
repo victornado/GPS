@@ -6,6 +6,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
+
+import Controller.Controller;
+import Controller.Command.Eventos;
+import Negocio.Transfer.TUsuario;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -25,12 +30,12 @@ public class Login extends JFrame {
 	private JTextField textField_1;
 	private JLabel lblUsuario;
 	private JLabel lblContrasea;
-	private SHMenu menu;
+	//private SHMenu menu;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -41,7 +46,7 @@ public class Login extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 
 	public Login() {
@@ -49,7 +54,7 @@ public class Login extends JFrame {
 		this.contentPane = new JPanel();
 		this.textField_1 = new JPasswordField();
 		this.textField = new JTextField();
-		this.menu = new SHMenu();
+		//this.menu = new SHMenu();
 		this.setFocusable(true);
 		initGUI();
 	}
@@ -91,9 +96,17 @@ public class Login extends JFrame {
 		JButton btnLogIn = new JButton("Login");
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "Bienvenido " + textField.getText());
+				
+				
+				TUsuario tUsuario= new TUsuario(lblUsuario.getText(),lblContrasea.getText());
+				RequestContext rContext = new RequestContext(Eventos.LOGIN_USUARIO, tUsuario);
+				Controller.getInstance().handleRequest(rContext);
+				
+				
+				
+				/*JOptionPane.showMessageDialog(null, "Bienvenido " + textField.getText());
 				//menu.clearData();
-				menu.setVisible(true);
+				//menu.setVisible(true);*/
 			}
 		});
 		btnLogIn.setBounds(174, 217, 84, 23);

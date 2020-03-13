@@ -9,6 +9,12 @@ public class TUsuario {
 	private int edad;
 	private String nombre;
 	private String apellidos;
+	
+	public TUsuario (String Nom, String Contr){
+		nombre=Nom;
+		contrasena=Contr;
+	}
+
 
 	public Integer getID() {
 		return ID;
