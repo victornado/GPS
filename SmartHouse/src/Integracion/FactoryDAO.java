@@ -1,8 +1,8 @@
-package Integración;
+package Integracion;
 
-import Integración.Casa.DAOCasa;
-import Integración.Habitacion.DAOHabitacion;
-import Integración.Usuario.DAOUsuario;
+import Integracion.Casa.DAOCasa;
+import Integracion.Habitacion.DAOHabitacion;
+import Integracion.Usuario.DAOUsuario;
 
 public abstract class FactoryDAO {
 

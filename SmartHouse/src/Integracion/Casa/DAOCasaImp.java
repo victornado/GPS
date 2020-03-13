@@ -1,4 +1,4 @@
-package Integración.Casa;
+package Integracion.Casa;
 
 public class DAOCasaImp implements DAOCasa {
 

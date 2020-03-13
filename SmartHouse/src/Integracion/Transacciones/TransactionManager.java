@@ -1,4 +1,4 @@
-package Integración.Transacciones;
+package Integracion.Transacciones;
 
 public abstract class TransactionManager {
 	private static TransactionManager _instance;

@@ -1,4 +1,4 @@
-package Integración.Transacciones;
+package Integracion.Transacciones;
 
 import Main.Main;
 

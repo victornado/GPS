@@ -1,4 +1,4 @@
-package Integración.Habitacion;
+package Integracion.Habitacion;
 
 public class DAOHabitacionImp implements DAOHabitacion {
 

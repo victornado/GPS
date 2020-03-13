@@ -1,11 +1,11 @@
-package Integración;
+package Integracion;
 
-import Integración.Casa.DAOCasa;
-import Integración.Casa.DAOCasaImp;
-import Integración.Habitacion.DAOHabitacion;
-import Integración.Habitacion.DAOHabitacionImp;
-import Integración.Usuario.DAOUsuario;
-import Integración.Usuario.DAOUsuarioImp;
+import Integracion.Casa.DAOCasa;
+import Integracion.Casa.DAOCasaImp;
+import Integracion.Habitacion.DAOHabitacion;
+import Integracion.Habitacion.DAOHabitacionImp;
+import Integracion.Usuario.DAOUsuario;
+import Integracion.Usuario.DAOUsuarioImp;
 
 public class FactoryDAOImp extends FactoryDAO {
 
