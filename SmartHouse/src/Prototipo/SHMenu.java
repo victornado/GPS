@@ -86,15 +86,15 @@ public class SHMenu extends JFrame {
 		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane_1.setBorder(new EmptyBorder(0, 0, 0, 0));
 		tabbedPane_1.setBackground(Color.WHITE);
-		tabbedPane.addTab("Habitaci�n 1", null, tabbedPane_1, null);
+		tabbedPane.addTab("Habitacion 1", null, tabbedPane_1, null);
 		
 		JTabbedPane tabbedPane_2 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane_2.setBackground(Color.WHITE);
-		tabbedPane.addTab("Habitaci�n 2", null, tabbedPane_2, null);
+		tabbedPane.addTab("Habitacion 2", null, tabbedPane_2, null);
 		
 		JTabbedPane tabbedPane_3 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane_3.setBackground(Color.WHITE);
-		tabbedPane.addTab("Habitaci�n 3", null, tabbedPane_3, null);
+		tabbedPane.addTab("Habitacion 3", null, tabbedPane_3, null);
 		
 		JTabbedPane tabbedPane_4 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane_4.setBackground(Color.WHITE);
@@ -385,7 +385,7 @@ public class SHMenu extends JFrame {
 		
 		JTabbedPane tabbedPane_8 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane_8.setBackground(Color.WHITE);
-		tabbedPane.addTab("Ba�o", null, tabbedPane_8, null);
+		tabbedPane.addTab("Baño", null, tabbedPane_8, null);
 		
 		JLabel lblIlumniacin = new JLabel("Ilumniaci\u00F3n");
 		lblIlumniacin.setBounds(24, 85, 104, 33);
