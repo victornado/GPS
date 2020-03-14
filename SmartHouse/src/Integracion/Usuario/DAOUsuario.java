@@ -1,6 +1,6 @@
 package Integracion.Usuario;
 
-import Negocio.Transfer.TUsuario;
+import Negocio.SA.Usuario.TUsuario;
 
 public interface DAOUsuario {
 

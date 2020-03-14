@@ -9,4 +9,9 @@ public class Eventos {
 	public static final int LOGIN_USUARIO_OK =101;
 	public static final int LOGIN_USUARIO_KO =102;
 
+	//HU habitacion 
+	public static final int MOSTRAR_ILUMINACION_HABITACION= 200; 
+	public static final int MOSTRAR_ILUMINACION_HABITACION_OK= 201; 
+	public static final int MOSTRAR_ILUMINACION_HABITACION_KO= 202; 
+
 }

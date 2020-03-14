@@ -9,7 +9,8 @@ public class FactoryVistasImp extends FactoryVistas {
 
 	@Override
 	public Observer getVistas(int vistasName) {
-		if(vistasName >= 100 && vistasName < 200) return new Login();
+		if(vistasName >= 100 && vistasName < 200) 
+			return new Login();
 		
 		return null;
 	}

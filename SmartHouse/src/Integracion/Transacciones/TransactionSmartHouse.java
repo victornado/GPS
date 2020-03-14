@@ -35,7 +35,7 @@ public class TransactionSmartHouse implements Transaction {
 	}
 
 	@Override
-	public void undo() {
+	public void rollback() {
 		try {
 			_con.rollback();
 			_con.close();

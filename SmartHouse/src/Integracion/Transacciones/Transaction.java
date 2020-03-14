@@ -6,7 +6,7 @@ public interface Transaction {
 	
 	void commit();
 	
-	void undo();
+	void rollback();
 	
 	Object getResource();
 }

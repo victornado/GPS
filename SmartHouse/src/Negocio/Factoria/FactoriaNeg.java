@@ -1,5 +1,6 @@
 package Negocio.Factoria;
 
+import Negocio.SA.Habitacion.SAHabitacion;
 import Negocio.SA.Usuario.SAUsuario;
 
 public abstract class FactoriaNeg {
@@ -11,6 +12,7 @@ public abstract class FactoriaNeg {
 		return instance;
 	}
 	
-	public abstract SAUsuario createDAOUsuario();
+	public abstract SAUsuario createSAUsuario();
+	public abstract SAHabitacion createSAHabitacion();
 
 }

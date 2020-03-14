@@ -9,7 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import Controller.Controller;
 import Controller.Command.Eventos;
-import Negocio.Transfer.TUsuario;
+import Negocio.SA.Usuario.TUsuario;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -35,7 +35,6 @@ public class Login extends JFrame implements Observer {
 	/**
 	 * Launch the application.
 	 */
-
 	public Login() {
 		super();
 		this.contentPane = new JPanel();
@@ -127,9 +126,11 @@ public class Login extends JFrame implements Observer {
 	@Override
 	public void update(ResponseContext r) {
 		
-		if(r.getVista() == 101)JOptionPane.showMessageDialog(null, "Login correcto", "Correcto", JOptionPane.INFORMATION_MESSAGE);
+		if(r.getVista() == Eventos.LOGIN_USUARIO_OK)
+			JOptionPane.showMessageDialog(null, "Login correcto", "Correcto", JOptionPane.INFORMATION_MESSAGE);
 		
-		else if(r.getVista() == 102)JOptionPane.showMessageDialog(null, "Se ha producido un error", "Incorrecto", JOptionPane.ERROR_MESSAGE);
+		else if(r.getVista() == Eventos.LOGIN_USUARIO_KO)
+			JOptionPane.showMessageDialog(null, "Se ha producido un error", "Incorrecto", JOptionPane.ERROR_MESSAGE);
 		
 		
 	}

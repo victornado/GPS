@@ -1,4 +1,4 @@
-package Negocio.Transfer;
+package Negocio.SA.Usuario;
 
 public class TUsuario {
 	private Integer ID;

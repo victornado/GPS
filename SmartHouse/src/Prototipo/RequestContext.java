@@ -9,12 +9,22 @@ public class RequestContext {
 	
 	RequestContext (int id, Object datos){
 		idComando= id;
-		data=datos;
+		setData(datos);
 	}
 
 
 	public int getCommandName() {	
 		return idComando;
+	}
+
+
+	public Object getData() {
+		return data;
+	}
+
+
+	public void setData(Object data) {
+		this.data = data;
 	}
 
 }

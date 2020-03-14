@@ -1,12 +1,17 @@
 package Negocio.Factoria;
 
-import Negocio.SA.Usuario.SAUsuario;
-import Negocio.SA.Usuario.SAUsuarioImp;
+import Negocio.SA.Habitacion.*;
+import Negocio.SA.Usuario.*;
 
 public class FactoriaNegImp extends FactoriaNeg{
 	
-	public SAUsuario createDAOUsuario() {
+	public SAUsuario createSAUsuario() {
 		return new SAUsuarioImp();
+	}
+
+	@Override
+	public SAHabitacion createSAHabitacion() {
+		return new SAHabitacionImp();
 	}
 
 }

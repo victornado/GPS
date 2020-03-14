@@ -1,9 +1,9 @@
 package Integracion.Habitacion;
 
-import Negocio.Transfer.THabitacion;
+import Negocio.SA.Habitacion.THabitacion;
 
 public interface DAOHabitacion {
-public abstract THabitacion mostrarHabitacion(int id);
-
+	public abstract THabitacion mostrarHabitacion(int id);
+	public abstract THabitacion mostrarIluminacionHabitacin(THabitacion t);
 
 }
