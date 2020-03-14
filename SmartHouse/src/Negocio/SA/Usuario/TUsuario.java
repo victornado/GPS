@@ -1,8 +1,8 @@
 package Negocio.SA.Usuario;
 
 public class TUsuario {
-	private Integer ID;
-	private Integer IDCasa;
+	private int ID;
+	private int IDCasa;
 	private String correo;
 	private String tipo;
 	private String contrasena;
@@ -13,6 +13,19 @@ public class TUsuario {
 	public TUsuario (String Nom, String Contr){
 		nombre=Nom;
 		contrasena=Contr;
+	}
+
+
+	public TUsuario() {
+		
+		ID = 0;
+		IDCasa = 0;
+		correo = null;
+		tipo = null;
+		contrasena = null;
+		edad = 0;
+		nombre = null;
+		apellidos = null;
 	}
 
 

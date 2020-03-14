@@ -1,11 +1,33 @@
 package Negocio.SA.Usuario;
 
+import Integracion.FactoryDAO;
+import Integracion.Transacciones.TransactionManager;
+import Integracion.Transacciones.TransactionSmartHouse;
+import Integracion.Usuario.DAOUsuario;
+
 public class SAUsuarioImp implements SAUsuario{
 
-	@Override
-	public boolean altaUsuario(TUsuario tUsuario) {
+	public TUsuario loguearUsuario(TUsuario t) {
 		
-		return false;
+		TUsuario nuevo = null;
+		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
+		if(trans != null)
+		{
+			if(t != null)
+			{
+				DAOUsuario daoU  = FactoryDAO.getInstance().createDAOUsuario();
+				nuevo = daoU.buscarUsuario(t);
+				if(nuevo != null)
+					trans.commit();
+				else
+					trans.rollback();
+			}
+			else
+				trans.rollback();
+		}
+		return nuevo;
 	}
+	
+	
 
 }
