@@ -12,6 +12,6 @@ public abstract class Controller {
 		return instance;
 	}
 	
-	public abstract ResponseContext handleRequest(RequestContext requestContext);
-	public abstract void handleResponse(RequestContext requestContext,ResponseContext responseContext);
+	public abstract void handleRequest(RequestContext requestContext);
+	public abstract void handleResponse(ResponseContext responseContext);
 }

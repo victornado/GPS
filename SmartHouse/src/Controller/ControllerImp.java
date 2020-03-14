@@ -4,11 +4,12 @@ import Controller.Command.Command;
 import Controller.Command.CommandFactory;
 import Prototipo.RequestContext;
 import Prototipo.ResponseContext;
+import Prototipo.Factory.FactoryVistas;
 
 public class ControllerImp extends Controller{
 
 	@Override
-	public ResponseContext handleRequest(RequestContext requestContext) {
+	public void handleRequest(RequestContext requestContext) {
 		
 		ResponseContext responseContext = null;
 		
@@ -17,15 +18,14 @@ public class ControllerImp extends Controller{
 		Command command = commandFactory.getCommand(commandName);
 		
 		responseContext = command.invoke(command,requestContext);
+		handleResponse(responseContext);
 		
-		return responseContext; 
-
 	}
 
 	@Override
-	public void handleResponse(RequestContext requestContext, ResponseContext responseContext) {
+	public void handleResponse(ResponseContext responseContext) {
 		
-		
+		FactoryVistas.getInstance().getVistas(responseContext.getVista()).update(responseContext);
 		
 	}
 }

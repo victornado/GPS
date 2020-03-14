@@ -6,9 +6,17 @@ public class ResponseContext {
 	private Object data;
 	
 	
-	ResponseContext (int id, Object datos){
+	public ResponseContext (int id, Object datos){
 		idVista= id;
 		data=datos;
+	}
+	
+	public int getVista() {
+		return idVista;
+	}
+	
+	public Object getData() {
+		return data;
 	}
 
 }

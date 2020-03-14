@@ -17,7 +17,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
-public class ModificarUsuario extends JFrame {
+public class ModificarUsuario extends JFrame implements Observer{
 
 	private JPanel contentPane;
 	private JTextField txtNuevoUsername;
@@ -176,5 +176,11 @@ public class ModificarUsuario extends JFrame {
 		textField_3.setBounds(141, 34, 0, 0);
 		panel.add(textField_3);
 		textField_3.setColumns(10);
+	}
+
+	@Override
+	public void update(ResponseContext r) {
+		// TODO Auto-generated method stub
+		
 	}
 }

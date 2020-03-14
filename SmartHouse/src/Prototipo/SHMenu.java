@@ -28,7 +28,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenuBar;
 import java.awt.Window.Type;
 
-public class SHMenu extends JFrame {
+public class SHMenu extends JFrame implements Observer{
 
 	private JPanel contentPane;
 	private boolean actv;
@@ -39,7 +39,7 @@ public class SHMenu extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -51,7 +51,7 @@ public class SHMenu extends JFrame {
 			}
 		});
 	}
-
+*/
 
 	public SHMenu() {
 		super();
@@ -470,5 +470,12 @@ public class SHMenu extends JFrame {
 		label_1.setIcon(new ImageIcon(SHMenu.class.getResource("/img/user.png")));
 		label_1.setBounds(32, 11, 60, 70);
 		panel.add(label_1);
+	}
+
+
+	@Override
+	public void update(ResponseContext r) {
+		// TODO Auto-generated method stub
+		
 	}
 }

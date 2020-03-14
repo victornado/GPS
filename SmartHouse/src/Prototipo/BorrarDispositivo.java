@@ -26,7 +26,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class BorrarDispositivo extends JFrame {
+public class BorrarDispositivo extends JFrame implements Observer {
 
 	private JPanel contentPane;
 	private JTextArea texto;
@@ -38,7 +38,7 @@ public class BorrarDispositivo extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -49,7 +49,7 @@ public class BorrarDispositivo extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
@@ -171,5 +171,12 @@ public class BorrarDispositivo extends JFrame {
 		panel.add(btnGuardar);
 		this.texto = new JTextArea(20, 50);
 		this.texto.setEditable(false);
+	}
+
+
+	@Override
+	public void update(ResponseContext r) {
+		// TODO Auto-generated method stub
+		
 	}
 }

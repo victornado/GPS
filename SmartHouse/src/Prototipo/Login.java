@@ -23,7 +23,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Login extends JFrame {
+public class Login extends JFrame implements Observer {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -35,19 +35,6 @@ public class Login extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login frame = new Login();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
-
 
 	public Login() {
 		super();
@@ -97,10 +84,13 @@ public class Login extends JFrame {
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				
-				TUsuario tUsuario= new TUsuario(lblUsuario.getText(),lblContrasea.getText());
+				if(datoCorrecto(textField.getText()) && datoCorrecto(textField_1.getText())) {
+				TUsuario tUsuario= new TUsuario(textField.getText(),textField_1.getText());
 				RequestContext rContext = new RequestContext(Eventos.LOGIN_USUARIO, tUsuario);
 				Controller.getInstance().handleRequest(rContext);
+				}
+				else JOptionPane.showMessageDialog(null, "Datos incorrectos", "Incorrecto", JOptionPane.ERROR_MESSAGE);
+				
 				
 				
 				
@@ -114,7 +104,7 @@ public class Login extends JFrame {
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(Login.class.getResource("/img/logo.png")));
-		label.setBounds(115, 11, 189, 129);
+		label.setBounds(135, 11, 200, 129);
 		panel.add(label);
 	}
 	
@@ -126,4 +116,23 @@ public class Login extends JFrame {
 		textField_1.setEditable(false);
 
 	}
+	
+	boolean datoCorrecto(String dato) {
+		
+		if(dato.length() == 0 || dato.length() > 30)return false;
+		else return true;
+		
+	}
+
+	@Override
+	public void update(ResponseContext r) {
+		
+		if(r.getVista() == 101)JOptionPane.showMessageDialog(null, "Login correcto", "Correcto", JOptionPane.INFORMATION_MESSAGE);
+		
+		else if(r.getVista() == 102)JOptionPane.showMessageDialog(null, "Se ha producido un error", "Incorrecto", JOptionPane.ERROR_MESSAGE);
+		
+		
+	}
+	
+	
 }
