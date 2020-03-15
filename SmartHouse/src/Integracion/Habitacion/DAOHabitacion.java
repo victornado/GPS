@@ -4,6 +4,6 @@ import Negocio.SA.Habitacion.THabitacion;
 
 public interface DAOHabitacion {
 	public abstract THabitacion mostrarHabitacion(int id);
-	public abstract THabitacion mostrarIluminacionHabitacin(THabitacion t);
+	public abstract THabitacion mostrarIluminacionHabitacion(THabitacion t);
 
 }

@@ -17,7 +17,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 	}
 
 	@Override
-	public THabitacion mostrarIluminacionHabitacin(THabitacion t) {
+	public THabitacion mostrarIluminacionHabitacion(THabitacion t) {
 		
 		THabitacion nuevo = null;
 		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().getTransaction();

@@ -18,7 +18,7 @@ public class SAHabitacionImp implements SAHabitacion{
 			if(t != null)
 			{
 				DAOHabitacion dao = FactoryDAO.getInstance().createDAOHabitacion();
-				nuevo = dao.mostrarIluminacionHabitacin(t);
+				nuevo = dao.mostrarIluminacionHabitacion(t);
 				if(nuevo != null)
 					trans.commit();
 				else
