@@ -2,7 +2,7 @@ package Main;
 
 import java.awt.EventQueue;
 
-import Prototipo.Login;
+import Prototipo.LoginImp;
 
 public class Main {
 	
@@ -17,7 +17,7 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login frame = new Login();
+					LoginImp frame = new LoginImp();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

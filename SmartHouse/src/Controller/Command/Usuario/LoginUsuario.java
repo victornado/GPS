@@ -14,14 +14,21 @@ public class LoginUsuario implements Command {
 	public ResponseContext invoke(Command command, RequestContext requestContext) {
 		
 		
-		FactoriaNeg fact =  FactoriaNeg.getInstance();
+		/*FactoriaNeg fact =  FactoriaNeg.getInstance();
 		SAUsuario saUsuario = fact.createSAUsuario();
 		TUsuario respuesta = saUsuario.loguearUsuario( (TUsuario) requestContext.getData());
 		
 		if (respuesta != null)
 			return new ResponseContext(Eventos.LOGIN_USUARIO_OK, respuesta);
 		else
-			return new ResponseContext(Eventos.LOGIN_USUARIO_KO, respuesta);
+			return new ResponseContext(Eventos.LOGIN_USUARIO_KO, respuesta);*/
+		
+		
+		//*******************************************
+		//COMENTADO HASTA QUE LA BBDD ESTE ACTIVA
+		//*******************************************
+		
+		return new ResponseContext(Eventos.LOGIN_USUARIO_OK, null);
 	}
 
 }

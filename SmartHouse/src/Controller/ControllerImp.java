@@ -4,7 +4,7 @@ import Controller.Command.Command;
 import Controller.Command.CommandFactory;
 import Prototipo.RequestContext;
 import Prototipo.ResponseContext;
-import Prototipo.Factory.FactoryVistas;
+import Prototipo.Factory.Dispatcher;
 
 public class ControllerImp extends Controller{
 
@@ -25,7 +25,7 @@ public class ControllerImp extends Controller{
 	@Override
 	public void handleResponse(ResponseContext responseContext) {
 		
-		FactoryVistas.getInstance().getVistas(responseContext.getVista()).update(responseContext);
+		Dispatcher.getInstance().actualizaVistas(responseContext);
 		
 	}
 }

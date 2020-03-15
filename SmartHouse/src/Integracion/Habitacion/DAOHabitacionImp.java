@@ -3,6 +3,7 @@ package Integracion.Habitacion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,15 +54,21 @@ public class DAOHabitacionImp implements DAOHabitacion {
 		if (t != null) {
 			con = (Connection) t.getResource();
 			PreparedStatement ps;
-			ps = con.prepareStatement("SELECT * FROM ComponentesEnHabitacion WHERE IDHabitacion = ? ",
-					PreparedStatement.RETURN_GENERATED_KEYS);
-			ps.setInt(1, idHabitacion);
-			ResultSet resultSet = ps.executeQuery();
-			lista=new ArrayList<TComponentesEnHabitacion>();
-			while (resultSet.next()) {
-				TComponentesEnHabitacion c;
-				//meter todos los atributos de la query a c
-				lista.add(c);
+			try {
+				ps = con.prepareStatement("SELECT * FROM ComponentesEnHabitacion WHERE IDHabitacion = ? ",
+						PreparedStatement.RETURN_GENERATED_KEYS);
+				
+				ps.setInt(1, idHabitacion);
+				ResultSet resultSet = ps.executeQuery();
+				lista=new ArrayList<TComponentesEnHabitacion>();
+				while (resultSet.next()) {
+					TComponentesEnHabitacion c = null;
+					//meter todos los atributos de la query a c
+					lista.add(c);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 		return lista;
