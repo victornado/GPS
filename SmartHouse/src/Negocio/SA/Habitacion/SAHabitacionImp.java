@@ -13,6 +13,11 @@ public class SAHabitacionImp implements SAHabitacion{
 		
 		THabitacion nuevo = null;
 		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
+		try {
+			trans.init();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		if(trans != null)
 		{
 			if(t != null)

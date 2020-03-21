@@ -11,6 +11,11 @@ public class SAUsuarioImp implements SAUsuario{
 		
 		TUsuario nuevo = null;
 		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
+		try {
+			trans.init();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		if(trans != null)
 		{
 			if(t != null)

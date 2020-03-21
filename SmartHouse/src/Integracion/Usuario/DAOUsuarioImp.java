@@ -51,11 +51,13 @@ public class DAOUsuarioImp implements DAOUsuario {
 		
 		if(transaction != null) {
 			Connection cn = (Connection) transaction.getResource();
-			Statement st;
-			try {
-				st = cn.createStatement();
 	
-					ResultSet resultSet = st.executeQuery("SELECT * FROM Usuarios WHERE Nombre = " + user.getNombre() + " and Contrase�a = " + user.getContrasena() );
+			try {
+				
+				PreparedStatement query = cn.prepareStatement("SELECT * FROM usuario WHERE nombre = ? and contrasena = ?");
+				query.setNString(1, user.getNombre());
+				query.setString(2, user.getContrasena());
+				ResultSet resultSet = query.executeQuery();
 	
 					if (resultSet.next()) {
 						usuario = new TUsuario();

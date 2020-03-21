@@ -6,5 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="mysql-connector-java-5.1.48-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/suras/git/GPS/SmartHouse/mysql-connector-java-5.1.48-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
