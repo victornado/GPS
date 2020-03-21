@@ -124,7 +124,7 @@ public class LoginImp extends Login implements GUI {
 			SHMenu.getInstance().setVisible(true);
 		}	
 		else if(r.getVista() == Eventos.LOGIN_USUARIO_KO)
-			JOptionPane.showMessageDialog(null, "Se ha producido un error", "Incorrecto", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Incorrecto", JOptionPane.ERROR_MESSAGE);
 		
 		
 	}
