@@ -1,4 +1,5 @@
 package Prototipo;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -8,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.SystemColor;
 
 import javax.swing.JToggleButton;
@@ -35,6 +38,10 @@ public class SHMenuImp extends SHMenu{
 	private ModificarUsuarioImp modificar;
 	private AniadirDispositivoImp addDisp;
 	private BorrarDispositivoImp borrarDisp;
+	private TemperaturaExteriorImp tempExt;
+	private int x;
+	private int y;
+	private String msg;
 
 	/**
 	 * Launch the application.
@@ -59,6 +66,11 @@ public class SHMenuImp extends SHMenu{
 		this.contentPane = new JPanel();
 		this.setFocusable(true);
 		actv=false;
+		x = 610;
+	    y = 531;
+	    this.tempExt = new TemperaturaExteriorImp();
+	    //msg = this.tempExt.getWeather();
+	    msg = "Temperatura: 14.91°C    Humedad: 54%   Presión: 1016hPa        [Madrid   13:54   24/3/2020]";
 		this.modificar = new ModificarUsuarioImp();
 		this.addDisp = new AniadirDispositivoImp();
 		this.borrarDisp = new BorrarDispositivoImp();
@@ -67,7 +79,7 @@ public class SHMenuImp extends SHMenu{
 	
 	public void initGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 833, 542);
+		setBounds(100, 100, 833, 547);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -447,6 +459,21 @@ public class SHMenuImp extends SHMenu{
 		toggleButton.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/Siwtch OFF.png")));
 		panel.add(toggleButton);
 		
+		
+		JButton weatherBtn = new JButton();
+		weatherBtn.setBounds(240, 35, 24, 21);
+		weatherBtn.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/temp.png")));
+		weatherBtn.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				tempExt.setVisible(true);
+				tempExt.mostrarTemperatura();
+			}
+			
+		});
+		panel.add(weatherBtn);
+		
+		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(180, 35, 55, 21);
 		panel.add(menuBar);
@@ -478,4 +505,24 @@ public class SHMenuImp extends SHMenu{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+    public void paint(Graphics g){
+        super.paint(g);
+        Graphics2D g2 = (Graphics2D)g;
+        Font font = new Font("Arial",Font.PLAIN,13);
+        g2.setFont(font);
+        g2.setColor(Color.BLACK);
+
+        g2.drawString(msg ,x,y);
+        try{Thread.sleep(10);}
+        catch(Exception ex){};
+
+        x-=1;
+        
+            if(x==-7*msg.length()){
+              x= 640;  
+            }
+        repaint();
+    }
 }
