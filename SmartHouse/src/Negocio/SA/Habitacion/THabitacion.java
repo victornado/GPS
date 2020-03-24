@@ -1,19 +1,19 @@
 package Negocio.SA.Habitacion;
 
+import java.util.List;
+
 public class THabitacion {
 
 	private int ID;
 	private int IDCasa;
 	private String tipo;
-	private int temperatura;
-	private int iluminacion;
+	private List<TComponentesEnHabitacion> componentes;
 	
-	public THabitacion(int id, int idCasa, String tipo2, int temperatura2, int int1) {
+	public THabitacion(int id, int idCasa, String tipo2) {
 		ID = id;
 		IDCasa = idCasa;
 		tipo = tipo2;
-		this.temperatura = temperatura2;
-		this.iluminacion = int1;
+		
 	}
 	public int getID() {
 		return ID;
@@ -26,18 +26,6 @@ public class THabitacion {
 	}
 	public void setIDCasa(int iDCasa) {
 		IDCasa = iDCasa;
-	}
-	public int getTemperatura() {
-		return temperatura;
-	}
-	public void setTemperatura(int temperatura) {
-		this.temperatura = temperatura;
-	}
-	public int getIluminacion() {
-		return iluminacion;
-	}
-	public void setIluminacion(int iluminacion) {
-		this.iluminacion = iluminacion;
 	}
 	public String getTipo() {
 		return tipo;

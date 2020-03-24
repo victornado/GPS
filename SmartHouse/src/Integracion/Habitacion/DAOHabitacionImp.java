@@ -22,21 +22,20 @@ public class DAOHabitacionImp implements DAOHabitacion {
 	}
 
 	@Override
-	public THabitacion mostrarIluminacionHabitacion(THabitacion t) {
+	public THabitacion mostrarIluminacionHabitacion(THabitacion t, TComponentesEnHabitacion componente) {
 
 		THabitacion nuevo = null;
 		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().getTransaction();
 		if (trans != null) {
 			try {
 				Connection c = (Connection) trans.getResource();
-				PreparedStatement query = c
-						.prepareStatement("Select Iluminacion from Habitacion where IDCasa = ? AND ID = ?");
+				PreparedStatement query = c.prepareStatement("Select dato from componentesEnHabitacio where IDCasa = ? AND idComponente = ? AND ID = ?");
 				query.setInt(1, t.getIDCasa());
-				query.setInt(2, t.getID());
+				//query.Int(2,componente.getID());
+				query.setInt(3, t.getID());
 				ResultSet resultado = query.executeQuery();
 				if (resultado.next()) {
-					nuevo = new THabitacion(t.getID(), t.getIDCasa(), t.getTipo(), t.getTemperatura(),
-							resultado.getInt("Iluminacion"));
+					nuevo = new THabitacion(t.getID(), t.getIDCasa(), t.getTipo());
 				}
 			} catch (Exception e) {
 				e.getMessage();
@@ -45,9 +44,38 @@ public class DAOHabitacionImp implements DAOHabitacion {
 		}
 		return nuevo;
 	}
+	/*
+	 public abstract boolean modificarIluminacionHabitacion(THabitacion habitacion, TComponenteEnHabitacion componente)
+	 {
+		boolean ok = false;
+		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().getTransaction();
+		
+		if(trans != null && componente.getID() != null)
+		{
+		try{
+			Connection c = (Connection) trans.getResource();
+			PreparedStatement query = c.prepareStatement("Update componentesEnHabitacion set dato where dato = ? AND idHabitacion = ? AND idComponente = ?");
+			query.setInt(1,componente.getDato();
+			query.setInt(2,habitacion.getID();
+			query.setInt(3,componente.getID();
+			query.executeUpdate();
+			ok = true;
+		}
+		catch(Exception e)
+		{
+			ok = false;
+		}
+		
+		}
+		return ok;
+	 }
+	
+	 */
+
 
 	@Override
 	public List<TComponentesEnHabitacion> getComponents(Integer idHabitacion) {
+		
 		List <TComponentesEnHabitacion> lista=null;
 		Transaction t = TransactionManager.getInstance().getTransaction();
 		Connection con = null;

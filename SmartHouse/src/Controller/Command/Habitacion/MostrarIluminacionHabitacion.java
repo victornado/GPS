@@ -13,6 +13,7 @@ public class MostrarIluminacionHabitacion implements Command{
 	public ResponseContext invoke(Command command, RequestContext requestContext) {
 		
 		
+		/*   TODO al transfer le tiene que llegar un objeto par, que cntenga el IDHabitacion y el IDComponente a mostrar
 		THabitacion habitacion = FactoriaNeg.getInstance().createSAHabitacion().mostrarIluminacionHabitacion((THabitacion) requestContext.getData());
 		
 		if(habitacion != null)
@@ -20,6 +21,8 @@ public class MostrarIluminacionHabitacion implements Command{
 
 		else
 			return new ResponseContext(Eventos.MOSTRAR_ILUMINACION_HABITACION_KO, habitacion);
+		*/
+		return null;
 	}
 
 }
