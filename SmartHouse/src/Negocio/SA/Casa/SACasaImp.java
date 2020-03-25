@@ -8,7 +8,7 @@ import Integracion.Transacciones.TransactionSmartHouse;
 public class SACasaImp implements SACasa{
 
 	@Override
-	public Double MostrarDatosTemperatura(TCasa casa) {
+	public Double MostrarDatosTemperatura() {
 		Double temperatura = null;
 		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
 		try {
@@ -19,7 +19,7 @@ public class SACasaImp implements SACasa{
 		if(trans != null)
 		{
 			DAOCasa daoC  = FactoryDAO.getInstance().createDAOCasa();
-			temperatura = daoC.mostrarTemperatura(casa);
+			temperatura = daoC.mostrarTemperatura();
 			if(temperatura != null)
 				trans.commit();
 			else

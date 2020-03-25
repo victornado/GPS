@@ -4,8 +4,6 @@ import Controller.Command.Command;
 import Controller.Command.Eventos;
 import Negocio.Factoria.FactoriaNeg;
 import Negocio.SA.Casa.SACasa;
-import Negocio.SA.Casa.TCasa;
-import Negocio.SA.Usuario.TUsuario;
 import Prototipo.RequestContext;
 import Prototipo.ResponseContext;
 
@@ -16,7 +14,7 @@ public class MostrarDatosTemperatura implements Command {
 		
 		FactoriaNeg fact =  FactoriaNeg.getInstance();
 		SACasa saCasa = fact.createSACasa();
-		Double respuesta = saCasa.MostrarDatosTemperatura((TCasa) requestContext.getData());
+		Double respuesta = saCasa.MostrarDatosTemperatura();
 		
 		if (respuesta != null)
 			return new ResponseContext(Eventos.MOSTRAR_TEMPERATURA_OK, respuesta);
