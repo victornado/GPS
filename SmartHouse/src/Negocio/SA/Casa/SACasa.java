@@ -1,5 +1,7 @@
 package Negocio.SA.Casa;
 
-public class SACasa {
+public interface SACasa {
+
+	public abstract Double MostrarDatosTemperatura();
 
 }

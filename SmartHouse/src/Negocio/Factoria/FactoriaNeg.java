@@ -1,5 +1,6 @@
 package Negocio.Factoria;
 
+import Negocio.SA.Casa.SACasa;
 import Negocio.SA.Habitacion.SAHabitacion;
 import Negocio.SA.Usuario.SAUsuario;
 
@@ -14,5 +15,6 @@ public abstract class FactoriaNeg {
 	
 	public abstract SAUsuario createSAUsuario();
 	public abstract SAHabitacion createSAHabitacion();
+	public abstract SACasa createSACasa();
 
 }
