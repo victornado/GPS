@@ -1,7 +1,11 @@
 package Prototipo;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -30,6 +34,7 @@ public class LoginImp extends Login implements GUI {
 	private JTextField textField_1;
 	private JLabel lblUsuario;
 	private JLabel lblContrasea;
+
 
 	/**
 	 * Launch the application.
@@ -72,7 +77,7 @@ public class LoginImp extends Login implements GUI {
 		lblUsuario.setBounds(87, 154, 67, 14);
 		panel.add(lblUsuario);
 		
-		lblContrasea = new JLabel("Contrase\u00F1a:");
+		lblContrasea = new JLabel("Contraseña:");
 		lblContrasea.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblContrasea.setBounds(70, 185, 84, 14);
 		panel.add(lblContrasea);
@@ -82,7 +87,8 @@ public class LoginImp extends Login implements GUI {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				if(datoCorrecto(textField.getText()) && datoCorrecto(textField_1.getText())) {
-				TUsuario tUsuario= new TUsuario(textField.getText(),textField_1.getText());
+					//System.out.println( );
+				TUsuario tUsuario= new TUsuario(textField.getText(),md5Java(textField_1.getText()));
 				RequestContext rContext = new RequestContext(Eventos.LOGIN_USUARIO, tUsuario);
 				Controller.getInstance().handleRequest(rContext);
 				}
@@ -128,5 +134,25 @@ public class LoginImp extends Login implements GUI {
 		
 		
 	}
+	public static String md5Java(String message){
+		String digest = null;
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			byte[] hash = md.digest(message.getBytes("UTF-8"));
+
+			//converting byte array to Hexadecimal String
+			StringBuilder sb = new StringBuilder(2*hash.length);
+			for(byte b : hash){
+				sb.append(String.format("%02x", b&0xff));
+			}
+			digest = sb.toString();
+		} catch (UnsupportedEncodingException ex) {
+
+		} catch (NoSuchAlgorithmException ex) {
+
+		}
+		return digest;
+	}
+
 
 }
