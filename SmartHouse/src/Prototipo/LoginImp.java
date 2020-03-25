@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 import Controller.Controller;
 import Controller.Command.Eventos;
 import Negocio.SA.Usuario.TUsuario;
+import Prototipo.MD5Cypher;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -45,6 +46,7 @@ public class LoginImp extends Login implements GUI {
 		this.textField_1 = new JPasswordField();
 		this.textField = new JTextField();
 		this.setFocusable(true);
+		this.setVisible(true);
 		initGUI();
 	}
 	
@@ -87,10 +89,9 @@ public class LoginImp extends Login implements GUI {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				if(datoCorrecto(textField.getText()) && datoCorrecto(textField_1.getText())) {
-					//System.out.println( );
-				TUsuario tUsuario= new TUsuario(textField.getText(),md5Java(textField_1.getText()));
-				RequestContext rContext = new RequestContext(Eventos.LOGIN_USUARIO, tUsuario);
-				Controller.getInstance().handleRequest(rContext);
+					TUsuario tUsuario= new TUsuario(textField.getText(), MD5Cypher.md5Java(textField_1.getText()));
+					RequestContext rContext = new RequestContext(Eventos.LOGIN_USUARIO, tUsuario);
+					Controller.getInstance().handleRequest(rContext);
 				}
 				else JOptionPane.showMessageDialog(null, "Datos incorrectos", "Incorrecto", JOptionPane.ERROR_MESSAGE);
 				
@@ -127,32 +128,11 @@ public class LoginImp extends Login implements GUI {
 		if(r.getVista() == Eventos.LOGIN_USUARIO_OK) {
 			//JOptionPane.showMessageDialog(null, "Bienvenido " + ((TUsuario) r.getData()).getNombre());
 			JOptionPane.showMessageDialog(null, "Bienvenido ");
+			this.setVisible(false);
 			SHMenu.getInstance().setVisible(true);
-		}	
+		}
 		else if(r.getVista() == Eventos.LOGIN_USUARIO_KO)
 			JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Incorrecto", JOptionPane.ERROR_MESSAGE);
 		
-		
 	}
-	public static String md5Java(String message){
-		String digest = null;
-		try {
-			MessageDigest md = MessageDigest.getInstance("MD5");
-			byte[] hash = md.digest(message.getBytes("UTF-8"));
-
-			//converting byte array to Hexadecimal String
-			StringBuilder sb = new StringBuilder(2*hash.length);
-			for(byte b : hash){
-				sb.append(String.format("%02x", b&0xff));
-			}
-			digest = sb.toString();
-		} catch (UnsupportedEncodingException ex) {
-
-		} catch (NoSuchAlgorithmException ex) {
-
-		}
-		return digest;
-	}
-
-
 }
