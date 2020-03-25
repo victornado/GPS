@@ -36,6 +36,7 @@ public class SHMenuImp extends SHMenu{
 	private JPanel contentPane;
 	private boolean actv;
 	private ModificarUsuarioImp modificar;
+	private AniadirUsuarioImp aniadiru;
 	private AniadirDispositivoImp addDisp;
 	private BorrarDispositivoImp borrarDisp;
 	private TemperaturaExteriorImp tempExt;
@@ -46,11 +47,11 @@ public class SHMenuImp extends SHMenu{
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SHMenu frame = new SHMenu();
+					SHMenu frame = new SHMenuImp();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -58,7 +59,7 @@ public class SHMenuImp extends SHMenu{
 			}
 		});
 	}
-*/
+
 
 	public SHMenuImp() {
 		super();
@@ -74,6 +75,7 @@ public class SHMenuImp extends SHMenu{
 		this.modificar = new ModificarUsuarioImp();
 		this.addDisp = new AniadirDispositivoImp();
 		this.borrarDisp = new BorrarDispositivoImp();
+		this.aniadiru = new AniadirUsuarioImp();
 		initGUI();
 	}
 	
@@ -483,6 +485,14 @@ public class SHMenuImp extends SHMenu{
 		
 		JMenuItem mntmAadirUsuario = new JMenuItem("Añadir Usuario");
 		mnAjustes.add(mntmAadirUsuario);
+		
+		mntmAadirUsuario.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				aniadiru.setVisible(true);
+			}
+		});
+		
 		
 		JMenuItem mntmModificarUsuario = new JMenuItem("Modificar Usuario");
 		mntmModificarUsuario.addActionListener(new ActionListener() {

@@ -14,7 +14,11 @@ public class TUsuario {
 		nombre=Nom;
 		contrasena=Contr;
 	}
-
+	public TUsuario(String Nom,String Contr,String tipo) {
+		nombre=Nom;
+		contrasena=Contr;
+		this.tipo=tipo;
+	}
 
 	public TUsuario() {
 		
