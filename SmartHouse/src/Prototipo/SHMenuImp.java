@@ -421,6 +421,11 @@ public class SHMenuImp extends SHMenu{
 		lblTemperatura.setFont(new Font("Arial", Font.BOLD, 15));
 		panel.add(lblTemperatura);
 		
+		JLabel lblTemperatura2 = new JLabel("22");
+		lblTemperatura2.setBounds(270, 280, 123, 33);
+		lblTemperatura2.setFont(new Font("Arial", Font.BOLD, 15));
+		panel.add(lblTemperatura2);
+		
 		JSlider slider_2 = new JSlider();
 		slider_2.setBounds(24, 322, 273, 26);
 		slider_2.setBackground(SystemColor.activeCaption);
