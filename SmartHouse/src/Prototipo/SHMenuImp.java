@@ -6,6 +6,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controller.Controller;
+import Controller.Command.Eventos;
+import Negocio.SA.Casa.TCasa;
+
 import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -19,6 +24,8 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.DataBufferDouble;
+
 import javax.swing.JSeparator;
 import javax.swing.JRadioButton;
 import javax.swing.JSpinner;
@@ -43,6 +50,8 @@ public class SHMenuImp extends SHMenu{
 	private int x;
 	private int y;
 	private String msg;
+	private JLabel lblTemperatura2;
+	private int IDCasa = 1;// CUANDO SE CARGUE LA CASA ESTO DEBERIA ACTUALIZARSE
 
 	/**
 	 * Launch the application.
@@ -76,6 +85,7 @@ public class SHMenuImp extends SHMenu{
 		this.addDisp = new AniadirDispositivoImp();
 		this.borrarDisp = new BorrarDispositivoImp();
 		this.aniadiru = new AniadirUsuarioImp();
+		inicializarTemp();
 		initGUI();
 	}
 	
@@ -421,7 +431,7 @@ public class SHMenuImp extends SHMenu{
 		lblTemperatura.setFont(new Font("Arial", Font.BOLD, 15));
 		panel.add(lblTemperatura);
 		
-		JLabel lblTemperatura2 = new JLabel("22");
+	//	lblTemperatura2= new JLabel("000000");
 		lblTemperatura2.setBounds(270, 280, 123, 33);
 		lblTemperatura2.setFont(new Font("Arial", Font.BOLD, 15));
 		panel.add(lblTemperatura2);
@@ -540,4 +550,14 @@ public class SHMenuImp extends SHMenu{
             }
         repaint();
     }
+	
+	public void modificarLabelTemperatura(Double temp) {
+		lblTemperatura2.setText(temp.toString());
+	}
+	
+	public void inicializarTemp() {
+		TCasa casa = new TCasa(IDCasa);
+		RequestContext rContext = new RequestContext(Eventos.MOSTRAR_TEMPERATURA, casa);
+	    Controller.getInstance().handleRequest(rContext);
+	}
 }

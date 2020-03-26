@@ -6,6 +6,7 @@ import Prototipo.LoginImp;
 import Prototipo.GUI;
 import Prototipo.Login;
 import Prototipo.ResponseContext;
+import Prototipo.TemperaturaInterior;
 
 public class DispatcherImp extends Dispatcher {
 
@@ -13,6 +14,8 @@ public class DispatcherImp extends Dispatcher {
 	public void actualizaVistas(ResponseContext r) {
 		if(r.getVista() >= 100 && r.getVista() < 200) 
 			Login.getInstance().Update(r);
+		else if(r.getVista() >= 300 && r.getVista() < 400) 
+			TemperaturaInterior.getInstance().Update(r);
 
 	}
 

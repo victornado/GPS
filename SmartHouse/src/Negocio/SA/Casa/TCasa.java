@@ -18,6 +18,10 @@ public class TCasa {
 		this.temperatura = temperatura;
 	}
 	
+	public TCasa(int ID) {
+		this.ID = ID;
+	}
+
 	public int getID() {
 		return ID;
 	}
