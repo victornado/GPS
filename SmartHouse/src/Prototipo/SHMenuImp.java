@@ -47,6 +47,7 @@ public class SHMenuImp extends SHMenu{
 	private AniadirDispositivoImp addDisp;
 	private BorrarDispositivoImp borrarDisp;
 	private TemperaturaExteriorImp tempExt;
+	private TemperaturaInteriorImp tempInt;
 	private int x;
 	private int y;
 	private String msg;
@@ -85,7 +86,8 @@ public class SHMenuImp extends SHMenu{
 		this.addDisp = new AniadirDispositivoImp();
 		this.borrarDisp = new BorrarDispositivoImp();
 		this.aniadiru = new AniadirUsuarioImp();
-		inicializarTemp();
+		this.tempInt = (TemperaturaInteriorImp) TemperaturaInterior.getInstance();
+		tempInt.setMenu(this);
 		initGUI();
 	}
 	
@@ -431,10 +433,11 @@ public class SHMenuImp extends SHMenu{
 		lblTemperatura.setFont(new Font("Arial", Font.BOLD, 15));
 		panel.add(lblTemperatura);
 		
-	//	lblTemperatura2= new JLabel("000000");
+		lblTemperatura2= new JLabel("000000");
 		lblTemperatura2.setBounds(270, 280, 123, 33);
 		lblTemperatura2.setFont(new Font("Arial", Font.BOLD, 15));
 		panel.add(lblTemperatura2);
+		inicializarTemp();
 		
 		JSlider slider_2 = new JSlider();
 		slider_2.setBounds(24, 322, 273, 26);

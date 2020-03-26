@@ -10,5 +10,6 @@ public abstract class SHMenu extends JFrame implements GUI{
 		if(instance == null) instance = new SHMenuImp();
 		return instance;
 	}
+	
 
 }
