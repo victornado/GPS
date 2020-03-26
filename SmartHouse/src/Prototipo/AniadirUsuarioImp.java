@@ -29,6 +29,10 @@ public class AniadirUsuarioImp extends AniadirUsuario{
 
 	private JPanel contentPane;
 	private JTextField txtNuevoUsername;
+	private JTextField txtApellidos;
+	private JTextField txtcorreo;
+	private JTextField txtedad;
+	private JTextField txtidcasa;
 	private JTextField textField;
 	private JTextField textField_3;
 	private JButton usuarios;
@@ -133,8 +137,105 @@ public class AniadirUsuarioImp extends AniadirUsuario{
 		});
 		panel.add(textField);
 		
+		txtApellidos = new JTextField();
+		txtApellidos.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		txtApellidos.setText("Apellidos");
+		txtApellidos.setToolTipText("");
+		txtApellidos.setBounds(141, 125, 138, 20);
+		txtApellidos.setForeground(Color.DARK_GRAY);
+		txtApellidos.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				if (txtApellidos.getText().equals("Apellidos")) {
+					txtApellidos.setText("");
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtApellidos.getText().equals("")) {
+					txtApellidos.setText("Apellidos");
+				}
+			}
+		});
+		panel.add(txtApellidos);
+		txtApellidos.setColumns(10);
+		
+		
+		txtcorreo = new JTextField();
+		txtcorreo.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		txtcorreo.setText("Correo");
+		txtcorreo.setToolTipText("");
+		txtcorreo.setBounds(141, 150, 138, 20);
+		txtcorreo.setForeground(Color.DARK_GRAY);
+		txtcorreo.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				if (txtcorreo.getText().equals("Correo")) {
+					txtcorreo.setText("");
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtcorreo.getText().equals("")) {
+					txtcorreo.setText("Correo");
+				}
+			}
+		});
+		panel.add(txtcorreo);
+		txtcorreo.setColumns(10);
+		
+		txtedad = new JTextField();
+		txtedad.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		txtedad.setText("Edad");
+		txtedad.setToolTipText("");
+		txtedad.setBounds(141, 175, 138, 20);
+		txtedad.setForeground(Color.DARK_GRAY);
+		txtedad.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				if (txtedad.getText().equals("Edad")) {
+					txtedad.setText("");
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtedad.getText().equals("")) {
+					txtedad.setText("Edad");
+				}
+			}
+		});
+		panel.add(txtedad);
+		txtedad.setColumns(10);
+		
+		txtidcasa = new JTextField();
+		txtidcasa.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		txtidcasa.setText("IdCasa");
+		txtidcasa.setToolTipText("");
+		txtidcasa.setBounds(141, 200, 138, 20);
+		txtidcasa.setForeground(Color.DARK_GRAY);
+		txtidcasa.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				if (txtidcasa.getText().equals("IdCasa")) {
+					txtidcasa.setText("");
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtidcasa.getText().equals("")) {
+					txtidcasa.setText("IdCasa");
+				}
+			}
+		});
+		panel.add(txtidcasa);
+		txtidcasa.setColumns(10);
+		
 		usuarios = new JButton("Tipo de usuario");
-		usuarios.setBounds(141, 120, 140, 23);
+		usuarios.setBounds(141, 230, 140, 23);
 		
 		usuarios.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent event) {
@@ -153,7 +254,9 @@ public class AniadirUsuarioImp extends AniadirUsuario{
 			public void actionPerformed(ActionEvent event) {
 				String pass = textField.getText();
 				String hash = MD5Cypher.md5Java(pass); 
-				TUsuario tusuario = new TUsuario(txtNuevoUsername.getText(),hash,resp);
+				int edadparse = Integer.parseInt(txtedad.getText());
+				int IdCasaparse = Integer.parseInt(txtidcasa.getText());
+				TUsuario tusuario = new TUsuario(txtNuevoUsername.getText(),hash,resp,txtApellidos.getText(),edadparse,txtcorreo.getText(),IdCasaparse);
 				RequestContext rContext = new RequestContext(Eventos.Aniadir_USUARIO, tusuario);
 				Controller.getInstance().handleRequest(rContext);
 			}
