@@ -21,7 +21,7 @@ public class DAOUsuarioImp implements DAOUsuario {
 			con = (Connection) t.getResource();
 			PreparedStatement ps;
 			ps = con.prepareStatement(
-					"INSERT INTO Usuario(nombre,apellidos,correo,contrasena,tipo,"
+					"INSERT INTO usuario(nombre,apellidos,correo,contrasena,tipo,"
 							+ "IDCasa,edad) VALUES(?,?,?,?,?,?,?)",
 					PreparedStatement.RETURN_GENERATED_KEYS);
 

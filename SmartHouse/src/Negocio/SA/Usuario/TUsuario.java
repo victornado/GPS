@@ -14,12 +14,15 @@ public class TUsuario {
 		nombre=Nom;
 		contrasena=Contr;
 	}
-	public TUsuario(String Nom,String Contr,String tipo) {
+	public TUsuario(String Nom,String Contr,String tipo,String apellidos,int edad,String correo,int idcasa) {
 		nombre=Nom;
 		contrasena=Contr;
 		this.tipo=tipo;
+		this.apellidos = apellidos;
+		this.edad= edad;
+		this.correo = correo;
+		this.IDCasa = idcasa;
 	}
-
 	public TUsuario() {
 		
 		ID = 0;

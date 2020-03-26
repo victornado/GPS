@@ -29,6 +29,10 @@ public class AniadirUsuarioImp extends AniadirUsuario{
 
 	private JPanel contentPane;
 	private JTextField txtNuevoUsername;
+	private JTextField txtApellidos;
+	private JTextField txtcorreo;
+	private JTextField txtedad;
+	private JTextField txtidcasa;
 	private JTextField textField;
 	private JTextField textField_3;
 	private JButton usuarios;
