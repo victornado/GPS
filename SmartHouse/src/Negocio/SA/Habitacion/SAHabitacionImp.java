@@ -9,9 +9,9 @@ import Negocio.Factoria.FactoriaNeg;
 public class SAHabitacionImp implements SAHabitacion{
 
 	@Override
-	public THabitacion mostrarIluminacionHabitacion(THabitacion t, TComponentesEnHabitacion componente) {
+	public TComponentesEnHabitacion mostrarIluminacionHabitacion( TComponentesEnHabitacion componente) {
 		
-		THabitacion nuevo = null;
+		TComponentesEnHabitacion nuevo = null;
 		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
 		
 		if(trans != null)
@@ -22,10 +22,10 @@ public class SAHabitacionImp implements SAHabitacion{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			if(t != null)
+			if(componente != null)
 			{
 				DAOHabitacion dao = FactoryDAO.getInstance().createDAOHabitacion();
-				nuevo = dao.mostrarIluminacionHabitacion(t,componente);
+				nuevo = dao.mostrarIluminacionHabitacion(componente);
 				if(nuevo != null)
 					trans.commit();
 				else
@@ -35,15 +35,15 @@ public class SAHabitacionImp implements SAHabitacion{
 		}
 		return nuevo;
 	}
-	/*
-	  TODO
+	
+	  
 	  
 	@Override
-	public THabitacion modificarIluminacionHabitacion(THabitacion t, TComponenete componente) {
-		THabitacion nuevo = null;
+	public TComponentesEnHabitacion modificarIluminacionHabitacion(TComponentesEnHabitacion componente) {
+		TComponentesEnHabitacion nuevo = null;
 		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
 		
-		if(trans != null && componente.getID() != null)
+		if(trans != null && componente.getIDComponente() != -1) // -1 si es null
 		{
 			try 
 			{
@@ -55,7 +55,7 @@ public class SAHabitacionImp implements SAHabitacion{
 			}
 			
 			DAOHabitacion dao = FactoryDAO.getInstance().createDAOHabitacion();
-			nuevo = dao.modificarIluminacionHabitacion(t);
+			nuevo = dao.modificarIluminacionHabitacion(componente);
 			if(nuevo != null)
 				trans.commit();
 			else
@@ -66,5 +66,5 @@ public class SAHabitacionImp implements SAHabitacion{
 	}
 	
 	
-	*/
+	
 }

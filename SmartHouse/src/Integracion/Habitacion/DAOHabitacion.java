@@ -7,8 +7,8 @@ import Negocio.SA.Habitacion.THabitacion;
 
 public interface DAOHabitacion {
 	public abstract THabitacion mostrarHabitacion(int id);
-	public abstract THabitacion mostrarIluminacionHabitacion(THabitacion t, TComponentesEnHabitacion componente);
+	public abstract TComponentesEnHabitacion mostrarIluminacionHabitacion( TComponentesEnHabitacion componente);
 	public abstract List<TComponentesEnHabitacion> getComponents(Integer idHabitacion);
-	//public abstract THabitacion modificarIluminacionHabitacion(THabitacion habitacion, TComponenteEnHabitacion componente);
+	public abstract TComponentesEnHabitacion modificarIluminacionHabitacion(TComponentesEnHabitacion componente);
 
 }

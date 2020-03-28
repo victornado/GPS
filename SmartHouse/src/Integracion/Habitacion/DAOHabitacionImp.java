@@ -22,20 +22,20 @@ public class DAOHabitacionImp implements DAOHabitacion {
 	}
 
 	@Override
-	public THabitacion mostrarIluminacionHabitacion(THabitacion t, TComponentesEnHabitacion componente) {
+	public TComponentesEnHabitacion mostrarIluminacionHabitacion(TComponentesEnHabitacion componente) {
 
-		THabitacion nuevo = null;
+		TComponentesEnHabitacion nuevo = null;
 		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().getTransaction();
 		if (trans != null) {
 			try {
 				Connection c = (Connection) trans.getResource();
-				PreparedStatement query = c.prepareStatement("Select dato from componentesEnHabitacio where IDCasa = ? AND idComponente = ? AND ID = ?");
-				query.setInt(1, t.getIDCasa());
-				//query.Int(2,componente.getID());
-				query.setInt(3, t.getID());
-				ResultSet resultado = query.executeQuery();
-				if (resultado.next()) {
-					nuevo = new THabitacion(t.getID(), t.getIDCasa(), t.getTipo());
+				PreparedStatement query = c.prepareStatement("Select dato from componentesEnHabitacio where idHabitacion = ? AND idComponente = ? AND ID = ?");
+				query.setInt(1, componente.getIDhabitacion());
+				query.setInt(2,componente.getIDComponente());
+				query.setInt(3, componente.getIDComponente());
+				ResultSet r = query.executeQuery();
+				if (r.next()) {
+					nuevo = new TComponentesEnHabitacion(r.getInt("idComponente"), r.getInt("idHabitacion"), r.getString("nombre"), r.getInt("dato"));
 				}
 			} catch (Exception e) {
 				e.getMessage();
@@ -44,33 +44,36 @@ public class DAOHabitacionImp implements DAOHabitacion {
 		}
 		return nuevo;
 	}
-	/*
-	 public abstract boolean modificarIluminacionHabitacion(THabitacion habitacion, TComponenteEnHabitacion componente)
+	
+	 public TComponentesEnHabitacion modificarIluminacionHabitacion(TComponentesEnHabitacion componente)
 	 {
-		boolean ok = false;
+		TComponentesEnHabitacion nuevo = null;
 		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().getTransaction();
 		
-		if(trans != null && componente.getID() != null)
+		if(trans != null && componente.getIDComponente() != -1)// si null
 		{
 		try{
 			Connection c = (Connection) trans.getResource();
-			PreparedStatement query = c.prepareStatement("Update componentesEnHabitacion set dato where dato = ? AND idHabitacion = ? AND idComponente = ?");
-			query.setInt(1,componente.getDato();
-			query.setInt(2,habitacion.getID();
-			query.setInt(3,componente.getID();
+			PreparedStatement query = c.prepareStatement("update componentesEnHabitacion set dato where dato = ? and idHabitacion = ? and idComponente = ?");
+			//PreparedStatement query = c.prepareStatement("SELECT idComponente,idHabitacion FROM componentesEnHabitacion  WHERE idHabitacion = ? AND idComponente = ?");
+
+			query.setInt(1,componente.getDato());
+			query.setInt(2,componente.getIDhabitacion());
+			query.setInt(3,componente.getIDComponente());
+			
 			query.executeUpdate();
-			ok = true;
+			
 		}
 		catch(Exception e)
 		{
-			ok = false;
+			nuevo = null;
 		}
 		
 		}
-		return ok;
+		return nuevo;
 	 }
 	
-	 */
+	 
 
 
 	@Override

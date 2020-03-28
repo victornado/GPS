@@ -6,10 +6,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import Controller.Controller;
 import Controller.Command.Eventos;
 import Negocio.SA.Casa.TCasa;
+import Negocio.SA.Habitacion.TComponentesEnHabitacion;
 
 import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
@@ -35,6 +38,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JMenuBar;
 import java.awt.Window.Type;
 
@@ -156,10 +160,22 @@ public class SHMenuImp extends SHMenu{
 		lblNewLabel_1.setBounds(22, 57, 103, 14);
 		panel_1.add(lblNewLabel_1);
 		
-		JSlider slider_4 = new JSlider();
+		
+		JSlider slider_4 = new JSlider(); // lampara 1
 		slider_4.setBounds(135, 55, 200, 26);
 		panel_1.add(slider_4);
 		
+		slider_4.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				
+				//hardcodeado id del componente y de la habitacion TODO
+			  	TComponentesEnHabitacion tLampara= new TComponentesEnHabitacion(1,1,lblNewLabel_1.getText(),slider_4.getValue());
+				RequestContext rContext = new RequestContext(Eventos.MODIFICAR_ILUMINACION_HABITACION, tLampara);
+				Controller.getInstance().handleRequest(rContext);
+			}
+		});
 		JLabel lblLamparaTecho = new JLabel("Lampara techo");
 		lblLamparaTecho.setBounds(22, 99, 103, 14);
 		panel_1.add(lblLamparaTecho);
@@ -530,7 +546,11 @@ public class SHMenuImp extends SHMenu{
 
 	@Override
 	public void Update(ResponseContext r) {
-		// TODO Auto-generated method stub
+		if(r.getVista()==Eventos.MODIFICAR_ILUMINACION_HABITACION_KO)
+			JOptionPane.showMessageDialog(null, "Fallo");	
+		else
+			JOptionPane.showMessageDialog(null, "Temperatura cambiada");
+			
 		
 	}
 	

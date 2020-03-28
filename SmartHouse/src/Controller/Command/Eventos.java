@@ -19,6 +19,11 @@ public class Eventos {
 	public static final int MOSTRAR_ILUMINACION_HABITACION= 200; 
 	public static final int MOSTRAR_ILUMINACION_HABITACION_OK= 201; 
 	public static final int MOSTRAR_ILUMINACION_HABITACION_KO= 202; 
+	public static final int MODIFICAR_ILUMINACION_HABITACION= 203; 
+	public static final int MODIFICAR_ILUMINACION_HABITACION_OK= 204;
+	public static final int MODIFICAR_ILUMINACION_HABITACION_KO= 205; 
+
+
 
 	//HU CASA
 	public static final int MOSTRAR_TEMPERATURA=300;
