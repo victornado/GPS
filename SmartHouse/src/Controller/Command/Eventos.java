@@ -25,9 +25,19 @@ public class Eventos {
 
 
 
-	//HU CASA
+	//HU CASA TEMP
 	public static final int MOSTRAR_TEMPERATURA=300;
 	public static final int MOSTRAR_TEMPERATURA_OK=301;
 	public static final int MOSTRAR_TEMPERATURA_KO=302;
+	
+	//HU CASA HUM
+	public static final int MOSTRAR_HUMEDAD=400;
+	public static final int MOSTRAR_HUMEDAD_OK=401;
+	public static final int MOSTRAR_HUMEDAD_KO=402;
+	
+	//HU CASA HUM
+	public static final int MOSTRAR_ILUMINACION = 500;
+	public static final int MOSTRAR_ILUMINACION_OK = 501;
+	public static final int MOSTRAR_ILUMINACION_KO = 502;
 
 }

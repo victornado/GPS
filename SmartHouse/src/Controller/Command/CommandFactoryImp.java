@@ -1,5 +1,7 @@
 package Controller.Command;
 
+import Controller.Command.Casa.MostrarDatosHumedad;
+import Controller.Command.Casa.MostrarDatosIluminacion;
 import Controller.Command.Casa.MostrarDatosTemperatura;
 import Controller.Command.Habitacion.ModificarIluminacionHabitacion;
 import Controller.Command.Habitacion.MostrarIluminacionHabitacion;
@@ -16,7 +18,9 @@ public class CommandFactoryImp extends CommandFactory{
 		case Eventos.LOGIN_USUARIO: return new LoginUsuario();
 		case Eventos.MOSTRAR_ILUMINACION_HABITACION: return new MostrarIluminacionHabitacion();
 		case Eventos.Aniadir_USUARIO: return new AniadirUsuario();
+		case Eventos.MOSTRAR_ILUMINACION : return new MostrarDatosTemperatura();
 		case Eventos.MOSTRAR_TEMPERATURA : return new MostrarDatosTemperatura();
+		case Eventos.MOSTRAR_HUMEDAD : return new MostrarDatosHumedad();
 		case Eventos.MODIFICAR_ILUMINACION_HABITACION : return new ModificarIluminacionHabitacion();
 		default: return null;
 		
