@@ -19,6 +19,8 @@ public class DispatcherImp extends Dispatcher {
 			SHMenu.getInstance().Update(r);
 		else if(r.getVista() >= 300 && r.getVista() < 400) 
 			TemperaturaInterior.getInstance().Update(r);
+		else if(r.getVista() >= 600 && r.getVista() < 800) 
+			SHMenu.getInstance().Update(r);
 
 	}
 

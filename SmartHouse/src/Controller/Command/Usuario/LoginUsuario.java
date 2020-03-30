@@ -11,7 +11,7 @@ import Prototipo.ResponseContext;
 public class LoginUsuario implements Command {
 
 	@Override
-	public ResponseContext invoke(Command command, RequestContext requestContext) {
+	public ResponseContext invoke( RequestContext requestContext) {
 		
 		FactoriaNeg fact =  FactoriaNeg.getInstance();
 		SAUsuario saUsuario = fact.createSAUsuario();

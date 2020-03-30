@@ -11,7 +11,7 @@ import Prototipo.ResponseContext;
 public class ModificarIluminacionHabitacion implements Command{
 
 	@Override
-	public ResponseContext invoke(Command command, RequestContext requestContext) {
+	public ResponseContext invoke( RequestContext requestContext) {
 		
 		TComponentesEnHabitacion habitacion = FactoriaNeg.getInstance().createSAHabitacion().modificarIluminacionHabitacion((TComponentesEnHabitacion) requestContext.getData());
 		

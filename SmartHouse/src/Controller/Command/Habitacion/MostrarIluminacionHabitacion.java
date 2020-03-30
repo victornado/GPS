@@ -10,7 +10,7 @@ import Prototipo.ResponseContext;
 public class MostrarIluminacionHabitacion implements Command{
 
 	@Override
-	public ResponseContext invoke(Command command, RequestContext requestContext) {
+	public ResponseContext invoke( RequestContext requestContext) {
 		
 		
 		/*   TODO al transfer le tiene que llegar un objeto par, que cntenga el IDHabitacion y el IDComponente a mostrar

@@ -12,7 +12,7 @@ import Prototipo.ResponseContext;
 public class MostrarDatosHumedad implements Command {
 
 	@Override
-	public ResponseContext invoke(Command command, RequestContext requestContext) {
+	public ResponseContext invoke( RequestContext requestContext) {
 		
 		FactoriaNeg fact =  FactoriaNeg.getInstance();
 		SACasa saCasa = fact.createSACasa();

@@ -5,6 +5,6 @@ import Prototipo.ResponseContext;
 
 public interface Command {
 
-	public ResponseContext invoke(Command command, RequestContext requestContext);
+	public ResponseContext invoke(RequestContext requestContext);
 		
 }

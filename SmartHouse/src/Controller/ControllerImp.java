@@ -17,7 +17,7 @@ public class ControllerImp extends Controller{
 		CommandFactory commandFactory = CommandFactory.getInstance();
 		Command command = commandFactory.getCommand(commandName);
 		
-		responseContext = command.invoke(command,requestContext);
+		responseContext = command.invoke(requestContext);
 		handleResponse(responseContext);
 		
 	}

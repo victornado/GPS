@@ -5,15 +5,22 @@ from pychromecast.controllers.youtube import YouTubeController
 
 def init():
 
+    activo = False
+    cast = None
     chromecasts = pychromecast.get_chromecasts()
     [cc.device.friendly_name for cc in chromecasts]
 
-    cast = next(cc for cc in chromecasts if cc.device.friendly_name == "Dormitorio")
-    cast.wait()
+    if len(chromecasts) != 0 :
+        print('AA')
+        cast = next(cc for cc in chromecasts if cc.device.friendly_name == "Dormitorio")
+        cast.wait()
+        activo = True
+    
+
     #print(cast.device) # Comprobar que se ha conectado bien
     #print(cast.status) 
 
-    return cast
+    return cast, activo
 
 
 def playVideo(cast,link):
@@ -23,16 +30,17 @@ def playVideo(cast,link):
     mc.block_until_active()
     mc.play()
 
-#def subirVolumen():
-
-
-
 
 def main() :
 
-    cast =  init()
-    yt = YouTubeController()
-    cast.register_handler(yt)
-    yt.play_video('kLpH1nSLJSs')
+    cast, activ =  init()
+
+    if cast != None and activ == True :
+        yt = YouTubeController()
+        cast.register_handler(yt)
+        yt.play_video('kLpH1nSLJSs')
+        #print('ok')
+    else :
+        raise Exception('F')
     
 main()

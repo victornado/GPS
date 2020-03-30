@@ -62,7 +62,7 @@ public class SHMenuImp extends SHMenu {
 	private JLabel lblTemperatura2;
 	private JLabel lblHumedad2;
 	private int IDCasa = 1;// CUANDO SE CARGUE LA CASA ESTO DEBERIA ACTUALIZARSE
-
+	private boolean ChromeCastActivo;
 	/**
 	 * Launch the application.
 	 */
@@ -89,13 +89,14 @@ public class SHMenuImp extends SHMenu {
 		y = 531;
 		this.tempExt = new TemperaturaExteriorImp();
 		// msg = this.tempExt.getWeather();
-		msg = "Temperatura: 14.91ï¿½C    Humedad: 54%   Presiï¿½n: 1016hPa        [Madrid   13:54   24/3/2020]";
+		msg = "Temperatura: 14.91   Humedad: 54%   Presion: 1016hPa        [Madrid   13:54   24/3/2020]";
 		this.modificar = new ModificarUsuarioImp();
 		this.addDisp = new AniadirDispositivoImp();
 		this.borrarDisp = new BorrarDispositivoImp();
 		this.aniadiru = new AniadirUsuarioImp();
 		this.tempInt = (TemperaturaInteriorImp) TemperaturaInterior.getInstance();
 		tempInt.setMenu(this);
+		ChromeCastActivo=false;
 		initGUI();
 	}
 
@@ -212,16 +213,16 @@ public class SHMenuImp extends SHMenu {
 		rdbtnBloquear.setBounds(165, 216, 109, 23);
 		panel_1.add(rdbtnBloquear);
 
-		JLabel lblSmartTv = new JLabel("Smart TV");
+		JLabel lblSmartTv = new JLabel("Chrome cast");
 		lblSmartTv.setBounds(22, 267, 75, 14);
 		panel_1.add(lblSmartTv);
 
 		JSpinner spinner = new JSpinner();
 		spinner.setModel(new SpinnerNumberModel(0, 0, 100, 1));
-		spinner.setBounds(120, 264, 29, 20);
+		spinner.setBounds(120, 264, 50, 20);
 		panel_1.add(spinner);
 
-		JLabel label_3 = new JLabel("");
+		/*JLabel label_3 = new JLabel("");
 		label_3.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/c-.png")));
 		label_3.setBounds(155, 261, 30, 25);
 		panel_1.add(label_3);
@@ -234,14 +235,28 @@ public class SHMenuImp extends SHMenu {
 		JButton button_1 = new JButton("");
 		button_1.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/c--.png")));
 		button_1.setBounds(225, 263, 25, 25);
-		panel_1.add(button_1);
+		panel_1.add(button_1);*/
 
-		JButton button_2 = new JButton("");
+		JButton button_2 = new JButton("Change volume");
 		button_2.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/play.png")));
-		button_2.setBounds(255, 263, 25, 25);
+		button_2.setBounds(180, 263, 150, 25);
 		panel_1.add(button_2);
+		
+		
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if(ChromeCastActivo) {
+				
+					RequestContext rContext = new RequestContext(Eventos.MODIFICA_VOLUMEN_CHROMCAST, Integer.parseInt((String) spinner.getValue()));
+					Controller.getInstance().handleRequest(rContext);
+				}
+				else JOptionPane.showMessageDialog(null, "ChromeCast no está activo", "Error", JOptionPane.ERROR_MESSAGE);
+				
+			}
+		});
 
-		JButton button_3 = new JButton("");
+		/*JButton button_3 = new JButton("");
 		button_3.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/--D.png")));
 		button_3.setBounds(285, 263, 25, 25);
 		panel_1.add(button_3);
@@ -263,7 +278,7 @@ public class SHMenuImp extends SHMenu {
 		JLabel label_4 = new JLabel("");
 		label_4.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/Netflix 30x30.png.png")));
 		label_4.setBounds(78, 258, 30, 30);
-		panel_1.add(label_4);
+		panel_1.add(label_4);*/
 
 		JToggleButton toggleButton_1 = new JToggleButton("");
 		toggleButton_1.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/Siwtch OFF.png")));
@@ -338,20 +353,27 @@ public class SHMenuImp extends SHMenu {
 		});
 
 		JToggleButton toggleButton_5 = new JToggleButton("");
-		toggleButton_5.setBounds(402, 266, 53, 20);
+		toggleButton_5.setBounds(378, 266, 53, 20);
 		toggleButton_5.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/Siwtch OFF.png")));
 		panel_1.add(toggleButton_5);
 		toggleButton_5.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				if (!actv) {
-					toggleButton_5.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/Switch ON.png")));
-					actv = true;
-
-				} else {
-					toggleButton_5.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/Siwtch OFF.png")));
-					actv = false;
+				if(!ChromeCastActivo) {
+					
+					toggleButton_1.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/Switch ON.png")));
+					
+					actv=true;
+					RequestContext rContext = new RequestContext(Eventos.ACTIVAR_CHROMCAST, null);
+					Controller.getInstance().handleRequest(rContext);
+					//ChromeCastActivo=true;
+				
 				}
+				else {
+					toggleButton_1.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/Siwtch OFF.png")));
+					actv=false;
+					ChromeCastActivo=false;
+				}								
 			}
 		});
 
@@ -612,8 +634,26 @@ public class SHMenuImp extends SHMenu {
 	public void Update(ResponseContext r) {
 		if (r.getVista() == Eventos.MODIFICAR_ILUMINACION_HABITACION_KO)
 			JOptionPane.showMessageDialog(null, "Fallo");
-		else
+		else if (r.getVista() == Eventos.MODIFICAR_ILUMINACION_HABITACION_OK) {
 			JOptionPane.showMessageDialog(null, "Temperatura cambiada");
+		}
+		else if(r.getVista() == Eventos.ACTIVAR_CHROMCAST_OK) {
+			
+			JOptionPane.showMessageDialog(null, "ChromeCast funcionando");
+			ChromeCastActivo=true;
+		}	
+		else if(r.getVista() == Eventos.ACTIVAR_CHROMCAST_KO) {
+			
+			JOptionPane.showMessageDialog(null, "Algo salió mal al encender el ChromeCast","Error", JOptionPane.ERROR_MESSAGE);
+		}
+		else if(r.getVista() == Eventos.MODIFICA_VOLUMEN_CHROMCAST_OK) {
+			
+			JOptionPane.showMessageDialog(null, "Se ha cambiado el volument correctamente a "+r.getData());
+		}
+		else if(r.getVista() == Eventos.MODIFICA_VOLUMEN_CHROMCAST_KO) {
+			
+			JOptionPane.showMessageDialog(null, "El volumen no ha sido modificado","Error", JOptionPane.ERROR_MESSAGE);
+		}
 
 	}
 

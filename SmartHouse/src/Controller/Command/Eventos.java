@@ -40,4 +40,14 @@ public class Eventos {
 	public static final int MOSTRAR_ILUMINACION_OK = 501;
 	public static final int MOSTRAR_ILUMINACION_KO = 502;
 
+	
+	//Activa ChromeCast
+		public static final int ACTIVAR_CHROMCAST= 600; 
+		public static final int ACTIVAR_CHROMCAST_OK= 601; 
+		public static final int ACTIVAR_CHROMCAST_KO= 602;
+		
+		//Modifica volumen ChromeCast
+		public static final int MODIFICA_VOLUMEN_CHROMCAST= 700; 
+		public static final int MODIFICA_VOLUMEN_CHROMCAST_OK= 701; 
+		public static final int MODIFICA_VOLUMEN_CHROMCAST_KO= 702;
 }
