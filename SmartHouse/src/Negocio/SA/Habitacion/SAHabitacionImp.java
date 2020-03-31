@@ -39,8 +39,8 @@ public class SAHabitacionImp implements SAHabitacion{
 	  
 	  
 	@Override
-	public TComponentesEnHabitacion modificarIluminacionHabitacion(TComponentesEnHabitacion componente) {
-		TComponentesEnHabitacion nuevo = null;
+	public int modificarIluminacionHabitacion(TComponentesEnHabitacion componente) {
+		int nuevo = -1;
 		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
 		
 		if(trans != null && componente.getIDComponente() != -1) // -1 si es null
@@ -56,7 +56,7 @@ public class SAHabitacionImp implements SAHabitacion{
 			
 			DAOHabitacion dao = FactoryDAO.getInstance().createDAOHabitacion();
 			nuevo = dao.modificarIluminacionHabitacion(componente);
-			if(nuevo != null)
+			if(nuevo != -1)
 				trans.commit();
 			else
 				trans.rollback();

@@ -45,16 +45,16 @@ public class DAOHabitacionImp implements DAOHabitacion {
 		return nuevo;
 	}
 	
-	 public TComponentesEnHabitacion modificarIluminacionHabitacion(TComponentesEnHabitacion componente)
+	 public int modificarIluminacionHabitacion(TComponentesEnHabitacion componente)
 	 {
-		TComponentesEnHabitacion nuevo = null;
+		int nuevo = -1;
 		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().getTransaction();
 		
 		if(trans != null && componente.getIDComponente() != -1)// si null
 		{
 		try{
 			Connection c = (Connection) trans.getResource();
-			PreparedStatement query = c.prepareStatement("update componentesEnHabitacion set dato where dato = ? and idHabitacion = ? and idComponente = ?");
+			PreparedStatement query = c.prepareStatement("UPDATE componentesEnHabitacion SET dato=? WHERE idHabitacion = ? AND idComponente = ?");
 			//PreparedStatement query = c.prepareStatement("SELECT idComponente,idHabitacion FROM componentesEnHabitacion  WHERE idHabitacion = ? AND idComponente = ?");
 
 			query.setInt(1,componente.getDato());
@@ -62,11 +62,12 @@ public class DAOHabitacionImp implements DAOHabitacion {
 			query.setInt(3,componente.getIDComponente());
 			
 			query.executeUpdate();
+			nuevo = componente.getDato();
 			
 		}
 		catch(Exception e)
 		{
-			nuevo = null;
+			nuevo = -1;
 		}
 		
 		}

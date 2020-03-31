@@ -164,23 +164,16 @@ public class SHMenuImp extends SHMenu {
 		JLabel lblNewLabel_1 = new JLabel("Lampara 1");
 		lblNewLabel_1.setBounds(22, 57, 103, 14);
 		panel_1.add(lblNewLabel_1);
-
+		
 		JSlider slider_4 = new JSlider(); // lampara 1
 		slider_4.setBounds(135, 55, 200, 26);
 		panel_1.add(slider_4);
+		slider_4.setMinimum(12);
+		slider_4.setMaximum(32);
+		slider_4.setPaintLabels(true);
+		slider_4.setMajorTickSpacing(5);
+		slider_4.setMinorTickSpacing(5);
 
-		slider_4.addChangeListener(new ChangeListener() {
-
-			@Override
-			public void stateChanged(ChangeEvent e) {
-
-				// hardcodeado id del componente y de la habitacion TODO
-				TComponentesEnHabitacion tLampara = new TComponentesEnHabitacion(1, 1, lblNewLabel_1.getText(),
-						slider_4.getValue());
-				RequestContext rContext = new RequestContext(Eventos.MODIFICAR_ILUMINACION_HABITACION, tLampara);
-				Controller.getInstance().handleRequest(rContext);
-			}
-		});
 		JLabel lblLamparaTecho = new JLabel("Lampara techo");
 		lblLamparaTecho.setBounds(22, 99, 103, 14);
 		panel_1.add(lblLamparaTecho);
@@ -280,21 +273,19 @@ public class SHMenuImp extends SHMenu {
 		label_4.setBounds(78, 258, 30, 30);
 		panel_1.add(label_4);*/
 
-		JToggleButton toggleButton_1 = new JToggleButton("");
-		toggleButton_1.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/Siwtch OFF.png")));
+		JButton toggleButton_1 = new JButton("Actualizar");
 		toggleButton_1.setBounds(378, 57, 53, 20);
 		panel_1.add(toggleButton_1);
-		toggleButton_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				if (!actv) {
-					toggleButton_1.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/Switch ON.png")));
-					actv = true;
+		toggleButton_1.addActionListener(new ActionListener() {
+		
 
-				} else {
-					toggleButton_1.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/Siwtch OFF.png")));
-					actv = false;
-				}
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// hardcodeado id del componente y de la habitacion TODO
+				TComponentesEnHabitacion tLampara = new TComponentesEnHabitacion(1, 1, lblNewLabel_1.getText(),slider_4.getValue());
+				RequestContext rContext = new RequestContext(Eventos.MODIFICAR_ILUMINACION_HABITACION, tLampara);
+				Controller.getInstance().handleRequest(rContext);
+				
 			}
 		});
 

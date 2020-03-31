@@ -13,9 +13,9 @@ public class ModificarIluminacionHabitacion implements Command{
 	@Override
 	public ResponseContext invoke( RequestContext requestContext) {
 		
-		TComponentesEnHabitacion habitacion = FactoriaNeg.getInstance().createSAHabitacion().modificarIluminacionHabitacion((TComponentesEnHabitacion) requestContext.getData());
+		int habitacion = FactoriaNeg.getInstance().createSAHabitacion().modificarIluminacionHabitacion((TComponentesEnHabitacion) requestContext.getData());
 		
-		if(habitacion != null)
+		if(habitacion != -1)
 			return new ResponseContext(Eventos.MODIFICAR_ILUMINACION_HABITACION_OK, habitacion);
 		else
 			return new ResponseContext(Eventos.MODIFICAR_ILUMINACION_HABITACION_KO, habitacion);
