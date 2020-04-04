@@ -34,12 +34,12 @@ public class TemperaturaExteriorImp extends TemperaturaExterior{
 
 	public TemperaturaExteriorImp() {
 	    msg = "";
-	    calendario = Calendar.getInstance();
+	    /*calendario = Calendar.getInstance();
 	    hora =calendario.get(Calendar.HOUR_OF_DAY);
 	    minutos = calendario.get(Calendar.MINUTE);
 	    dia = calendario.get(Calendar.DAY_OF_MONTH);
 	    mes = calendario.get(Calendar.MONTH)+1;
-	    anio = calendario.get(Calendar.YEAR);
+	    anio = calendario.get(Calendar.YEAR);*/
 	    temp = hum = pres = "";
 	    
 	    getWeather();
@@ -98,11 +98,17 @@ public class TemperaturaExteriorImp extends TemperaturaExterior{
 		panel.setLayout(null);
 		
 		JTextArea txt = new JTextArea();
+		calendario = Calendar.getInstance();
+	    hora =calendario.get(Calendar.HOUR_OF_DAY);
+	    minutos = calendario.get(Calendar.MINUTE);
+	    dia = calendario.get(Calendar.DAY_OF_MONTH);
+	    mes = calendario.get(Calendar.MONTH)+1;
+	    anio = calendario.get(Calendar.YEAR);
 		/*
 		txt.setText("Temperatura: " + getTemp() + "°C" + "\n" + "Humedad: " + getHum() + "%" 
 				+ "\n" + "Presión: " + getPres()  + "hPa" +"\n" +  "[Madrid   " + hora + ":" + minutos + "   " + dia +"/" + mes + "/" + anio + "]");
 		*/
-		txt.setText("Temperatura: 14.91°C"+"\n" +"Humedad: 54%"+"\n"+   "Presión: 1016hPa"+"\n"+        "[Madrid   13:54   24/3/2020]");
+		txt.setText("Temperatura: 14.91°C"+"\n" +"Humedad: 54%"+"\n"+   "Presión: 1016hPa"+"\n"+"[Madrid   "+hora+":"+minutos+"   "+dia+"/"+mes+"/"+anio+"]");
 		txt.setEditable(false);
 		txt.setBounds(0, 0, 211, 251);
 	

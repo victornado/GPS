@@ -30,6 +30,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.DataBufferDouble;
+import java.util.Calendar;
 import java.util.Hashtable;
 
 import javax.swing.JSeparator;
@@ -57,7 +58,13 @@ public class SHMenuImp extends SHMenu {
 	private TemperaturaInteriorImp tempInt;
 	private int x;
 	private int y;
+	private int hora;
+	private int minutos;
+	private int dia;
+	private int mes;
+	private int anio;
 	private String msg;
+	private Calendar calendario;
 	private JLabel lblIluminacion2;
 	private JLabel lblTemperatura2;
 	private JLabel lblHumedad2;
@@ -89,7 +96,7 @@ public class SHMenuImp extends SHMenu {
 		y = 531;
 		this.tempExt = new TemperaturaExteriorImp();
 		// msg = this.tempExt.getWeather();
-		msg = "Temperatura: 14.91   Humedad: 54%   Presion: 1016hPa        [Madrid   13:54   24/3/2020]";
+		msg = "Temperatura: 14.91°C   Humedad: 54%   Presion: 1016hPa";
 		this.modificar = new ModificarUsuarioImp();
 		this.addDisp = new AniadirDispositivoImp();
 		this.borrarDisp = new BorrarDispositivoImp();
@@ -656,7 +663,15 @@ public class SHMenuImp extends SHMenu {
 		g2.setFont(font);
 		g2.setColor(Color.BLACK);
 
-		g2.drawString(msg, x, y);
+		calendario = Calendar.getInstance();
+	    hora =calendario.get(Calendar.HOUR_OF_DAY);
+	    minutos = calendario.get(Calendar.MINUTE);
+	    dia = calendario.get(Calendar.DAY_OF_MONTH);
+	    mes = calendario.get(Calendar.MONTH)+1;
+	    anio = calendario.get(Calendar.YEAR);
+	    
+	   String msgDraw = msg+"        [Madrid   "+hora+":"+minutos+"   "+dia+"/"+mes+"/"+anio+"]";
+		g2.drawString(msgDraw, x, y);
 		try {
 			Thread.sleep(10);
 		} catch (Exception ex) {
@@ -665,7 +680,7 @@ public class SHMenuImp extends SHMenu {
 
 		x -= 1;
 
-		if (x == -7 * msg.length()) {
+		if (x == -7 * msgDraw.length()) {
 			x = 640;
 		}
 		repaint();
