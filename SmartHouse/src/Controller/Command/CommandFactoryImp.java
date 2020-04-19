@@ -1,5 +1,8 @@
 package Controller.Command;
 
+import Controller.Command.Casa.ModificarHumedadCasa;
+import Controller.Command.Casa.ModificarIluminacionCasa;
+import Controller.Command.Casa.ModificarTemperaturaCasa;
 import Controller.Command.Casa.MostrarDatosHumedad;
 import Controller.Command.Casa.MostrarDatosIluminacion;
 import Controller.Command.Casa.MostrarDatosTemperatura;
@@ -24,6 +27,9 @@ public class CommandFactoryImp extends CommandFactory{
 		case Eventos.MOSTRAR_TEMPERATURA : return new MostrarDatosTemperatura();
 		case Eventos.MOSTRAR_HUMEDAD : return new MostrarDatosHumedad();
 		case Eventos.MODIFICAR_ILUMINACION_HABITACION : return new ModificarIluminacionHabitacion();
+		case Eventos.MODIFICAR_ILUMINACION : return new ModificarIluminacionCasa();
+		case Eventos.MODIFICAR_TEMPERATURA : return new ModificarTemperaturaCasa();
+		case Eventos.MODIFICAR_HUMEDAD : return new ModificarHumedadCasa();
 		case Eventos.MODIFICA_VOLUMEN_CHROMCAST: return new SubirVolumen();
 		case Eventos.ACTIVAR_CHROMCAST: return new ActivarChromeCast();
 		default: return null;

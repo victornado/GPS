@@ -8,7 +8,7 @@ import Integracion.Transacciones.TransactionSmartHouse;
 public class SACasaImp implements SACasa{
 
 	@Override
-	public Double MostrarDatosTemperatura(TCasa casa) {
+	public Double MostrarDatosTemperatura(TComponentesGenerales casa) {
 		Double temperatura = null;
 		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
 		try {
@@ -29,7 +29,7 @@ public class SACasaImp implements SACasa{
 	}
 
 	@Override
-	public Double MostrarDatosHumedad(TCasa casa) {
+	public Double MostrarDatosHumedad(TComponentesGenerales casa) {
 		Double humedad = null;
 		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
 		try {
@@ -50,7 +50,7 @@ public class SACasaImp implements SACasa{
 	}
 
 	@Override
-	public Double MostrarDatosIluminacion(TCasa casa) {
+	public Double MostrarDatosIluminacion(TComponentesGenerales casa) {
 		Double iluminacion = null;
 		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
 		try {
@@ -69,7 +69,94 @@ public class SACasaImp implements SACasa{
 		}
 		return iluminacion;
 	}
+
+	@Override
+	public int modificarTemperaturaCasa(TComponentesGenerales componente) {
+		int nuevo = -1;
+		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
+		
+		if(trans != null && componente.getIDComponente() != -1) // -1 si es null
+		{
+			try 
+			{
+				trans.init();
+			} 
+			catch (Exception e) 
+			{
+				e.printStackTrace();
+			}
+			
+			DAOCasa dao = FactoryDAO.getInstance().createDAOCasa();
+			nuevo = dao.modificarTemperatura(componente);
+			if(nuevo != -1)
+				trans.commit();
+			else
+				trans.rollback();
+		}
+		
+		return nuevo;
+	}
 	
+
+
+	@Override
+	public int modificarHumedadCasa(TComponentesGenerales componente) {
+		int nuevo = -1;
+		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
+		
+		if(trans != null && componente.getIDComponente() != -1) // -1 si es null
+		{
+			try 
+			{
+				trans.init();
+			} 
+			catch (Exception e) 
+			{
+				e.printStackTrace();
+			}
+			
+			DAOCasa dao = FactoryDAO.getInstance().createDAOCasa();
+			nuevo = dao.modificarHumedad(componente);
+			if(nuevo != -1)
+				trans.commit();
+			else
+				trans.rollback();
+		}
+		
+		return nuevo;
+	}
+	
+
+
+
+	@Override
+
+	
+	public int modificarIluminacionCasa(TComponentesGenerales componente) {
+		int nuevo = -1;
+		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
+		
+		if(trans != null && componente.getIDComponente() != -1) // -1 si es null
+		{
+			try 
+			{
+				trans.init();
+			} 
+			catch (Exception e) 
+			{
+				e.printStackTrace();
+			}
+			
+			DAOCasa dao = FactoryDAO.getInstance().createDAOCasa();
+			nuevo = dao.modificarIluminacion(componente);
+			if(nuevo != -1)
+				trans.commit();
+			else
+				trans.rollback();
+		}
+		
+		return nuevo;
+	}
 	
 
 }

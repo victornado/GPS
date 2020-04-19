@@ -29,16 +29,25 @@ public class Eventos {
 	public static final int MOSTRAR_TEMPERATURA=300;
 	public static final int MOSTRAR_TEMPERATURA_OK=301;
 	public static final int MOSTRAR_TEMPERATURA_KO=302;
+	public static final int MODIFICAR_TEMPERATURA= 303; 
+	public static final int MODIFICAR_TEMPERATURA_OK= 304;
+	public static final int MODIFICAR_TEMPERATURA_KO= 305; 
 	
 	//HU CASA HUM
 	public static final int MOSTRAR_HUMEDAD=400;
 	public static final int MOSTRAR_HUMEDAD_OK=401;
 	public static final int MOSTRAR_HUMEDAD_KO=402;
+	public static final int MODIFICAR_HUMEDAD= 403; 
+	public static final int MODIFICAR_HUMEDAD_OK= 404;
+	public static final int MODIFICAR_HUMEDAD_KO= 405; 
 	
 	//HU CASA HUM
 	public static final int MOSTRAR_ILUMINACION = 500;
 	public static final int MOSTRAR_ILUMINACION_OK = 501;
 	public static final int MOSTRAR_ILUMINACION_KO = 502;
+	public static final int MODIFICAR_ILUMINACION= 503; 
+	public static final int MODIFICAR_ILUMINACION_OK= 504;
+	public static final int MODIFICAR_ILUMINACION_KO= 505; 
 
 	
 	//Activa ChromeCast

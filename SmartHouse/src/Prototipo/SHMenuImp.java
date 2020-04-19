@@ -13,7 +13,7 @@ import javax.swing.event.ChangeListener;
 
 import Controller.Controller;
 import Controller.Command.Eventos;
-import Negocio.SA.Casa.TCasa;
+import Negocio.SA.Casa.TComponentesGenerales;
 import Negocio.SA.Habitacion.TComponentesEnHabitacion;
 
 import javax.swing.JTabbedPane;
@@ -96,7 +96,7 @@ public class SHMenuImp extends SHMenu {
 		y = 531;
 		this.tempExt = new TemperaturaExteriorImp();
 		// msg = this.tempExt.getWeather();
-		msg = "Temperatura: 14.91°C   Humedad: 54%   Presion: 1016hPa";
+		msg = "Temperatura: 14.91ï¿½C   Humedad: 54%   Presion: 1016hPa";
 		this.modificar = new ModificarUsuarioImp();
 		this.addDisp = new AniadirDispositivoImp();
 		this.borrarDisp = new BorrarDispositivoImp();
@@ -251,7 +251,7 @@ public class SHMenuImp extends SHMenu {
 					RequestContext rContext = new RequestContext(Eventos.MODIFICA_VOLUMEN_CHROMCAST, Integer.parseInt((String) spinner.getValue()));
 					Controller.getInstance().handleRequest(rContext);
 				}
-				else JOptionPane.showMessageDialog(null, "ChromeCast no está activo", "Error", JOptionPane.ERROR_MESSAGE);
+				else JOptionPane.showMessageDialog(null, "ChromeCast no estï¿½ activo", "Error", JOptionPane.ERROR_MESSAGE);
 				
 			}
 		});
@@ -442,7 +442,7 @@ public class SHMenuImp extends SHMenu {
 		
 		
 		lblTemperatura2 = new JLabel("25ÂºC");
-		lblTemperatura2.setBounds(270, 290, 123, 33);
+		lblTemperatura2.setBounds(270, 260, 123, 33);
 		lblTemperatura2.setFont(new Font("Arial", Font.BOLD, 15));
 		panel.add(lblTemperatura2);
 		inicializarTemp();
@@ -455,7 +455,7 @@ public class SHMenuImp extends SHMenu {
 		
 		
 		lblHumedad2 = new JLabel("55%");
-		lblHumedad2.setBounds(270, 390, 123, 33);
+		lblHumedad2.setBounds(270, 360, 123, 33);
 		lblHumedad2.setFont(new Font("Arial", Font.BOLD, 15));
 		panel.add(lblHumedad2);
 		inicializarHum();
@@ -486,6 +486,21 @@ public class SHMenuImp extends SHMenu {
 				modificarLabelIluminacion(iluminacion); 
 			}
 		});
+		
+//		JButton botonluz = new JButton("Guardar");
+//		botonluz.setBounds(240, 185, 80, 20);
+//		panel.add(botonluz);
+//		botonluz.addActionListener(new ActionListener() {
+//		
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				TComponentesGenerales tIluminacion = new TComponentesGenerales(1, (double) sliderluz.getValue());
+//				RequestContext rContext = new RequestContext(Eventos.MODIFICAR_ILUMINACION, tIluminacion);
+//				Controller.getInstance().handleRequest(rContext);
+//				
+//			}
+//		});
 
 		JLabel lbColor = new JLabel("Color");
 		lbColor.setBounds(24, 190, 104, 33);
@@ -493,17 +508,17 @@ public class SHMenuImp extends SHMenu {
 		panel.add(lbColor);
 
 		JSlider slidercolor = new JSlider();
-		slidercolor.setBounds(24, 253, 273, 26);
+		slidercolor.setBounds(24, 223, 273, 26);
 		slidercolor.setBackground(SystemColor.activeCaption);
 		panel.add(slidercolor);
 
 		JLabel lblTemperatura = new JLabel("Temperatura");
-		lblTemperatura.setBounds(24, 290, 123, 33);
+		lblTemperatura.setBounds(24, 260, 123, 33);
 		lblTemperatura.setFont(new Font("Arial", Font.BOLD, 15));
 		panel.add(lblTemperatura);
 
 		JSlider slidergrados = new JSlider();
-		slidergrados.setBounds(24, 332, 273, 40);
+		slidergrados.setBounds(24, 302, 273, 40);
 		slidergrados.setBackground(SystemColor.activeCaption);
 		slidergrados.setMinimum(12);
 		slidergrados.setMaximum(32);
@@ -528,14 +543,29 @@ public class SHMenuImp extends SHMenu {
 				modificarLabelTemperatura(temperatura); 
 			}
 		});
+		
+//		JButton botontemp = new JButton("Guardar");
+//		botontemp.setBounds(240, 360, 80, 20);
+//		panel.add(botontemp);
+//		botontemp.addActionListener(new ActionListener() {
+//		
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				TComponentesGenerales tTemperatura = new TComponentesGenerales(1, (double) slidergrados.getValue());
+//				RequestContext rContext = new RequestContext(Eventos.MODIFICAR_TEMPERATURA, tTemperatura);
+//				Controller.getInstance().handleRequest(rContext);
+//				
+//			}
+//		});
 
 		JLabel lblHumedad = new JLabel("Humedad");
-		lblHumedad.setBounds(26, 390, 123, 33);
+		lblHumedad.setBounds(26, 360, 123, 33);
 		lblHumedad.setFont(new Font("Arial", Font.BOLD, 15));
 		panel.add(lblHumedad);
 
 		JSlider sliderhumedad = new JSlider();
-		sliderhumedad.setBounds(24, 423, 269, 40);
+		sliderhumedad.setBounds(24, 393, 269, 40);
 		sliderhumedad.setBackground(SystemColor.activeCaption);
 		sliderhumedad.setMinimum(40);
 		sliderhumedad.setMaximum(70);
@@ -556,6 +586,27 @@ public class SHMenuImp extends SHMenu {
 			public void stateChanged(ChangeEvent e) {
 				Double humedad = (double) sliderhumedad.getValue();
 				modificarLabelHumedad(humedad); 
+			}
+		});
+		
+		JButton botonGuardar = new JButton("Guardar");
+		botonGuardar.setBounds(240, 460, 80, 20);
+		panel.add(botonGuardar);
+		botonGuardar.addActionListener(new ActionListener() {
+		
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//TComponentesGenerales tModificar = new TComponentesGenerales(1, msg, (double) sliderluz.getValue(), (double) slidergrados.getValue(), (double) sliderhumedad.getValue());
+				TComponentesGenerales tModificar1 = new TComponentesGenerales(1, 1, "Iluminacion",sliderluz.getValue());
+				modificarIlum(tModificar1);
+				
+				TComponentesGenerales tModificar2 = new TComponentesGenerales(1, 1, "Temperatura",slidergrados.getValue());
+				modificarTemp(tModificar2);
+				
+				TComponentesGenerales tModificar3 = new TComponentesGenerales(1, 1, "Humedad", sliderhumedad.getValue());
+				modificarHum(tModificar3);			
+				
 			}
 		});
 		
@@ -635,6 +686,24 @@ public class SHMenuImp extends SHMenu {
 		else if (r.getVista() == Eventos.MODIFICAR_ILUMINACION_HABITACION_OK) {
 			JOptionPane.showMessageDialog(null, "Temperatura cambiada");
 		}
+		else if (r.getVista() == Eventos.MODIFICAR_ILUMINACION_KO) {
+			JOptionPane.showMessageDialog(null, "Fallo");
+		}
+		else if (r.getVista() == Eventos.MODIFICAR_ILUMINACION_OK) {
+			JOptionPane.showMessageDialog(null, "Iluminacion de la casa cambiada");
+		}
+		else if (r.getVista() == Eventos.MODIFICAR_TEMPERATURA_KO) {
+			JOptionPane.showMessageDialog(null, "Fallo");
+		}
+		else if (r.getVista() == Eventos.MODIFICAR_TEMPERATURA_OK) {
+			JOptionPane.showMessageDialog(null, "Temperatura de la casa cambiada");
+		}
+		else if (r.getVista() == Eventos.MODIFICAR_HUMEDAD_KO) {
+			JOptionPane.showMessageDialog(null, "Fallo");
+		}
+		else if (r.getVista() == Eventos.MODIFICAR_HUMEDAD_OK) {
+			JOptionPane.showMessageDialog(null, "Humedad de la casa cambiada");
+		}
 		else if(r.getVista() == Eventos.ACTIVAR_CHROMCAST_OK) {
 			
 			JOptionPane.showMessageDialog(null, "ChromeCast funcionando");
@@ -642,7 +711,7 @@ public class SHMenuImp extends SHMenu {
 		}	
 		else if(r.getVista() == Eventos.ACTIVAR_CHROMCAST_KO) {
 			
-			JOptionPane.showMessageDialog(null, "Algo salió mal al encender el ChromeCast","Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Algo saliï¿½ mal al encender el ChromeCast","Error", JOptionPane.ERROR_MESSAGE);
 		}
 		else if(r.getVista() == Eventos.MODIFICA_VOLUMEN_CHROMCAST_OK) {
 			
@@ -716,20 +785,36 @@ public class SHMenuImp extends SHMenu {
 	}
 
 	public void inicializarIlum() {
-		TCasa casa = new TCasa(IDCasa);
+		TComponentesGenerales casa = new TComponentesGenerales(IDCasa);
 		RequestContext rContext = new RequestContext(Eventos.MOSTRAR_ILUMINACION, casa);
 		Controller.getInstance().handleRequest(rContext);
 	}
 	
 	public void inicializarTemp() {
-		TCasa casa = new TCasa(IDCasa);
+		TComponentesGenerales casa = new TComponentesGenerales(IDCasa);
 		RequestContext rContext = new RequestContext(Eventos.MOSTRAR_TEMPERATURA, casa);
 		Controller.getInstance().handleRequest(rContext);
 	}
 	
 	public void inicializarHum() {
-		TCasa casa = new TCasa(IDCasa);
+		TComponentesGenerales casa = new TComponentesGenerales(IDCasa);
 		RequestContext rContext = new RequestContext(Eventos.MOSTRAR_HUMEDAD, casa);
 		Controller.getInstance().handleRequest(rContext);
 	}
+	
+	public void modificarIlum(TComponentesGenerales casa) {		
+		RequestContext rContext = new RequestContext(Eventos.MODIFICAR_ILUMINACION, casa);
+		Controller.getInstance().handleRequest(rContext);
+	}
+	
+	public void modificarTemp(TComponentesGenerales casa) {		
+		RequestContext rContext = new RequestContext(Eventos.MODIFICAR_TEMPERATURA, casa);
+		Controller.getInstance().handleRequest(rContext);
+	}
+	
+	public void modificarHum(TComponentesGenerales casa) {	
+		RequestContext rContext = new RequestContext(Eventos.MODIFICAR_HUMEDAD, casa);
+		Controller.getInstance().handleRequest(rContext);
+	}	
+	
 }
