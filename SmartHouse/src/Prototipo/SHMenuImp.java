@@ -106,6 +106,8 @@ public class SHMenuImp extends SHMenu {
 		ChromeCastActivo=false;
 		initGUI();
 	}
+	
+	
 
 	public void initGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -149,9 +151,9 @@ public class SHMenuImp extends SHMenu {
 		JTabbedPane tabbedPane_6 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane_6.setBackground(Color.WHITE);
 		tabbedPane.addTab("Cuarto de Estar", null, tabbedPane_6, null);
-
+		
 		JPanel panel_1 = new JPanel();
-		tabbedPane_6.addTab("", null, panel_1, null);
+		tabbedPane_6.addTab("C", null, panel_1, null);
 		panel_1.setLayout(null);
 
 		JSeparator separator = new JSeparator();

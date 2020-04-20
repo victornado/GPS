@@ -65,6 +65,32 @@ public class SAHabitacionImp implements SAHabitacion{
 		return nuevo;
 	}
 	
+	@Override
+	public String mostrarTipoHabitacion(THabitacion habitacion) {
+		String tipo = null;
+		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
+		
+		if(trans != null && habitacion.getID() != -1) // -1 si es null
+		{
+			try 
+			{
+				trans.init();
+			} 
+			catch (Exception e) 
+			{
+				e.printStackTrace();
+			}
+			
+			DAOHabitacion dao = FactoryDAO.getInstance().createDAOHabitacion();
+			tipo = dao.mostrarTipoHabitacion(habitacion.getID());
+			if(tipo != null)
+				trans.commit();
+			else
+				trans.rollback();
+		}
+		
+		return tipo;
+	}
 	
 	
 }

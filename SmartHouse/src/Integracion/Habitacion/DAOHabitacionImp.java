@@ -105,5 +105,27 @@ public class DAOHabitacionImp implements DAOHabitacion {
 		}
 		return lista;
 	}
+	
+	@Override
+	public String mostrarTipoHabitacion(int id) {
+
+		THabitacion habitacion = null;
+		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().getTransaction();
+		if (trans != null) {
+			try {
+				Connection c = (Connection) trans.getResource();
+				PreparedStatement query = c.prepareStatement("Select * from habitacion where id = ?");
+				query.setInt(1, id);
+				ResultSet r = query.executeQuery();
+				if (r.next()) {
+					habitacion = new THabitacion(r.getInt("id"), r.getInt("idCasa"), r.getString("tipo"));
+				}
+			} catch (Exception e) {
+				e.getMessage();
+				e.printStackTrace();
+			}
+		}
+		return habitacion.getTipo();
+	}
 
 }
