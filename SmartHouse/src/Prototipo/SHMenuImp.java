@@ -250,10 +250,10 @@ public class SHMenuImp extends SHMenu {
 				
 				if(ChromeCastActivo) {
 				
-					RequestContext rContext = new RequestContext(Eventos.MODIFICA_VOLUMEN_CHROMCAST, Integer.parseInt((String) spinner.getValue()));
+					RequestContext rContext = new RequestContext(Eventos.MODIFICA_VOLUMEN_CHROMCAST, Integer.parseInt(spinner.getValue().toString()));
 					Controller.getInstance().handleRequest(rContext);
 				}
-				else JOptionPane.showMessageDialog(null, "ChromeCast no est� activo", "Error", JOptionPane.ERROR_MESSAGE);
+				else JOptionPane.showMessageDialog(null, "ChromeCast no esta activo", "Error", JOptionPane.ERROR_MESSAGE);
 				
 			}
 		});
@@ -361,7 +361,7 @@ public class SHMenuImp extends SHMenu {
 			public void mousePressed(MouseEvent arg0) {
 				if(!ChromeCastActivo) {
 					
-					toggleButton_1.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/Switch ON.png")));
+					toggleButton_5.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/Switch ON.png")));
 					
 					actv=true;
 					RequestContext rContext = new RequestContext(Eventos.ACTIVAR_CHROMCAST, null);

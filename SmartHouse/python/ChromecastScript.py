@@ -38,7 +38,7 @@ def main() :
     if cast != None and activ == True :
         yt = YouTubeController()
         cast.register_handler(yt)
-        yt.play_video('kLpH1nSLJSs')
+        yt.play_video('6ikznQPMSv0')
         #print('ok')
     else :
         raise Exception('F')

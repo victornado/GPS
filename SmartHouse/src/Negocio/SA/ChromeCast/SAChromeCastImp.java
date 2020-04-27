@@ -11,7 +11,7 @@ public class SAChromeCastImp implements SAChromeCast {
 		String command = "python python/ChromecastScript.py";
 		try {
 			Process p = Runtime.getRuntime().exec(command);
-			if(p.exitValue()!=0)activado = false;
+			//if(p.exitValue()!=0)activado = false;
 		} catch (Exception e) {	
 			activado = false;
 		}
@@ -26,8 +26,9 @@ public class SAChromeCastImp implements SAChromeCast {
 		boolean activado = true;
 		String command = "python python/SubirVolumen.py";
 		try {
-			Process p = Runtime.getRuntime().exec(command+dato);
-			if(p.exitValue()!=0)activado = false;
+			String com = command+ " " +dato;
+			Process p = Runtime.getRuntime().exec(com);
+			//if(p.exitValue()!=0)activado = false;
 		} catch (Exception e) {
 			
 			activado = false;
