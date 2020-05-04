@@ -3,8 +3,6 @@ package Prototipo;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.*;
 import javax.swing.event.*;
@@ -16,34 +14,20 @@ import Controller.Command.Eventos;
 import Negocio.SA.Casa.TComponentesGenerales;
 import Negocio.SA.Habitacion.TComponentesEnHabitacion;
 
-import javax.swing.JTabbedPane;
-import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.SystemColor;
-
-import javax.swing.JToggleButton;
-import javax.swing.JSlider;
 import java.awt.Color;
-import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.DataBufferDouble;
 import java.util.Calendar;
 import java.util.Hashtable;
-
-import javax.swing.JSeparator;
-import javax.swing.JRadioButton;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.ActionEvent;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JMenuBar;
 import java.awt.Window.Type;
 
 public class SHMenuImp extends SHMenu {
@@ -56,6 +40,8 @@ public class SHMenuImp extends SHMenu {
 	private BorrarDispositivoImp borrarDisp;
 	private TemperaturaExteriorImp tempExt;
 	private TemperaturaInteriorImp tempInt;
+	private ModificarHabitacionImp modHab;
+	private BuscarHabitacionImp buscarHab;
 	private int x;
 	private int y;
 	private int hora;
@@ -97,10 +83,12 @@ public class SHMenuImp extends SHMenu {
 		this.tempExt = new TemperaturaExteriorImp();
 		// msg = this.tempExt.getWeather();
 		msg = "Temperatura: 14.91�C   Humedad: 54%   Presion: 1016hPa";
+		this.modHab = new ModificarHabitacionImp();
 		this.modificar = new ModificarUsuarioImp();
 		this.addDisp = new AniadirDispositivoImp();
 		this.borrarDisp = new BorrarDispositivoImp();
 		this.aniadiru = new AniadirUsuarioImp();
+		this.buscarHab = new BuscarHabitacionImp();
 		this.tempInt = (TemperaturaInteriorImp) TemperaturaInterior.getInstance();
 		tempInt.setMenu(this);
 		ChromeCastActivo=false;
@@ -126,7 +114,9 @@ public class SHMenuImp extends SHMenu {
 		tabbedPane.setBounds(318, 29, 489, 453);
 		tabbedPane.setBackground(Color.WHITE);
 		panel.add(tabbedPane);
-
+		
+		
+	
 		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane_1.setBorder(new EmptyBorder(0, 0, 0, 0));
 		tabbedPane_1.setBackground(Color.WHITE);
@@ -151,6 +141,8 @@ public class SHMenuImp extends SHMenu {
 		JTabbedPane tabbedPane_6 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane_6.setBackground(Color.WHITE);
 		tabbedPane.addTab("Cuarto de Estar", null, tabbedPane_6, null);
+			
+		
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane_6.addTab("C", null, panel_1, null);
@@ -637,7 +629,7 @@ public class SHMenuImp extends SHMenu {
 		panel.add(toggleButton);
 
 		JButton weatherBtn = new JButton();
-		weatherBtn.setBounds(240, 35, 24, 21);
+		weatherBtn.setBounds(220, 35, 24, 21);
 		weatherBtn.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/temp.png")));
 		weatherBtn.addActionListener(new ActionListener() {
 
@@ -649,14 +641,42 @@ public class SHMenuImp extends SHMenu {
 		});
 		panel.add(weatherBtn);
 
+		JButton modifyHabitacionBtn = new JButton();
+		modifyHabitacionBtn.setBounds(250, 35, 24, 21);
+		modifyHabitacionBtn.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/cuna.png")));
+		modifyHabitacionBtn.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				modHab.setVisible(true);
+			}
+
+		});
+		panel.add(modifyHabitacionBtn);
+
+		JButton buscaryHabitacionBtn = new JButton();
+		buscaryHabitacionBtn.setBounds(280, 35, 24, 21);
+		buscaryHabitacionBtn.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/lupa.png")));
+		buscaryHabitacionBtn.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				buscarHab.setVisible(true);
+			}
+
+		});
+		panel.add(buscaryHabitacionBtn);
+		
+		
+		
+		
+		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(180, 35, 55, 21);
+		menuBar.setBounds(145, 35, 74, 21);
 		panel.add(menuBar);
 
 		JMenu mnAjustes = new JMenu("Ajustes");
 		menuBar.add(mnAjustes);
 
-		JMenuItem mntmAadirUsuario = new JMenuItem("A�adir Usuario");
+		JMenuItem mntmAadirUsuario = new JMenuItem("Aniadir Usuario");
 		mnAjustes.add(mntmAadirUsuario);
 
 		mntmAadirUsuario.addActionListener(new ActionListener() {
@@ -817,6 +837,12 @@ public class SHMenuImp extends SHMenu {
 	public void modificarHum(TComponentesGenerales casa) {	
 		RequestContext rContext = new RequestContext(Eventos.MODIFICAR_HUMEDAD, casa);
 		Controller.getInstance().handleRequest(rContext);
+	}	
+	
+	public void buscarHabitación(String nameHabitacion) {	
+		//RequestContext rContext = new RequestContext(Eventos.BUSCAR_HABITACION, casa);
+		//Controller.getInstance().handleRequest(rContext);
+		
 	}	
 	
 }
