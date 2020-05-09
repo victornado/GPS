@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -37,6 +38,7 @@ public class DatosHabitacionImp extends DatosHabitacion {
 	private boolean ChromeCastActivo;
 	private boolean actv;
 	public static JTabbedPane tabbedPane;
+	public JPanel panel_1;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -62,6 +64,7 @@ public class DatosHabitacionImp extends DatosHabitacion {
 		ChromeCastActivo=false;
 		tabbedPane = null;
 		actv = false;
+		panel_1 = new JPanel();
 		initGUI();
 	}
 	
@@ -72,9 +75,7 @@ public class DatosHabitacionImp extends DatosHabitacion {
 		tabbedPane.setBounds(318, 29, 489, 453);
 		tabbedPane.setBackground(Color.WHITE);
 		
-		
-		
-		Controller.getInstance().handleRequest(new RequestContext(Eventos.MOSTRAR_DATOS_HABITACION, 1));
+	
 		
 		
 		/*JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
@@ -122,18 +123,7 @@ public class DatosHabitacionImp extends DatosHabitacion {
 		label_2.setBounds(395, 4, 30, 25);
 		panel_1.add(label_2);
 
-		JLabel lblNewLabel_1 = new JLabel("Lampara 1");
-		lblNewLabel_1.setBounds(22, 57, 103, 14);
-		panel_1.add(lblNewLabel_1);
 		
-		JSlider slider_4 = new JSlider(); // lampara 1
-		slider_4.setBounds(135, 55, 200, 26);
-		panel_1.add(slider_4);
-		slider_4.setMinimum(12);
-		slider_4.setMaximum(32);
-		slider_4.setPaintLabels(true);
-		slider_4.setMajorTickSpacing(5);
-		slider_4.setMinorTickSpacing(5);
 
 		JLabel lblLamparaTecho = new JLabel("Lampara techo");
 		lblLamparaTecho.setBounds(22, 99, 103, 14);
@@ -198,21 +188,7 @@ public class DatosHabitacionImp extends DatosHabitacion {
 
 		
 
-		JButton toggleButton_1 = new JButton("Actualizar");
-		toggleButton_1.setBounds(378, 57, 53, 20);
-		panel_1.add(toggleButton_1);
-		toggleButton_1.addActionListener(new ActionListener() {
-		
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// hardcodeado id del componente y de la habitacion TODO
-				TComponentesEnHabitacion tLampara = new TComponentesEnHabitacion(1, 1, lblNewLabel_1.getText(),slider_4.getValue());
-				RequestContext rContext = new RequestContext(Eventos.MODIFICAR_ILUMINACION_HABITACION, tLampara);
-				Controller.getInstance().handleRequest(rContext);
-				
-			}
-		});
+	
 
 		JToggleButton toggleButton_2 = new JToggleButton("");
 		toggleButton_2.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/Siwtch OFF.png")));
@@ -361,6 +337,12 @@ public class DatosHabitacionImp extends DatosHabitacion {
 		//tabbedPane.setVisible(true);*/
 	}
 	
+	
+	public void inicializarHabitaciones() {
+	
+		Controller.getInstance().handleRequest(new RequestContext(Eventos.MOSTRAR_DATOS_HABITACION, 1));
+	}
+	
 	@Override
 	public void Update(ResponseContext r) {
 		if(r.getVista() == Eventos.ACTIVAR_CHROMCAST_OK) {
@@ -386,12 +368,33 @@ public class DatosHabitacionImp extends DatosHabitacion {
 			tabbedPane_1.setBorder(new EmptyBorder(0, 0, 0, 0));
 			tabbedPane_1.setBackground(Color.WHITE);
 			THabitacion habitacion = (THabitacion) r.getData();
-			tabbedPane.addTab(habitacion.getTipo(), null, tabbedPane_1, null);
+			tabbedPane.addTab(habitacion.getTipo(), null, panel_1, null);
+			List<TComponentesEnHabitacion> lista = habitacion.getComponentes();
+			
+			for(int i=0; i<lista.size(); i++) {
+				
+				if(lista.get(i).getNombre().equals("lampara1")) {
+					panel_1.add(new Lampara().panel);
+				}
+			}
+			
+			if(lista.size() == 0) {
+				JLabel lblNewLabel = new JLabel("No existen componentes en la habitacion");
+				lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 17));
+				lblNewLabel.setBounds(50, 110, 220, 140);
+				panel_1.add(lblNewLabel);
+			}
+			
 		}
 		else if(r.getVista() == Eventos.MOSTRAR_DATOS_HABITACION_KO) {
 			
-			JLabel a = new JLabel("Ninguna habitación encontradda");
-			tabbedPane.add(a);
+			tabbedPane.addTab("NINGUNA", null, panel_1, null);
+			panel_1.setLayout(null);
+
+			JLabel lblNewLabel = new JLabel("No existen habitaciones");
+			lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 17));
+			lblNewLabel.setBounds(150, 110, 220, 140);
+			panel_1.add(lblNewLabel);
 		}
 		
 	}

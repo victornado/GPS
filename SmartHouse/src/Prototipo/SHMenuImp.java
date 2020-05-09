@@ -90,7 +90,7 @@ public class SHMenuImp extends SHMenu {
 		this.borrarDisp = new BorrarDispositivoImp();
 		this.aniadiru = new AniadirUsuarioImp();
 		this.buscarHab = new BuscarHabitacionImp();
-		this.datosHab = new DatosHabitacionImp();
+		this.datosHab = (DatosHabitacionImp) DatosHabitacion.getInstance();
 		this.tempInt = (TemperaturaInteriorImp) TemperaturaInterior.getInstance();
 		tempInt.setMenu(this);
 		ChromeCastActivo=false;
@@ -381,6 +381,7 @@ public class SHMenuImp extends SHMenu {
 		JTabbedPane tabbedPaneInicial = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPaneInicial.setBounds(318, 29, 489, 453);
 		tabbedPaneInicial.setBackground(Color.WHITE);
+		datosHab.inicializarHabitaciones();
 		tabbedPaneInicial.add(datosHab.tabbedPane);
 		tabbedPaneInicial.setVisible(true);
 		
@@ -390,12 +391,8 @@ public class SHMenuImp extends SHMenu {
 
 	@Override
 	public void Update(ResponseContext r) {
-		if (r.getVista() == Eventos.MODIFICAR_ILUMINACION_HABITACION_KO)
-			JOptionPane.showMessageDialog(null, "Fallo");
-		else if (r.getVista() == Eventos.MODIFICAR_ILUMINACION_HABITACION_OK) {
-			JOptionPane.showMessageDialog(null, "Temperatura cambiada");
-		}
-		else if (r.getVista() == Eventos.MODIFICAR_ILUMINACION_KO) {
+		
+		if (r.getVista() == Eventos.MODIFICAR_ILUMINACION_KO) {
 			JOptionPane.showMessageDialog(null, "Fallo");
 		}
 		else if (r.getVista() == Eventos.MODIFICAR_ILUMINACION_OK) {
@@ -413,23 +410,7 @@ public class SHMenuImp extends SHMenu {
 		else if (r.getVista() == Eventos.MODIFICAR_HUMEDAD_OK) {
 			JOptionPane.showMessageDialog(null, "Humedad de la casa cambiada");
 		}
-		else if(r.getVista() == Eventos.ACTIVAR_CHROMCAST_OK) {
-			
-			JOptionPane.showMessageDialog(null, "ChromeCast funcionando");
-			ChromeCastActivo=true;
-		}	
-		else if(r.getVista() == Eventos.ACTIVAR_CHROMCAST_KO) {
-			
-			JOptionPane.showMessageDialog(null, "Algo salio mal al encender el ChromeCast","Error", JOptionPane.ERROR_MESSAGE);
-		}
-		else if(r.getVista() == Eventos.MODIFICA_VOLUMEN_CHROMCAST_OK) {
-			
-			JOptionPane.showMessageDialog(null, "Se ha cambiado el volument correctamente a "+r.getData());
-		}
-		else if(r.getVista() == Eventos.MODIFICA_VOLUMEN_CHROMCAST_KO) {
-			
-			JOptionPane.showMessageDialog(null, "El volumen no ha sido modificado","Error", JOptionPane.ERROR_MESSAGE);
-		}
+		
 
 	}
 

@@ -49,10 +49,11 @@ public class DAOHabitacionImp implements DAOHabitacion {
 		if (trans != null) {
 			try {
 				Connection c = (Connection) trans.getResource();
-				PreparedStatement query = c.prepareStatement("Select * from componentesEnHabitacion where idHabitacion = ?");
+				PreparedStatement query = c.prepareStatement(
+						"Select dato from componentesEnHabitacion where idHabitacion = ? AND idComponente = ? AND ID = ?");
 				query.setInt(1, componente.getIDhabitacion());
-				//query.setInt(2, componente.getIDComponente());
-				//query.setInt(3, componente.getIDComponente());
+				query.setInt(2, componente.getIDComponente());
+				query.setInt(3, componente.getIDComponente());
 				ResultSet r = query.executeQuery();
 				if (r.next()) {
 					nuevo = new TComponentesEnHabitacion(r.getInt("idComponente"), r.getInt("idHabitacion"),
@@ -75,7 +76,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 			try {
 				Connection c = (Connection) trans.getResource();
 				PreparedStatement query = c.prepareStatement(
-						"UPDATE componentesEnHabitacion SET dato=? WHERE idHabitacion = ? AND idComponente = ?");
+						"UPDATE componentesEnHabitacion SET dato= ? WHERE idHabitacion = ? AND idComponente = ?");
 				// PreparedStatement query = c.prepareStatement("SELECT
 				// idComponente,idHabitacion FROM componentesEnHabitacion WHERE idHabitacion = ?
 				// AND idComponente = ?");
@@ -99,15 +100,14 @@ public class DAOHabitacionImp implements DAOHabitacion {
 	public List<TComponentesEnHabitacion> getComponents(Integer idHabitacion) {
 
 		List<TComponentesEnHabitacion> lista = null;
-		Transaction t = TransactionManager.getInstance().getTransaction();
+		TransactionManager tm = TransactionManager.getInstance();
+		Transaction t = tm.getTransaction();
 		Connection con = null;
 		if (t != null) {
 			con = (Connection) t.getResource();
 			PreparedStatement ps;
 			try {
-				ps = con.prepareStatement(
-						"SELECT IDHabitacion, IDComponente, nombre, dato FROM ComponentesEnHabitacion  WHERE IDHabitacion = ? ",
-						PreparedStatement.RETURN_GENERATED_KEYS);
+				ps = con.prepareStatement("SELECT IDHabitacion, IDComponente, nombre, dato FROM componentesEnHabitacion  WHERE IDHabitacion = ? ");
 
 				ps.setInt(1, idHabitacion);
 				ResultSet resultSet = ps.executeQuery();
@@ -134,7 +134,8 @@ public class DAOHabitacionImp implements DAOHabitacion {
 	public String mostrarTipoHabitacion(int id) {
 
 		THabitacion habitacion = null;
-		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().getTransaction();
+		TransactionManager tm = TransactionManager.getInstance();
+		Transaction trans = tm.getTransaction();
 		if (trans != null) {
 			try {
 				Connection c = (Connection) trans.getResource();
