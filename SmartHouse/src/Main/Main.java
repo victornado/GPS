@@ -2,7 +2,10 @@ package Main;
 
 import java.awt.EventQueue;
 
+import Controller.Command.Eventos;
 import Prototipo.LoginImp;
+import Prototipo.ResponseContext;
+import Prototipo.Factory.Dispatcher;
 
 public class Main {
 	
@@ -17,8 +20,8 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LoginImp frame = new LoginImp();
-					frame.setVisible(true);
+					Dispatcher.getInstance().actualizaVistas( new ResponseContext(Eventos.LOGIN_USUARIO, null));
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
