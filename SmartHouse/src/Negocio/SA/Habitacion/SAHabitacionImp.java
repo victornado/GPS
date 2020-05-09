@@ -87,6 +87,12 @@ public class SAHabitacionImp implements SAHabitacion {
 	public THabitacion mostrarHabitacion(int id) {
 		THabitacion t = null;
 		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
+		try {
+			trans.init();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		if (trans != null) {
 			t = FactoryDAO.getInstance().createDAOHabitacion().mostrarHabitacion(id);
 			if (t != null) { // ha encontrado la habitacion

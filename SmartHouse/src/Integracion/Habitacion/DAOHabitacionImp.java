@@ -17,13 +17,13 @@ public class DAOHabitacionImp implements DAOHabitacion {
 
 	@Override
 	public THabitacion mostrarHabitacion(int id) {
-		Transaction t = TransactionManager.getInstance().getTransaction();
+		TransactionManager tm = TransactionManager.getInstance();
+		Transaction t = tm.getTransaction();
 		THabitacion habitacion = null;
 		if (t != null) {
 			try {
 				Connection c = (Connection) t.getResource();
-				PreparedStatement query = c.prepareStatement("SELECT idCasa, tipo from habitacion h where id=?",
-						PreparedStatement.RETURN_GENERATED_KEYS);
+				PreparedStatement query = c.prepareStatement("select IDcasa, tipo from habitacion where id = ?");
 				query.setInt(1, id);
 				ResultSet r = query.executeQuery();
 				if (r.next()) {
@@ -44,15 +44,15 @@ public class DAOHabitacionImp implements DAOHabitacion {
 	public TComponentesEnHabitacion mostrarIluminacionHabitacion(TComponentesEnHabitacion componente) {
 
 		TComponentesEnHabitacion nuevo = null;
-		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().getTransaction();
+		TransactionManager tm = TransactionManager.getInstance();
+		Transaction trans = tm.getTransaction();
 		if (trans != null) {
 			try {
 				Connection c = (Connection) trans.getResource();
-				PreparedStatement query = c.prepareStatement(
-						"Select dato from componentesEnHabitacio where idHabitacion = ? AND idComponente = ? AND ID = ?");
+				PreparedStatement query = c.prepareStatement("Select * from componentesEnHabitacion where idHabitacion = ?");
 				query.setInt(1, componente.getIDhabitacion());
-				query.setInt(2, componente.getIDComponente());
-				query.setInt(3, componente.getIDComponente());
+				//query.setInt(2, componente.getIDComponente());
+				//query.setInt(3, componente.getIDComponente());
 				ResultSet r = query.executeQuery();
 				if (r.next()) {
 					nuevo = new TComponentesEnHabitacion(r.getInt("idComponente"), r.getInt("idHabitacion"),

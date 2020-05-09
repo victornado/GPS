@@ -27,6 +27,7 @@ import javax.swing.border.EmptyBorder;
 import Controller.Controller;
 import Controller.Command.Eventos;
 import Negocio.SA.Habitacion.TComponentesEnHabitacion;
+import Negocio.SA.Habitacion.THabitacion;
 
 public class DatosHabitacionImp extends DatosHabitacion {
 
@@ -72,7 +73,11 @@ public class DatosHabitacionImp extends DatosHabitacion {
 		tabbedPane.setBackground(Color.WHITE);
 		
 		
-		JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
+		
+		Controller.getInstance().handleRequest(new RequestContext(Eventos.MOSTRAR_DATOS_HABITACION, 1));
+		
+		
+		/*JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane_1.setBorder(new EmptyBorder(0, 0, 0, 0));
 		tabbedPane_1.setBackground(Color.WHITE);
 		tabbedPane.addTab("Habitacion 1", null, tabbedPane_1, null);
@@ -340,10 +345,10 @@ public class DatosHabitacionImp extends DatosHabitacion {
 		lblHabFavorita.setBounds(299, 13, 103, 14);
 		panel_1.add(lblHabFavorita);
 
-		/*JPanel panel6 = new JPanel();
+		JPanel panel6 = new JPanel();
 		panel6.setBackground(SystemColor.LIGHT_GRAY);
 		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);*/
+		panel.setLayout(null);
 
 		JTabbedPane tabbedPane_7 = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane_7.setBackground(Color.WHITE);
@@ -353,7 +358,7 @@ public class DatosHabitacionImp extends DatosHabitacion {
 		tabbedPane_8.setBackground(Color.WHITE);
 		tabbedPane.addTab("Banio", null, tabbedPane_8, null);
 		
-		//tabbedPane.setVisible(true);
+		//tabbedPane.setVisible(true);*/
 	}
 	
 	@Override
@@ -374,6 +379,19 @@ public class DatosHabitacionImp extends DatosHabitacion {
 		else if(r.getVista() == Eventos.MODIFICA_VOLUMEN_CHROMCAST_KO) {
 			
 			JOptionPane.showMessageDialog(null, "El volumen no ha sido modificado","Error", JOptionPane.ERROR_MESSAGE);
+		}
+		else if(r.getVista() == Eventos.MOSTRAR_DATOS_HABITACION_OK) {
+			
+			JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
+			tabbedPane_1.setBorder(new EmptyBorder(0, 0, 0, 0));
+			tabbedPane_1.setBackground(Color.WHITE);
+			THabitacion habitacion = (THabitacion) r.getData();
+			tabbedPane.addTab(habitacion.getTipo(), null, tabbedPane_1, null);
+		}
+		else if(r.getVista() == Eventos.MOSTRAR_DATOS_HABITACION_KO) {
+			
+			JLabel a = new JLabel("Ninguna habitación encontradda");
+			tabbedPane.add(a);
 		}
 		
 	}

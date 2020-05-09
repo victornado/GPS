@@ -3,6 +3,7 @@ package Prototipo.Factory;
 import Controller.Command.Eventos;
 import Controller.Command.Usuario.LoginUsuario;
 import Prototipo.LoginImp;
+import Prototipo.DatosHabitacion;
 import Prototipo.GUI;
 import Prototipo.Login;
 import Prototipo.ResponseContext;
@@ -15,12 +16,14 @@ public class DispatcherImp extends Dispatcher {
 	public void actualizaVistas(ResponseContext r) {
 		if(r.getVista() >= 100 && r.getVista() < 200) 
 			Login.getInstance().Update(r);
-		else if(r.getVista()>= 200 && r.getVista()<300)
+		else if(r.getVista()>= 200 && r.getVista()<206)
 			SHMenu.getInstance().Update(r);
 		else if(r.getVista() >= 300 && r.getVista() < 400) 
 			TemperaturaInterior.getInstance().Update(r);
 		else if(r.getVista() >= 600 && r.getVista() < 800) 
 			SHMenu.getInstance().Update(r);
+		else if(r.getVista()>= 206 && r.getVista()<206)
+			DatosHabitacion.getInstance().Update(r);
 
 	}
 
