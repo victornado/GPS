@@ -15,6 +15,9 @@ public class THabitacion {
 		tipo = tipo2;
 		
 	}
+	
+	public THabitacion() {}
+	
 	public int getID() {
 		return ID;
 	}
@@ -32,6 +35,12 @@ public class THabitacion {
 	}
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+	public List<TComponentesEnHabitacion> getComponentes() {
+		return componentes;
+	}
+	public void setComponentes(List<TComponentesEnHabitacion> componentes) {
+		this.componentes = componentes;
 	}
 	
 	
