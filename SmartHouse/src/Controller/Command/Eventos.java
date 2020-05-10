@@ -14,8 +14,15 @@ public class Eventos {
 	public static final int Aniadir_USUARIO_OK = 103;
 	public static final int Aniadir_USUARIO_KO = 104;
 	public static final int Aniadir_USUARIO = 105;
-	public static final int Aniadir_USUARcccIO_OK = 1080;
-
+	public static final int Eliminar_USUARIO_OK = 106;
+	public static final int Eliminar_USUARIO_KO = 107;
+	public static final int Eliminar_USUARIO = 108;
+	public static final int Modificar_USUARIO_OK = 109;
+	public static final int Modificar_USUARIO_KO = 110;
+	public static final int Modificar_USUARIO = 111;
+	public static final int Listar_USUARIO = 112;
+	public static final int Listar_USUARIO_OK = 113;
+	public static final int Listar_USUARIO_KO = 114;
 
 	//HU habitacion 
 	public static final int MOSTRAR_ILUMINACION_HABITACION= 200; 

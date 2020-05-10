@@ -34,7 +34,7 @@ public class SHMenuImp extends SHMenu {
 
 	private JPanel contentPane;
 	private boolean actv;
-	private ModificarUsuarioImp modificar;
+	private ListarUsuarioImp listar;
 	private AniadirUsuarioImp aniadiru;
 	private AniadirDispositivoImp addDisp;
 	private BorrarDispositivoImp borrarDisp;
@@ -85,7 +85,7 @@ public class SHMenuImp extends SHMenu {
 		// msg = this.tempExt.getWeather();
 		msg = "Temperatura: 14.91ºC   Humedad: 54%   Presion: 1016hPa";
 		this.modHab = new ModificarHabitacionImp();
-		this.modificar = new ModificarUsuarioImp();
+		this.listar = new ListarUsuarioImp();
 		this.addDisp = new AniadirDispositivoImp();
 		this.borrarDisp = new BorrarDispositivoImp();
 		this.aniadiru = new AniadirUsuarioImp();
@@ -364,11 +364,11 @@ public class SHMenuImp extends SHMenu {
 			}
 		});
 
-		JMenuItem mntmModificarUsuario = new JMenuItem("Modificar Usuario");
+		JMenuItem mntmModificarUsuario = new JMenuItem("Listar Usuarios");
 		mntmModificarUsuario.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				modificar.setVisible(true);
+				listarUsua();
 			}
 		});
 		mnAjustes.add(mntmModificarUsuario);
@@ -410,7 +410,22 @@ public class SHMenuImp extends SHMenu {
 		else if (r.getVista() == Eventos.MODIFICAR_HUMEDAD_OK) {
 			JOptionPane.showMessageDialog(null, "Humedad de la casa cambiada");
 		}
-		
+		else if(r.getVista() == Eventos.Eliminar_USUARIO_KO) {
+			JOptionPane.showMessageDialog(null, "El usuario no se pudo eliminar","Error", JOptionPane.ERROR_MESSAGE);
+			listarUsua();
+		}
+		else if(r.getVista() == Eventos.Eliminar_USUARIO_OK) {
+			JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente");
+			listarUsua();
+		}
+		else if(r.getVista() == Eventos.Modificar_USUARIO_KO) {
+			JOptionPane.showMessageDialog(null, "El usuario no se pudo modificar","Error", JOptionPane.ERROR_MESSAGE);
+			listarUsua();
+		}
+		else if(r.getVista() == Eventos.Modificar_USUARIO_OK) {
+			JOptionPane.showMessageDialog(null, "Se ha modificado correctamente");
+			listarUsua();
+		}
 
 	}
 
@@ -501,6 +516,11 @@ public class SHMenuImp extends SHMenu {
 		RequestContext rContext = new RequestContext(Eventos.MODIFICAR_TEMPERATURA, casa);
 		Controller.getInstance().handleRequest(rContext);
 	}
+	
+	public void listarUsua() {	
+		RequestContext rContext = new RequestContext(Eventos.Listar_USUARIO, null);
+		Controller.getInstance().handleRequest(rContext);
+	}	
 	
 	public void modificarHum(TComponentesGenerales casa) {	
 		RequestContext rContext = new RequestContext(Eventos.MODIFICAR_HUMEDAD, casa);

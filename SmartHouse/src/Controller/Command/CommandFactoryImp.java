@@ -12,7 +12,10 @@ import Controller.Command.Habitacion.ModificarIluminacionHabitacion;
 import Controller.Command.Habitacion.MostrarHabitacion;
 import Controller.Command.Habitacion.MostrarIluminacionHabitacion;
 import Controller.Command.Usuario.AniadirUsuario;
+import Controller.Command.Usuario.EliminarUsuario;
+import Controller.Command.Usuario.ListarUsuarios;
 import Controller.Command.Usuario.LoginUsuario;
+import Controller.Command.Usuario.ModificarUsuario;
 
 public class CommandFactoryImp extends CommandFactory{
 
@@ -34,6 +37,9 @@ public class CommandFactoryImp extends CommandFactory{
 		case Eventos.MODIFICA_VOLUMEN_CHROMCAST: return new SubirVolumen();
 		case Eventos.ACTIVAR_CHROMCAST: return new ActivarChromeCast();
 		case Eventos.MOSTRAR_DATOS_HABITACION: return new MostrarHabitacion();
+		case Eventos.Eliminar_USUARIO: return new EliminarUsuario();
+		case Eventos.Modificar_USUARIO: return new ModificarUsuario();
+		case Eventos.Listar_USUARIO: return new ListarUsuarios();
 		default: return null;
 		
 		}

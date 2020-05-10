@@ -23,6 +23,16 @@ public class TUsuario {
 		this.correo = correo;
 		this.IDCasa = idcasa;
 	}
+	public TUsuario(String Nom,String Contr,String tipo,String apellidos,int edad,String correo,int idcasa, int id) {
+		nombre=Nom;
+		contrasena=Contr;
+		this.tipo=tipo;
+		this.apellidos = apellidos;
+		this.edad= edad;
+		this.correo = correo;
+		this.IDCasa = idcasa;
+		this.ID = id;
+	}
 	public TUsuario() {
 		
 		ID = 0;
