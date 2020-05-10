@@ -14,6 +14,8 @@ public class Eventos {
 	public static final int Aniadir_USUARIO_OK = 103;
 	public static final int Aniadir_USUARIO_KO = 104;
 	public static final int Aniadir_USUARIO = 105;
+	public static final int Aniadir_USUARcccIO_OK = 1080;
+
 
 	//HU habitacion 
 	public static final int MOSTRAR_ILUMINACION_HABITACION= 200; 
