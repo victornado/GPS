@@ -109,4 +109,52 @@ public class SAHabitacionImp implements SAHabitacion {
 		return t;
 	}
 
+	public int mostrarHumedadObjeto(int idHabitacion, int idObjeto)
+	{
+		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
+		try {
+			trans.init();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if(trans != null) {
+			List<TComponentesEnHabitacion> lista;
+			lista = FactoryDAO.getInstance().createDAOHabitacion().getComponents(idHabitacion);
+			if(lista!= null && lista.size()>0) {
+				TComponentesEnHabitacion objeto = lista.get(idObjeto);
+				if(objeto != null){
+						trans.commit();
+						return  objeto.getDato();
+				}
+			}
+			else
+				trans.rollback();
+		}
+		return -1;
+	}
+
+	public int mostrarTemperaturaObjeto(int idHabitacion, int idObjeto)
+	{
+		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
+		try {
+			trans.init();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if(trans != null) {
+			List<TComponentesEnHabitacion> lista;
+			lista = FactoryDAO.getInstance().createDAOHabitacion().getComponents(idHabitacion);
+			if(lista!= null && lista.size()>0) {
+				TComponentesEnHabitacion objeto = lista.get(idObjeto);
+				if(objeto != null){
+						trans.commit();
+						return  objeto.getDato();
+				}
+			}
+			else
+				trans.rollback();
+		}
+		return -1;
+	}
+
 }

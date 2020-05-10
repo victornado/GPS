@@ -16,9 +16,7 @@ public class TComponentesEnHabitacion {
 		this.IDhabitacion = hab;
 	}
 	
-	public TComponentesEnHabitacion() {
-		// TODO Auto-generated constructor stub
-	}
+	public TComponentesEnHabitacion() {}
 
 	public int getIDComponente() {
 		return IDComponente;
