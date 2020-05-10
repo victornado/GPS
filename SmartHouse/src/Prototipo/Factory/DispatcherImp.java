@@ -18,11 +18,11 @@ public class DispatcherImp extends Dispatcher {
 		if(r.getVista() >= 100 && r.getVista() < 104) 
 			Login.getInstance().Update(r);
 		else if(r.getVista()>= 200 && r.getVista()<206)
-			SHMenu.getInstance().Update(r);
+			DatosHabitacion.getInstance().Update(r);
 		else if(r.getVista() >= 300 && r.getVista() < 400) 
 			TemperaturaInterior.getInstance().Update(r);
 		else if(r.getVista() >= 600 && r.getVista() < 800) 
-			SHMenu.getInstance().Update(r);
+			DatosHabitacion.getInstance().Update(r);
 		else if(r.getVista()>= 206 && r.getVista()<209)
 			DatosHabitacion.getInstance().Update(r);
 		else if(r.getVista() >= 112 && r.getVista() <= 114) 

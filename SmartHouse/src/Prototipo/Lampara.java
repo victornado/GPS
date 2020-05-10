@@ -16,10 +16,12 @@ import Negocio.SA.Habitacion.TComponentesEnHabitacion;
 public class Lampara extends JPanel implements GUI {
 
 	public JPanel panel;
+	public String nombre;
 	
-	public Lampara() {
+	public Lampara(String Nombre) {
 		super();
 		panel = new JPanel();
+		nombre = Nombre;
 		
 		initGUI();
 	}
@@ -28,7 +30,7 @@ public class Lampara extends JPanel implements GUI {
 	public void initGUI() {
 		
 		
-		JLabel lblNewLabel_1 = new JLabel("Lampara 1");
+		JLabel lblNewLabel_1 = new JLabel(nombre);
 		lblNewLabel_1.setBounds(22, 57, 103, 14);
 		panel.add(lblNewLabel_1);
 		
