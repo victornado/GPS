@@ -14,10 +14,10 @@ public class ActivarChromeCast implements Command{
 		boolean correcto= FactoriaNeg.getInstance().createSAChromeCast().activarChromeCast();
 		
 		if(correcto)
-			return new ResponseContext(Eventos.ACTIVAR_CHROMCAST_OK, null);
+			return new ResponseContext(Eventos.ACTIVAR_CHROMCAST_OK, requestContext.getData());
 
 		else
-			return new ResponseContext(Eventos.ACTIVAR_CHROMCAST_KO, null);
+			return new ResponseContext(Eventos.ACTIVAR_CHROMCAST_KO, requestContext.getData());
 	}
 
 }

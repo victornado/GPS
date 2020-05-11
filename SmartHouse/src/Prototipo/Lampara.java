@@ -17,11 +17,13 @@ public class Lampara extends JPanel implements GUI {
 
 	public JPanel panel;
 	public String nombre;
+	public int id;
 	
-	public Lampara(String Nombre) {
+	public Lampara(String Nombre, int id) {
 		super();
 		panel = new JPanel();
 		nombre = Nombre;
+		this.id = id;
 		
 		initGUI();
 	}
@@ -67,11 +69,6 @@ public class Lampara extends JPanel implements GUI {
 	@Override
 	public void Update(ResponseContext r) {
 
-		if (r.getVista() == Eventos.MODIFICAR_ILUMINACION_HABITACION_KO)
-			JOptionPane.showMessageDialog(null, "Fallo");
-		else if (r.getVista() == Eventos.MODIFICAR_ILUMINACION_HABITACION_OK) {
-			JOptionPane.showMessageDialog(null, "Temperatura cambiada");
-		}
 		
 	}
 	

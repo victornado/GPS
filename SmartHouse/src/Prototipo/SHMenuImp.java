@@ -477,7 +477,7 @@ public class SHMenuImp extends SHMenu {
 		else if (temp == 32)
 			lblTemperatura2.setText("Maximo");
 		else
-		lblTemperatura2.setText(temp.toString() + "ÂºC");
+		lblTemperatura2.setText(temp.toString() + "ºC");
 	}
 	
 	public void modificarLabelHumedad(Double hum) {

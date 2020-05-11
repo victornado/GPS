@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -40,6 +41,8 @@ public class DatosHabitacionImp extends DatosHabitacion {
 	private boolean actv;
 	public static JTabbedPane tabbedPane;
 	public JPanel panel_1;
+	public List<TComponentesEnHabitacion> lista;
+	public List<GUI> listaClases;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -124,8 +127,24 @@ public class DatosHabitacionImp extends DatosHabitacion {
 		}
 		else if(r.getVista() == Eventos.ACTIVAR_CHROMCAST_OK) {
 			
-			JOptionPane.showMessageDialog(null, "ChromeCast funcionando");
-			ChromeCastActivo=true;
+			int clase = 100000;
+			
+			for(int i= 0; i< lista.size(); ++i) {
+				List <Integer> l = new ArrayList();
+				l.add(lista.get(i).getIDComponente());
+				l.add(lista.get(i).getIDhabitacion());
+				List <Integer> dos = (List<Integer>) r.getData();
+				if(l.get(0) == dos.get(0) &&  l.get(1) == dos.get(1) ) {
+					clase = i;
+					break;
+				}
+			}
+			
+			if(clase!= 100000) {
+				listaClases.get(clase).Update(new ResponseContext(Eventos.ACTIVAR_CHROMCAST_OK, r.getData()));
+			}
+			//JOptionPane.showMessageDialog(null, "ChromeCast funcionando");
+			//ChromeCastActivo=true;
 		}	
 		else if(r.getVista() == Eventos.ACTIVAR_CHROMCAST_KO) {
 			
@@ -146,15 +165,20 @@ public class DatosHabitacionImp extends DatosHabitacion {
 			tabbedPane_1.setBackground(Color.WHITE);
 			THabitacion habitacion = (THabitacion) r.getData();
 			tabbedPane.addTab(habitacion.getTipo(), null, panel_1, null);
-			List<TComponentesEnHabitacion> lista = habitacion.getComponentes();
+			lista = habitacion.getComponentes();
+			listaClases = new ArrayList<GUI>();
 			
 			for(int i=0; i<lista.size(); i++) {
 				
 				if(lista.get(i).getNombre().equals("lampara1")) {
-					panel_1.add(new Lampara(lista.get(i).getNombre()).panel);
+					Lampara l = new Lampara(lista.get(i).getNombre(),lista.get(i).getIDComponente());
+					panel_1.add(l.panel);
+					listaClases.add(l);
 				}
 				else if(lista.get(i).getNombre().equals("ChormeCast")) {
-					panel_1.add(new ChromeCast(lista.get(i).getNombre()).panel);
+					ChromeCast c = new ChromeCast(lista.get(i).getNombre(),lista.get(i).getIDComponente(), lista.get(i).getIDhabitacion());
+					panel_1.add(c.panel);
+					listaClases.add(c);
 				}
 			}
 			

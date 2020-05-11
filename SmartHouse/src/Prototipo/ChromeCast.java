@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,15 +25,19 @@ public class ChromeCast extends JPanel implements GUI {
 	
 public JPanel panel;
 public String nombre;
+public int id;
+public int idHab;
 private boolean ChromeCastActivo;
 private boolean actv;
 	
-	public ChromeCast(String Nombre) {
+	public ChromeCast(String Nombre, int id, int hab) {
 		super();
 		panel = new JPanel();
 		nombre = Nombre;
 		actv = false;
 		ChromeCastActivo=false;
+		this.id = id;
+		idHab = hab;
 		
 		initGUI();
 	}
@@ -81,9 +87,12 @@ private boolean actv;
 					toggleButton_5.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/Switch ON.png")));
 					
 					actv=true;
-					RequestContext rContext = new RequestContext(Eventos.ACTIVAR_CHROMCAST, null);
+					List pair = new ArrayList<Integer>();
+					pair.add(id);
+					pair.add(idHab);
+					RequestContext rContext = new RequestContext(Eventos.ACTIVAR_CHROMCAST, pair);
 					Controller.getInstance().handleRequest(rContext);
-					ChromeCastActivo=true;
+					//ChromeCastActivo=true;
 				
 				}
 				else {
@@ -101,7 +110,11 @@ private boolean actv;
 	
 	@Override
 	public void Update(ResponseContext r) {
-
+		if(r.getVista() == Eventos.ACTIVAR_CHROMCAST_OK) {
+		
+			JOptionPane.showMessageDialog(null, "ChromeCast funcionando");
+			ChromeCastActivo=true;
+		}	
 	}
 
 }
