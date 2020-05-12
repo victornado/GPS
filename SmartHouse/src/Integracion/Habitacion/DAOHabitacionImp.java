@@ -107,7 +107,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 			con = (Connection) t.getResource();
 			PreparedStatement ps;
 			try {
-				ps = con.prepareStatement("SELECT IDHabitacion, IDComponente, nombre, dato FROM componentesEnHabitacion  WHERE IDHabitacion = ? ");
+				ps = con.prepareStatement("SELECT IDHabitacion, IDComponente, nombre, dato, tipo, ip,  FROM componentesEnHabitacion join componentes on idComponente=id  WHERE IDHabitacion = ? ");
 
 				ps.setInt(1, idHabitacion);
 				ResultSet resultSet = ps.executeQuery();
@@ -119,7 +119,8 @@ public class DAOHabitacionImp implements DAOHabitacion {
 					c.setIDComponente(resultSet.getInt(2));
 					c.setNombre(resultSet.getString(3));
 					c.setDato(resultSet.getInt(4));
-
+					c.setTipo(resultSet.getString(5));
+					c.setIp(resultSet.getString(6));
 					lista.add(c);
 				}
 			} catch (SQLException e) {

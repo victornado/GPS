@@ -6,7 +6,8 @@ public class TComponentesEnHabitacion {
 	private int IDhabitacion;
 	private String nombre;
 	private int dato;
-	
+	private String tipo;//se encuentra en tabla compontentes
+	private String ip;
 	
 	public TComponentesEnHabitacion( int idComp, int hab, String nombre, int dato)
 	{
@@ -41,6 +42,22 @@ public class TComponentesEnHabitacion {
 	}
 	public void setDato(int dato) {
 		this.dato = dato;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
 	}
 	
 }
