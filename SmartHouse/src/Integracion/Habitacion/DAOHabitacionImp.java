@@ -107,7 +107,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 			con = (Connection) t.getResource();
 			PreparedStatement ps;
 			try {
-				ps = con.prepareStatement("SELECT IDHabitacion, IDComponente, nombre, dato, tipo, ip,  FROM componentesEnHabitacion join componentes on idComponente=id  WHERE IDHabitacion = ? ");
+				ps = con.prepareStatement("SELECT IDHabitacion, IDComponente, nombre, dato, tipo, ip  FROM componentesEnHabitacion join componentes on idComponente=id  WHERE IDHabitacion = ? ");
 
 				ps.setInt(1, idHabitacion);
 				ResultSet resultSet = ps.executeQuery();
