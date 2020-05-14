@@ -76,7 +76,7 @@ public class DatosHabitacionImp extends DatosHabitacion {
 	
 	
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(318, 29, 489, 453);
+		tabbedPane.setBounds(1000, 1000, 1000, 1000);
 		tabbedPane.setBackground(Color.WHITE);
 		
 		JButton button_6 = new JButton("");
@@ -164,18 +164,19 @@ public class DatosHabitacionImp extends DatosHabitacion {
 			tabbedPane_1.setBorder(new EmptyBorder(0, 0, 0, 0));
 			tabbedPane_1.setBackground(Color.WHITE);
 			THabitacion habitacion = (THabitacion) r.getData();
-			tabbedPane.addTab(habitacion.getTipo(), null, panel_1, null);
+			tabbedPane.addTab(habitacion.getNombre()+" : "+habitacion.getTipo(), null, panel_1, null);
+			
 			lista = habitacion.getComponentes();
 			listaClases = new ArrayList<GUI>();
 			
 			for(int i=0; i<lista.size(); i++) {
 				
-				if(lista.get(i).getNombre().equals("lampara1")) {
+				if(lista.get(i).getTipo().equals("bombilla")||lista.get(i).getTipo().equals("iluminacion")) {
 					Lampara l = new Lampara(lista.get(i).getNombre(),lista.get(i).getIDComponente());
 					panel_1.add(l.panel);
 					listaClases.add(l);
 				}
-				else if(lista.get(i).getNombre().equals("ChormeCast")) {
+				else if(lista.get(i).getTipo().equals("ChromeCast")) {
 					ChromeCast c = new ChromeCast(lista.get(i).getNombre(),lista.get(i).getIDComponente(), lista.get(i).getIDhabitacion());
 					panel_1.add(c.panel);
 					listaClases.add(c);

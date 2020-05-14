@@ -56,7 +56,7 @@ private boolean actv;
 
 
 		JButton button_2 = new JButton("Change volume");
-		button_2.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/play.png")));
+		button_2.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/volume.png")));
 		button_2.setBounds(180, 263, 150, 25);
 		panel.add(button_2);
 		

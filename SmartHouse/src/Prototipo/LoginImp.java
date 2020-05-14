@@ -1,6 +1,7 @@
 package Prototipo;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -52,10 +53,11 @@ public class LoginImp extends Login implements GUI {
 	
 	public void initGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setLayout(new BorderLayout(0,0));
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
@@ -104,6 +106,8 @@ public class LoginImp extends Login implements GUI {
 		label.setIcon(new ImageIcon(LoginImp.class.getResource("/img/logo.png")));
 		label.setBounds(135, 11, 200, 129);
 		panel.add(label);
+		
+		
 	}
 	
 	public void clearData() {

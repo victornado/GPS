@@ -23,7 +23,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 		if (t != null) {
 			try {
 				Connection c = (Connection) t.getResource();
-				PreparedStatement query = c.prepareStatement("select IDcasa, tipo from habitacion where id = ?");
+				PreparedStatement query = c.prepareStatement("select IDcasa, tipo, nombre from habitacion where id = ?");
 				query.setInt(1, id);
 				ResultSet r = query.executeQuery();
 				if (r.next()) {
@@ -31,6 +31,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 					habitacion.setID(id);
 					habitacion.setIDCasa(r.getInt(1));
 					habitacion.setTipo(r.getString(2));
+					habitacion.setNombre(r.getString(3));
 				}
 
 			} catch (Exception e) {
@@ -144,7 +145,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 				query.setInt(1, id);
 				ResultSet r = query.executeQuery();
 				if (r.next()) {
-					habitacion = new THabitacion(r.getInt("id"), r.getInt("idCasa"), r.getString("tipo"));
+					habitacion = new THabitacion(r.getInt("id"), r.getInt("idCasa"), r.getString("tipo"), r.getString("nombre"));
 				}
 			} catch (Exception e) {
 				e.getMessage();

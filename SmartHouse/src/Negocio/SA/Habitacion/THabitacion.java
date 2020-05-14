@@ -7,13 +7,14 @@ public class THabitacion {
 	private int ID;
 	private int IDCasa;
 	private String tipo;
+	private String nombre;
 	private List<TComponentesEnHabitacion> componentes;
 	
-	public THabitacion(int id, int idCasa, String tipo2) {
+	public THabitacion(int id, int idCasa, String tipo2, String nombre2) {
 		ID = id;
 		IDCasa = idCasa;
 		tipo = tipo2;
-		
+		nombre = nombre2;
 	}
 	
 	public THabitacion() {}
@@ -33,8 +34,14 @@ public class THabitacion {
 	public String getTipo() {
 		return tipo;
 	}
+	public String getNombre() {
+		return nombre;
+	}
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	public List<TComponentesEnHabitacion> getComponentes() {
 		return componentes;
