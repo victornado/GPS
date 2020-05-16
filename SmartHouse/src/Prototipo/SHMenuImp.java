@@ -103,7 +103,7 @@ public class SHMenuImp extends SHMenu {
 
 	public void initGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 833, 547);
+		setBounds(100, 100, 870, 547);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -389,7 +389,7 @@ public class SHMenuImp extends SHMenu {
 		panel.add(label_1);
 		
 		JTabbedPane tabbedPaneInicial = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPaneInicial.setBounds(318, 29, 489, 453);
+		tabbedPaneInicial.setBounds(330, 29, 500, 453);
 		tabbedPaneInicial.setBackground(Color.WHITE);
 		datosHab.inicializarHabitaciones();
 		tabbedPaneInicial.add(datosHab.tabbedPane);

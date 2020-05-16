@@ -2,6 +2,7 @@ package Prototipo;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -123,7 +124,7 @@ public class DatosHabitacionImp extends DatosHabitacion {
 		if (r.getVista() == Eventos.MODIFICAR_ILUMINACION_HABITACION_KO)
 			JOptionPane.showMessageDialog(null, "Fallo");
 		else if (r.getVista() == Eventos.MODIFICAR_ILUMINACION_HABITACION_OK) {
-			JOptionPane.showMessageDialog(null, "Temperatura cambiada");
+			JOptionPane.showMessageDialog(null, "Iluminación cambiada");
 		}
 		else if(r.getVista() == Eventos.ACTIVAR_CHROMCAST_OK) {
 			
@@ -165,6 +166,12 @@ public class DatosHabitacionImp extends DatosHabitacion {
 			tabbedPane_1.setBackground(Color.WHITE);
 			THabitacion habitacion = (THabitacion) r.getData();
 			tabbedPane.addTab(habitacion.getNombre()+" : "+habitacion.getTipo(), null, panel_1, null);
+			JPanel panelInterno = new JPanel();
+			panelInterno.setPreferredSize(new Dimension(300,500));
+			
+			JScrollPane scroll = new JScrollPane();
+			scroll.setPreferredSize(new Dimension(500,500));
+            
 			
 			lista = habitacion.getComponentes();
 			listaClases = new ArrayList<GUI>();
@@ -173,12 +180,12 @@ public class DatosHabitacionImp extends DatosHabitacion {
 				
 				if(lista.get(i).getTipo().equals("bombilla")||lista.get(i).getTipo().equals("iluminacion")) {
 					Lampara l = new Lampara(lista.get(i).getNombre(),lista.get(i).getIDComponente());
-					panel_1.add(l.panel);
+					panelInterno.add(l.panel);
 					listaClases.add(l);
 				}
 				else if(lista.get(i).getTipo().equals("ChromeCast")) {
 					ChromeCast c = new ChromeCast(lista.get(i).getNombre(),lista.get(i).getIDComponente(), lista.get(i).getIDhabitacion());
-					panel_1.add(c.panel);
+					panelInterno.add(c.panel);
 					listaClases.add(c);
 				}
 			}
@@ -188,6 +195,10 @@ public class DatosHabitacionImp extends DatosHabitacion {
 				lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 17));
 				lblNewLabel.setBounds(50, 110, 220, 140);
 				panel_1.add(lblNewLabel);
+			}
+			else {
+				scroll.setViewportView(panelInterno);
+				panel_1.add(scroll);
 			}
 			
 		}
