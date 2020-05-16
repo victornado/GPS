@@ -391,14 +391,10 @@ public class SHMenuImp extends SHMenu {
 		panel.add(label_1);
 		
 		this.datosHab = new DatosHabitacionImp();
-		JTabbedPane tabbedPaneInicial = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPaneInicial.setBounds(330, 29, 500, 453);
-		tabbedPaneInicial.setBackground(Color.WHITE);
 		datosHab.inicializarHabitaciones();
-		tabbedPaneInicial.add(datosHab.tabbedPane);
-		tabbedPaneInicial.setVisible(true);
 		
-		panel.add(tabbedPaneInicial);
+		
+		panel.add(datosHab.tabbedPane);
 		panel.setVisible(true);
 	}
 

@@ -41,7 +41,7 @@ public class DatosHabitacionImp extends DatosHabitacion {
 	private boolean ChromeCastActivo;
 	private boolean actv;
 	public static JTabbedPane tabbedPane;
-	public JPanel panel_1;
+	public static JPanel panel_1;
 	public List<TComponentesEnHabitacion> lista;
 	public List<GUI> listaClases;
 	
@@ -63,10 +63,12 @@ public class DatosHabitacionImp extends DatosHabitacion {
 	
 	public void initGUI(){
 	
-	
+		
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(1000, 1000, 1000, 1000);
+		tabbedPane.setBounds(330, 29, 500, 453);
 		tabbedPane.setBackground(Color.WHITE);
+		//this.add(tabbedPane);
+		//this.setBounds(330, 29, 500, 453);
 		
 		JButton button_6 = new JButton("");
 		button_6.addActionListener(new ActionListener() {
