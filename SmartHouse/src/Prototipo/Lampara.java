@@ -18,8 +18,9 @@ public class Lampara extends JPanel implements GUI {
 	public JPanel panel;
 	public String nombre;
 	public int id;
+	public int idHab;
 	
-	public Lampara(String Nombre, int id) {
+	public Lampara(String Nombre, int id, int idHab) {
 		super();
 		panel = new JPanel();
 		nombre = Nombre;

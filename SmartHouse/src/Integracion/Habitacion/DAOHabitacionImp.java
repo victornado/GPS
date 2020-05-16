@@ -195,7 +195,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 			Connection cn = (Connection) transaction.getResource();
 	
 			try {
-				PreparedStatement ps = cn.prepareStatement("select * from componente");//COMPROBAR BBDD
+				PreparedStatement ps = cn.prepareStatement("select * from componentesEnHabitacion");//COMPROBAR BBDD
 				ResultSet rs = ps.executeQuery();
 				TComponentesEnHabitacion compHabitacion = null;
 			

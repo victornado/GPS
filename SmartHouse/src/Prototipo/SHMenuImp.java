@@ -57,7 +57,7 @@ public class SHMenuImp extends SHMenu {
 	private JLabel lblTemperatura2;
 	private JLabel lblHumedad2;
 	private int IDCasa = 1;// CUANDO SE CARGUE LA CASA ESTO DEBERIA ACTUALIZARSE
-	private boolean ChromeCastActivo;
+	private JPanel panel;
 	/**
 	 * Launch the application.
 	 */
@@ -91,11 +91,12 @@ public class SHMenuImp extends SHMenu {
 		this.borrarDisp = new BorrarDispositivoImp();
 		this.aniadiru = new AniadirUsuarioImp();
 		this.buscarHab = new BuscarHabitacionImp();
-		this.datosHab = (DatosHabitacionImp) DatosHabitacion.getInstance();
+		//this.datosHab = new DatosHabitacionImp();
 		this.tempInt = (TemperaturaInteriorImp) TemperaturaInterior.getInstance();
 		this.listHab = new ListarHabitacionesImp();
 		tempInt.setMenu(this);
-		ChromeCastActivo=false;
+	
+		
 		initGUI();
 	}
 	
@@ -104,12 +105,13 @@ public class SHMenuImp extends SHMenu {
 	public void initGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 870, 547);
-		contentPane = new JPanel();
+		
+		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBackground(SystemColor.activeCaption);
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
@@ -388,6 +390,7 @@ public class SHMenuImp extends SHMenu {
 		label_1.setBounds(32, 11, 60, 70);
 		panel.add(label_1);
 		
+		this.datosHab = new DatosHabitacionImp();
 		JTabbedPane tabbedPaneInicial = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPaneInicial.setBounds(330, 29, 500, 453);
 		tabbedPaneInicial.setBackground(Color.WHITE);
@@ -530,6 +533,9 @@ public class SHMenuImp extends SHMenu {
 	public void listarUsua() {	
 		RequestContext rContext = new RequestContext(Eventos.Listar_USUARIO, null);
 		Controller.getInstance().handleRequest(rContext);
+		
+		//datosHab.inicializarHabitaciones();
+		
 	}	
 	
 	public void modificarHum(TComponentesGenerales casa) {	

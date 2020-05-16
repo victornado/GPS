@@ -5,6 +5,8 @@ import Controller.Command.Usuario.LoginUsuario;
 import Prototipo.LoginImp;
 import Prototipo.DatosHabitacion;
 import Prototipo.GUI;
+import Prototipo.HumedadInterior;
+import Prototipo.IluminacionInterior;
 import Prototipo.ListarHabitaciones;
 import Prototipo.ListarUsuario;
 import Prototipo.Login;
@@ -16,7 +18,7 @@ public class DispatcherImp extends Dispatcher {
 
 	@Override
 	public void actualizaVistas(ResponseContext r) {
-		if(r.getVista() >= 100 && r.getVista() < 104) 
+		if(r.getVista() >= 100 && r.getVista() < 103) 
 			Login.getInstance().Update(r);
 		else if(r.getVista()>= 200 && r.getVista()<206)
 			DatosHabitacion.getInstance().Update(r);
@@ -30,7 +32,7 @@ public class DispatcherImp extends Dispatcher {
 			ListarUsuario.getInstance().Update(r);
 		else if(r.getVista() >= 210 && r.getVista() <= 212) 
 			ListarHabitaciones.getInstance().Update(r);
-		else if(r.getVista() >= 104 && r.getVista() < 112)
+		else if(r.getVista() >= 103 && r.getVista() < 112)
 			SHMenu.getInstance().Update(r);
 	}
 

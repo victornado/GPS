@@ -45,20 +45,7 @@ public class DatosHabitacionImp extends DatosHabitacion {
 	public List<TComponentesEnHabitacion> lista;
 	public List<GUI> listaClases;
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JFrame f= new JFrame();
-					DatosHabitacionImp frame = new DatosHabitacionImp();
-					f.add(tabbedPane);
-					f.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	
 	public DatosHabitacionImp() {
@@ -70,6 +57,7 @@ public class DatosHabitacionImp extends DatosHabitacion {
 		tabbedPane = null;
 		actv = false;
 		panel_1 = new JPanel();
+		//panel_1.setLayout(new);
 		initGUI();
 	}
 	
@@ -86,6 +74,7 @@ public class DatosHabitacionImp extends DatosHabitacion {
 				borrarDisp.setVisible(true);
 			}
 		});
+		
 		button_6.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/papelera.png")));
 		button_6.setBounds(50, 20, 20, 20);
 		panel_1.add(button_6);
@@ -179,7 +168,7 @@ public class DatosHabitacionImp extends DatosHabitacion {
 			for(int i=0; i<lista.size(); i++) {
 				
 				if(lista.get(i).getTipo().equals("bombilla")||lista.get(i).getTipo().equals("iluminacion")) {
-					Lampara l = new Lampara(lista.get(i).getNombre(),lista.get(i).getIDComponente());
+					Lampara l = new Lampara(lista.get(i).getNombre(),lista.get(i).getIDComponente(),lista.get(i).getIDhabitacion());
 					panelInterno.add(l.panel);
 					listaClases.add(l);
 				}
