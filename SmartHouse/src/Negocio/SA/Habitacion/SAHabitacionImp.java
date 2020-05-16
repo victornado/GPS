@@ -1,12 +1,12 @@
 package Negocio.SA.Habitacion;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import Integracion.FactoryDAO;
 import Integracion.Habitacion.DAOHabitacion;
 import Integracion.Transacciones.TransactionManager;
 import Integracion.Transacciones.TransactionSmartHouse;
-import Negocio.Factoria.FactoriaNeg;
 
 public class SAHabitacionImp implements SAHabitacion {
 
@@ -155,6 +155,23 @@ public class SAHabitacionImp implements SAHabitacion {
 				trans.rollback();
 		}
 		return -1;
+	}
+
+	@Override
+	public ArrayList<THabitacion> ListarHabitaciones() {
+		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
+		ArrayList<THabitacion> arrayHabitaciones = new ArrayList<THabitacion>();
+		try {
+			trans.init();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if(trans!=null){
+			DAOHabitacion daoHab  = FactoryDAO.getInstance().createDAOHabitacion();
+			arrayHabitaciones = daoHab.ListarHabitaciones();
+			trans.commit();
+		}
+		return arrayHabitaciones;
 	}
 
 }

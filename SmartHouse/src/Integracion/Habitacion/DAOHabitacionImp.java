@@ -12,6 +12,7 @@ import Integracion.Transacciones.TransactionManager;
 import Integracion.Transacciones.TransactionSmartHouse;
 import Negocio.SA.Habitacion.TComponentesEnHabitacion;
 import Negocio.SA.Habitacion.THabitacion;
+import Negocio.SA.Usuario.TUsuario;
 
 public class DAOHabitacionImp implements DAOHabitacion {
 
@@ -153,6 +154,64 @@ public class DAOHabitacionImp implements DAOHabitacion {
 			}
 		}
 		return habitacion.getTipo();
+	}
+
+	@Override
+	public ArrayList<THabitacion> ListarHabitaciones() {
+		TransactionManager tm = TransactionManager.getInstance();
+		Transaction transaction = tm.getTransaction();
+		ArrayList<THabitacion> arrayHabitaciones = new ArrayList<THabitacion>();
+
+		if(transaction != null) {
+			Connection cn = (Connection) transaction.getResource();
+	
+			try {
+				PreparedStatement ps = cn.prepareStatement("select * from habitacion");//COMPROBAR NOMBRE
+				ResultSet rs = ps.executeQuery();
+				THabitacion habitacion = null;
+			
+				while (rs.next()) {
+					habitacion = new THabitacion();
+					habitacion.setID(rs.getInt("ID"));
+					habitacion.setIDCasa(rs.getInt("IDCasa"));
+					habitacion.setTipo(rs.getString("tipo"));
+					habitacion.setNombre(rs.getString("nombre"));
+					arrayHabitaciones.add(habitacion);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return arrayHabitaciones;
+	}
+
+	@Override
+	public ArrayList<TComponentesEnHabitacion> ListarComponentesHabitaciones() {
+		TransactionManager tm = TransactionManager.getInstance();
+		Transaction transaction = tm.getTransaction();
+		ArrayList<TComponentesEnHabitacion> arrayComponentesHabitaciones = new ArrayList<TComponentesEnHabitacion>();
+
+		if(transaction != null) {
+			Connection cn = (Connection) transaction.getResource();
+	
+			try {
+				PreparedStatement ps = cn.prepareStatement("select * from componente");//COMPROBAR BBDD
+				ResultSet rs = ps.executeQuery();
+				TComponentesEnHabitacion compHabitacion = null;
+			
+				while (rs.next()) {
+					compHabitacion = new TComponentesEnHabitacion();
+					compHabitacion.setIDComponente(rs.getInt("ID"));
+					compHabitacion.setIDhabitacion(rs.getInt("IDCasa"));
+					compHabitacion.setDato(rs.getInt("tipo"));
+					compHabitacion.setNombre(rs.getString("nombre"));
+					arrayComponentesHabitaciones.add(compHabitacion);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return arrayComponentesHabitaciones;
 	}
 
 }

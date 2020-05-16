@@ -1,5 +1,9 @@
 package Negocio.SA.Habitacion;
 
+import java.util.ArrayList;
+
+
+
 public interface SAHabitacion {
 
 	public abstract TComponentesEnHabitacion mostrarIluminacionHabitacion(TComponentesEnHabitacion componente);
@@ -8,4 +12,5 @@ public interface SAHabitacion {
 	public abstract THabitacion  mostrarHabitacion(int id);
 	public abstract int mostrarTemperaturaObjeto(int idHabitacion, int idObjeto);
 	public abstract int mostrarHumedadObjeto(int idHabitacion, int idObjeto);
+	public ArrayList<THabitacion> ListarHabitaciones();
 }

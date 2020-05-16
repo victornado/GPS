@@ -5,6 +5,7 @@ import Controller.Command.Usuario.LoginUsuario;
 import Prototipo.LoginImp;
 import Prototipo.DatosHabitacion;
 import Prototipo.GUI;
+import Prototipo.ListarHabitaciones;
 import Prototipo.ListarUsuario;
 import Prototipo.Login;
 import Prototipo.ResponseContext;
@@ -27,6 +28,8 @@ public class DispatcherImp extends Dispatcher {
 			DatosHabitacion.getInstance().Update(r);
 		else if(r.getVista() >= 112 && r.getVista() <= 114) 
 			ListarUsuario.getInstance().Update(r);
+		else if(r.getVista() >= 210 && r.getVista() <= 212) 
+			ListarHabitaciones.getInstance().Update(r);
 		else if(r.getVista() >= 104 && r.getVista() < 112)
 			SHMenu.getInstance().Update(r);
 	}

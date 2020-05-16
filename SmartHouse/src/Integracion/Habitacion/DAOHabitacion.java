@@ -1,5 +1,6 @@
 package Integracion.Habitacion;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import Negocio.SA.Habitacion.TComponentesEnHabitacion;
@@ -11,5 +12,7 @@ public interface DAOHabitacion {
 	public abstract List<TComponentesEnHabitacion> getComponents(Integer idHabitacion);
 	public abstract int modificarIluminacionHabitacion(TComponentesEnHabitacion componente);
 	public abstract String mostrarTipoHabitacion(int id);
+	public abstract ArrayList<THabitacion> ListarHabitaciones();
+	public abstract ArrayList<TComponentesEnHabitacion> ListarComponentesHabitaciones();
 
 }

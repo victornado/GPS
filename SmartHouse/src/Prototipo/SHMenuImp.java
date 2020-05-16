@@ -43,6 +43,7 @@ public class SHMenuImp extends SHMenu {
 	private ModificarHabitacionImp modHab;
 	private BuscarHabitacionImp buscarHab;
 	private DatosHabitacionImp datosHab;
+	private ListarHabitacionesImp listHab;
 	private int x;
 	private int y;
 	private int hora;
@@ -92,6 +93,7 @@ public class SHMenuImp extends SHMenu {
 		this.buscarHab = new BuscarHabitacionImp();
 		this.datosHab = (DatosHabitacionImp) DatosHabitacion.getInstance();
 		this.tempInt = (TemperaturaInteriorImp) TemperaturaInterior.getInstance();
+		this.listHab = new ListarHabitacionesImp();
 		tempInt.setMenu(this);
 		ChromeCastActivo=false;
 		initGUI();
@@ -343,9 +345,17 @@ public class SHMenuImp extends SHMenu {
 		});
 		panel.add(buscaryHabitacionBtn);
 		
-		
-		
-		
+				
+		JButton habitacion = new JButton("Habitacion");
+		habitacion.setBounds(145, 10, 74, 21);
+		habitacion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//listHab.setVisible(true);
+				listarHabitaciones();
+			}
+
+		});
+		panel.add(habitacion);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(145, 35, 74, 21);
@@ -532,5 +542,11 @@ public class SHMenuImp extends SHMenu {
 		//Controller.getInstance().handleRequest(rContext);
 		
 	}	
+	
+	public void listarHabitaciones() {	
+		RequestContext rContext = new RequestContext(Eventos.LISTAR_HABITACIONES, null);
+		Controller.getInstance().handleRequest(rContext);
+	}	
+	
 	
 }

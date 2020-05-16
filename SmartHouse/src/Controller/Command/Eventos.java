@@ -34,7 +34,18 @@ public class Eventos {
 	public static final int MOSTRAR_DATOS_HABITACION= 206; 
 	public static final int MOSTRAR_DATOS_HABITACION_OK= 207;
 	public static final int MOSTRAR_DATOS_HABITACION_KO= 208;
-
+	public static final int LISTAR_HABITACIONES = 209;
+	public static final int LISTAR_HABITACIONES_KO = 210;
+	public static final int LISTAR_HABITACIONES_OK = 211;
+	public static final int MODIFICAR_HABITACION= 212; 
+	public static final int MODIFICAR_HABITACION_OK= 213;
+	public static final int MODIFICAR_HABITACION_KO= 214;
+	public static final int ELIMINAR_HABITACION= 215; 
+	public static final int ELIMINAR_HABITACION_OK= 216;
+	public static final int ELIMINAR_HABITACION_KO= 217;
+	public static final int LISTAR_COMPONENTES_HABITACION = 218;
+	public static final int LISTAR_COMPONENTES_HABITACION_KO = 219;
+	public static final int LISTAR_COMPONENTES_HABITACION_OK = 220;
 
 
 	//HU CASA TEMP
