@@ -157,6 +157,16 @@ public class DatosHabitacionImp extends DatosHabitacion {
 					panelInterno.add(c.panel);
 					listaClases.add(c);
 				}
+				else if(lista.get(i).getTipo().equals("temperatura")||lista.get(i).getTipo().equals("enchufe")) {
+					Radiador c = new Radiador(lista.get(i).getNombre(),lista.get(i).getIDComponente(), lista.get(i).getIDhabitacion());
+					panelInterno.add(c.panel);
+					listaClases.add(c);
+				}
+				else if(lista.get(i).getTipo().equals("Humedad")) {
+					Humidificador c = new Humidificador(lista.get(i).getNombre(),lista.get(i).getIDComponente(), lista.get(i).getIDhabitacion());
+					panelInterno.add(c.panel);
+					listaClases.add(c);
+				}
 			}
 			
 			if(lista.size() == 0) {
