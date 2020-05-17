@@ -46,6 +46,11 @@ public class Eventos {
 	public static final int LISTAR_COMPONENTES_HABITACION = 218;
 	public static final int LISTAR_COMPONENTES_HABITACION_KO = 219;
 	public static final int LISTAR_COMPONENTES_HABITACION_OK = 220;
+	
+	//Mostrar habitaciones
+	public static final int MOSTRAR_HABITACIONES= 221; 
+	public static final int MOSTRAR_HABITACIONES_OK= 222; 
+	public static final int MOSTRAR_HABITACIONES_KO= 223; 
 
 
 	//HU CASA TEMP

@@ -42,7 +42,7 @@ public class SHMenuImp extends SHMenu {
 	private TemperaturaInteriorImp tempInt;
 	private ModificarHabitacionImp modHab;
 	private BuscarHabitacionImp buscarHab;
-	private DatosHabitacionImp datosHab;
+	private HabitacionesDeLaCasaImp datosHab;
 	private ListarHabitacionesImp listHab;
 	private int x;
 	private int y;
@@ -390,9 +390,9 @@ public class SHMenuImp extends SHMenu {
 		label_1.setBounds(32, 11, 60, 70);
 		panel.add(label_1);
 		
-		this.datosHab = new DatosHabitacionImp();
-		datosHab.inicializarHabitaciones();
 		
+		this.datosHab = new HabitacionesDeLaCasaImp();
+		datosHab.inicializarHabitaciones();
 		
 		panel.add(datosHab.tabbedPane);
 		panel.setVisible(true);

@@ -5,6 +5,7 @@ import Controller.Command.Usuario.LoginUsuario;
 import Prototipo.LoginImp;
 import Prototipo.DatosHabitacion;
 import Prototipo.GUI;
+import Prototipo.HabitacionesDeLaCasa;
 import Prototipo.HumedadInterior;
 import Prototipo.IluminacionInterior;
 import Prototipo.ListarHabitaciones;
@@ -21,19 +22,21 @@ public class DispatcherImp extends Dispatcher {
 		if(r.getVista() >= 100 && r.getVista() < 103) 
 			Login.getInstance().Update(r);
 		else if(r.getVista()>= 200 && r.getVista()<206)
-			DatosHabitacion.getInstance().Update(r);
+			HabitacionesDeLaCasa.getInstance().Update(r);
 		else if(r.getVista() >= 300 && r.getVista() < 400) 
 			TemperaturaInterior.getInstance().Update(r);
 		else if(r.getVista() >= 600 && r.getVista() < 800) 
-			DatosHabitacion.getInstance().Update(r);
+			HabitacionesDeLaCasa.getInstance().Update(r);
 		else if(r.getVista()>= 206 && r.getVista()<209)
-			DatosHabitacion.getInstance().Update(r);
+			HabitacionesDeLaCasa.getInstance().Update(r);
 		else if(r.getVista() >= 112 && r.getVista() <= 114) 
 			ListarUsuario.getInstance().Update(r);
 		else if(r.getVista() >= 210 && r.getVista() <= 212) 
 			ListarHabitaciones.getInstance().Update(r);
 		else if(r.getVista() >= 103 && r.getVista() < 112)
 			SHMenu.getInstance().Update(r);
+		else if(r.getVista() >= 221 && r.getVista() < 224)
+			HabitacionesDeLaCasa.getInstance().Update(r);
 	}
 
 }

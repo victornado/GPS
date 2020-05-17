@@ -40,10 +40,10 @@ public class DatosHabitacionImp extends DatosHabitacion {
 	private BorrarDispositivoImp borrarDisp;
 	private boolean ChromeCastActivo;
 	private boolean actv;
-	public static JTabbedPane tabbedPane;
-	public static JPanel panel_1;
+	public JPanel panel_1;
 	public List<TComponentesEnHabitacion> lista;
 	public List<GUI> listaClases;
+	public int IdHab;
 	
 
 
@@ -54,7 +54,6 @@ public class DatosHabitacionImp extends DatosHabitacion {
 		this.addDisp = new AniadirDispositivoImp();
 		this.borrarDisp = new BorrarDispositivoImp();
 		ChromeCastActivo=false;
-		tabbedPane = null;
 		actv = false;
 		panel_1 = new JPanel();
 		//panel_1.setLayout(new);
@@ -63,12 +62,6 @@ public class DatosHabitacionImp extends DatosHabitacion {
 	
 	public void initGUI(){
 	
-		
-		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(330, 29, 500, 453);
-		tabbedPane.setBackground(Color.WHITE);
-		//this.add(tabbedPane);
-		//this.setBounds(330, 29, 500, 453);
 		
 		JButton button_6 = new JButton("");
 		button_6.addActionListener(new ActionListener() {
@@ -104,20 +97,17 @@ public class DatosHabitacionImp extends DatosHabitacion {
 	}
 	
 	
-	public void inicializarHabitaciones() {
+	public void inicializarHabitaciones(int id) {
+		
+		IdHab= id;
 	
-		Controller.getInstance().handleRequest(new RequestContext(Eventos.MOSTRAR_DATOS_HABITACION, 1));
+		Controller.getInstance().handleRequest(new RequestContext(Eventos.MOSTRAR_DATOS_HABITACION, IdHab));
 	}
 	
 	@Override
 	public void Update(ResponseContext r) {
 		
-		if (r.getVista() == Eventos.MODIFICAR_ILUMINACION_HABITACION_KO)
-			JOptionPane.showMessageDialog(null, "Fallo");
-		else if (r.getVista() == Eventos.MODIFICAR_ILUMINACION_HABITACION_OK) {
-			JOptionPane.showMessageDialog(null, "Iluminación cambiada");
-		}
-		else if(r.getVista() == Eventos.ACTIVAR_CHROMCAST_OK) {
+		if(r.getVista() == Eventos.ACTIVAR_CHROMCAST_OK) {
 			
 			int clase = 100000;
 			
@@ -142,21 +132,9 @@ public class DatosHabitacionImp extends DatosHabitacion {
 			
 			JOptionPane.showMessageDialog(null, "Algo salio mal al encender el ChromeCast","Error", JOptionPane.ERROR_MESSAGE);
 		}
-		else if(r.getVista() == Eventos.MODIFICA_VOLUMEN_CHROMCAST_OK) {
-			
-			JOptionPane.showMessageDialog(null, "Se ha cambiado el volument correctamente a "+r.getData());
-		}
-		else if(r.getVista() == Eventos.MODIFICA_VOLUMEN_CHROMCAST_KO) {
-			
-			JOptionPane.showMessageDialog(null, "El volumen no ha sido modificado","Error", JOptionPane.ERROR_MESSAGE);
-		}
 		else if(r.getVista() == Eventos.MOSTRAR_DATOS_HABITACION_OK) {
 			
-			JTabbedPane tabbedPane_1 = new JTabbedPane(JTabbedPane.TOP);
-			tabbedPane_1.setBorder(new EmptyBorder(0, 0, 0, 0));
-			tabbedPane_1.setBackground(Color.WHITE);
 			THabitacion habitacion = (THabitacion) r.getData();
-			tabbedPane.addTab(habitacion.getNombre()+" : "+habitacion.getTipo(), null, panel_1, null);
 			JPanel panelInterno = new JPanel();
 			panelInterno.setPreferredSize(new Dimension(300,500));
 			
@@ -182,25 +160,29 @@ public class DatosHabitacionImp extends DatosHabitacion {
 			}
 			
 			if(lista.size() == 0) {
+				
+				JPanel j = new JPanel();
 				JLabel lblNewLabel = new JLabel("No existen componentes en la habitacion");
 				lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 17));
 				lblNewLabel.setBounds(50, 110, 220, 140);
-				panel_1.add(lblNewLabel);
+				j.add(lblNewLabel);
+				scroll.setViewportView(j);
+				panel_1.add(scroll);
 			}
 			else {
 				scroll.setViewportView(panelInterno);
 				panel_1.add(scroll);
 			}
 			
+			
 		}
 		else if(r.getVista() == Eventos.MOSTRAR_DATOS_HABITACION_KO) {
 			
-			tabbedPane.addTab("NINGUNA", null, panel_1, null);
 			panel_1.setLayout(null);
 
 			JLabel lblNewLabel = new JLabel("No existen habitaciones");
 			lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 17));
-			lblNewLabel.setBounds(150, 110, 220, 140);
+			lblNewLabel.setBounds(300, 300, 400, 140);
 			panel_1.add(lblNewLabel);
 		}
 		

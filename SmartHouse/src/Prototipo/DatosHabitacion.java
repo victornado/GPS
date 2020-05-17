@@ -13,6 +13,5 @@ public abstract class DatosHabitacion extends JPanel implements GUI{
 		return instance;
 	}
 
-	protected abstract void inicializarHabitaciones();
 
 }
