@@ -42,7 +42,7 @@ public class SHMenuImp extends SHMenu {
 	private TemperaturaInteriorImp tempInt;
 //	private ModificarHabitacionImp modHab;
 //	private BuscarHabitacionImp buscarHab;
-	private DatosHabitacionImp datosHab;
+	private HabitacionesDeLaCasaImp datosHab;
 	private ListarHabitacionesImp listHab;
 	private int x;
 	private int y;
@@ -91,7 +91,6 @@ public class SHMenuImp extends SHMenu {
 		this.borrarDisp = new BorrarDispositivoImp();
 		this.aniadiru = new AniadirUsuarioImp();
 //		this.buscarHab = new BuscarHabitacionImp();
-		this.datosHab = (DatosHabitacionImp) DatosHabitacion.getInstance();
 		this.tempInt = (TemperaturaInteriorImp) TemperaturaInterior.getInstance();
 		this.listHab = new ListarHabitacionesImp();
 		tempInt.setMenu(this);
@@ -397,14 +396,19 @@ public class SHMenuImp extends SHMenu {
 		label_1.setBounds(32, 11, 60, 70);
 		panel.add(label_1);
 		
-		JTabbedPane tabbedPaneInicial = new JTabbedPane(JTabbedPane.TOP);
+		/*JTabbedPane tabbedPaneInicial = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPaneInicial.setBounds(330, 29, 500, 453);
 		tabbedPaneInicial.setBackground(Color.WHITE);
 		datosHab.inicializarHabitaciones(IDCasa);
 		tabbedPaneInicial.add(datosHab.panel_1);
-		tabbedPaneInicial.setVisible(true);
+		tabbedPaneInicial.setVisible(true);*/
 		
-		panel.add(tabbedPaneInicial);
+		this.datosHab = new HabitacionesDeLaCasaImp();
+		datosHab.inicializarHabitaciones();
+		
+		panel.add(datosHab.tabbedPane);
+		
+		/*panel.add(tabbedPaneInicial);*/
 		panel.setVisible(true);
 	}
 
