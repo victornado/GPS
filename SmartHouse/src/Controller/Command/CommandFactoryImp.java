@@ -18,6 +18,7 @@ import Controller.Command.Usuario.EliminarUsuario;
 import Controller.Command.Usuario.ListarUsuarios;
 import Controller.Command.Usuario.LoginUsuario;
 import Controller.Command.Usuario.ModificarUsuario;
+import Controller.Command.Habitacion.ModificarHabitacion;
 
 public class CommandFactoryImp extends CommandFactory{
 
@@ -44,6 +45,7 @@ public class CommandFactoryImp extends CommandFactory{
 		case Eventos.Listar_USUARIO: return new ListarUsuarios();
 		case Eventos.LISTAR_HABITACIONES: return new ListarHabitaciones();
 		case Eventos.MOSTRAR_HABITACIONES: return new MostrarHabitaciones();
+		case Eventos.MODIFICAR_HABITACION: return new ModificarHabitacion();
 		default: return null;
 		
 		}

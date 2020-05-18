@@ -51,6 +51,7 @@ public class Eventos {
 	public static final int MOSTRAR_HABITACIONES= 221; 
 	public static final int MOSTRAR_HABITACIONES_OK= 222; 
 	public static final int MOSTRAR_HABITACIONES_KO= 223; 
+	
 
 
 	//HU CASA TEMP
@@ -76,6 +77,7 @@ public class Eventos {
 	public static final int MODIFICAR_ILUMINACION= 503; 
 	public static final int MODIFICAR_ILUMINACION_OK= 504;
 	public static final int MODIFICAR_ILUMINACION_KO= 505; 
+	
 
 	
 	//Activa ChromeCast

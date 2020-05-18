@@ -94,7 +94,7 @@ public class HabitacionesDeLaCasaImp extends HabitacionesDeLaCasa{
 		if (r.getVista() == Eventos.MODIFICAR_ILUMINACION_HABITACION_KO)
 			JOptionPane.showMessageDialog(null, "Fallo");
 		else if (r.getVista() == Eventos.MODIFICAR_ILUMINACION_HABITACION_OK) {
-			JOptionPane.showMessageDialog(null, "Iluminación cambiada");
+			JOptionPane.showMessageDialog(null, "Iluminaciï¿½n cambiada");
 		}
 		else if(r.getVista() == Eventos.ACTIVAR_CHROMCAST_OK) {
 			

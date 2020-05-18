@@ -42,6 +42,32 @@ public class DAOHabitacionImp implements DAOHabitacion {
 		return habitacion;
 	}
 
+	
+	@Override
+	public THabitacion modificarHabitacion(THabitacion room) {
+		THabitacion habitacion = null;
+		TransactionManager tm = TransactionManager.getInstance();
+		Transaction transaction = tm.getTransaction();
+		if(transaction != null) {
+			Connection cn = (Connection) transaction.getResource();
+	
+			try {
+				PreparedStatement query = cn.prepareStatement("UPDATE habitacion SET nombre=?, IDCasa = ?, tipo = ? WHERE ID = ?");
+				query.setNString(1, room.getNombre());
+				query.setInt(2, room.getIDCasa());
+				query.setString(3, room.getTipo());
+				query.setInt(4, room.getID());
+				query.executeUpdate();
+				habitacion = room;
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return habitacion;
+	}
+
+	
 	@Override
 	public TComponentesEnHabitacion mostrarIluminacionHabitacion(TComponentesEnHabitacion componente) {
 

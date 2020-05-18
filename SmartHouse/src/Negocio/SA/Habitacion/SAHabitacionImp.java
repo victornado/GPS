@@ -7,6 +7,8 @@ import Integracion.FactoryDAO;
 import Integracion.Habitacion.DAOHabitacion;
 import Integracion.Transacciones.TransactionManager;
 import Integracion.Transacciones.TransactionSmartHouse;
+import Integracion.Usuario.DAOUsuario;
+import Negocio.SA.Usuario.TUsuario;
 
 public class SAHabitacionImp implements SAHabitacion {
 
@@ -173,5 +175,31 @@ public class SAHabitacionImp implements SAHabitacion {
 		}
 		return arrayHabitaciones;
 	}
+
+	@Override
+	public THabitacion modificarHabitacion(THabitacion tHabitacion) {
+		THabitacion existe = null;
+		THabitacion tHabitacionModificada = null;
+		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
+		try {
+			trans.init();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if(trans!=null){
+			if(tHabitacion != null) {
+			DAOHabitacion daoH  = FactoryDAO.getInstance().createDAOHabitacion();
+			tHabitacionModificada = daoH.modificarHabitacion(tHabitacion);
+			if(tHabitacionModificada != null)
+				trans.commit();
+			else
+				trans.rollback(); 
+		}
+		else 
+			trans.rollback();
+		}
+		return tHabitacionModificada;
+	}
+
 
 }

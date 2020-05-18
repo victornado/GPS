@@ -40,9 +40,9 @@ public class SHMenuImp extends SHMenu {
 	private BorrarDispositivoImp borrarDisp;
 	private TemperaturaExteriorImp tempExt;
 	private TemperaturaInteriorImp tempInt;
-	private ModificarHabitacionImp modHab;
-	private BuscarHabitacionImp buscarHab;
-	private HabitacionesDeLaCasaImp datosHab;
+//	private ModificarHabitacionImp modHab;
+//	private BuscarHabitacionImp buscarHab;
+	private DatosHabitacionImp datosHab;
 	private ListarHabitacionesImp listHab;
 	private int x;
 	private int y;
@@ -57,7 +57,7 @@ public class SHMenuImp extends SHMenu {
 	private JLabel lblTemperatura2;
 	private JLabel lblHumedad2;
 	private int IDCasa = 1;// CUANDO SE CARGUE LA CASA ESTO DEBERIA ACTUALIZARSE
-	private JPanel panel;
+	private boolean ChromeCastActivo;
 	/**
 	 * Launch the application.
 	 */
@@ -84,19 +84,18 @@ public class SHMenuImp extends SHMenu {
 		y = 531;
 		this.tempExt = new TemperaturaExteriorImp();
 		// msg = this.tempExt.getWeather();
-		msg = "Temperatura: 14.91ºC   Humedad: 54%   Presion: 1016hPa";
-		this.modHab = new ModificarHabitacionImp();
+		msg = "Temperatura: 14.91ï¿½C   Humedad: 54%   Presion: 1016hPa";
+	//	this.modHab = new ModificarHabitacionImp();
 		this.listar = new ListarUsuarioImp();
 		this.addDisp = new AniadirDispositivoImp();
 		this.borrarDisp = new BorrarDispositivoImp();
 		this.aniadiru = new AniadirUsuarioImp();
-		this.buscarHab = new BuscarHabitacionImp();
-		//this.datosHab = new DatosHabitacionImp();
+//		this.buscarHab = new BuscarHabitacionImp();
+		this.datosHab = (DatosHabitacionImp) DatosHabitacion.getInstance();
 		this.tempInt = (TemperaturaInteriorImp) TemperaturaInterior.getInstance();
 		this.listHab = new ListarHabitacionesImp();
 		tempInt.setMenu(this);
-	
-		
+		ChromeCastActivo=false;
 		initGUI();
 	}
 	
@@ -105,19 +104,18 @@ public class SHMenuImp extends SHMenu {
 	public void initGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 870, 547);
-		
-		JPanel contentPane = new JPanel();
+		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
-		panel = new JPanel();
+		JPanel panel = new JPanel();
 		panel.setBackground(SystemColor.activeCaption);
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
 		
-		lblTemperatura2 = new JLabel("25ºC");
+		lblTemperatura2 = new JLabel("25ï¿½C");
 		lblTemperatura2.setBounds(270, 260, 123, 33);
 		lblTemperatura2.setFont(new Font("Arial", Font.BOLD, 15));
 		panel.add(lblTemperatura2);
@@ -203,11 +201,11 @@ public class SHMenuImp extends SHMenu {
 		slidergrados.setMinorTickSpacing(5);
 		slidergrados.setPaintTicks(true);
 		Hashtable<Integer, JLabel> position1 = new Hashtable();
-		position1.put(12, new JLabel("12ºC"));
-		position1.put(17, new JLabel("17ºC"));
-		position1.put(22, new JLabel("22ºC"));
-		position1.put(27, new JLabel("27ºC"));
-		position1.put(32, new JLabel("32ºC"));
+		position1.put(12, new JLabel("12ï¿½C"));
+		position1.put(17, new JLabel("17ï¿½C"));
+		position1.put(22, new JLabel("22ï¿½C"));
+		position1.put(27, new JLabel("27ï¿½C"));
+		position1.put(32, new JLabel("32ï¿½C"));
 		slidergrados.setLabelTable(position1);
 		slidergrados.setValue(22);
 		panel.add(slidergrados);
@@ -323,30 +321,30 @@ public class SHMenuImp extends SHMenu {
 		});
 		panel.add(weatherBtn);
 
-		JButton modifyHabitacionBtn = new JButton();
-		modifyHabitacionBtn.setBounds(250, 35, 24, 21);
-		modifyHabitacionBtn.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/cuna.png")));
-		modifyHabitacionBtn.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				modHab.setVisible(true);
-			}
-
-		});
-		panel.add(modifyHabitacionBtn);
-
-		JButton buscaryHabitacionBtn = new JButton();
-		buscaryHabitacionBtn.setBounds(280, 35, 24, 21);
-		buscaryHabitacionBtn.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/lupa.png")));
-		buscaryHabitacionBtn.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				buscarHab.setVisible(true);
-			}
-
-		});
-		panel.add(buscaryHabitacionBtn);
-		
+//		JButton modifyHabitacionBtn = new JButton();
+//		modifyHabitacionBtn.setBounds(250, 35, 24, 21);
+//		modifyHabitacionBtn.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/cuna.png")));
+//		modifyHabitacionBtn.addActionListener(new ActionListener() {
+//
+//			public void actionPerformed(ActionEvent e) {
+//				modHab.setVisible(true);
+//			}
+//
+//		});
+//		panel.add(modifyHabitacionBtn);
+//
+//		JButton buscaryHabitacionBtn = new JButton();
+//		buscaryHabitacionBtn.setBounds(280, 35, 24, 21);
+//		buscaryHabitacionBtn.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/lupa.png")));
+//		buscaryHabitacionBtn.addActionListener(new ActionListener() {
+//
+//			public void actionPerformed(ActionEvent e) {
+//				buscarHab.setVisible(true);
+//			}
+//
+//		});
+//		panel.add(buscaryHabitacionBtn);
+//		
 				
 		JButton habitacion = new JButton("Habitacion");
 		habitacion.setBounds(145, 10, 74, 21);
@@ -384,17 +382,29 @@ public class SHMenuImp extends SHMenu {
 			}
 		});
 		mnAjustes.add(mntmModificarUsuario);
+		
+		JMenuItem mntmModificarHabitacion = new JMenuItem("Listar Habitaciones");
+		mntmModificarHabitacion.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				listarHabitaciones();
+			}
+		});
+		mnAjustes.add(mntmModificarHabitacion);
 
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/user.png")));
 		label_1.setBounds(32, 11, 60, 70);
 		panel.add(label_1);
 		
+		JTabbedPane tabbedPaneInicial = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPaneInicial.setBounds(330, 29, 500, 453);
+		tabbedPaneInicial.setBackground(Color.WHITE);
+		datosHab.inicializarHabitaciones(IDCasa);
+		tabbedPaneInicial.add(datosHab.panel_1);
+		tabbedPaneInicial.setVisible(true);
 		
-		this.datosHab = new HabitacionesDeLaCasaImp();
-		datosHab.inicializarHabitaciones();
-		
-		panel.add(datosHab.tabbedPane);
+		panel.add(tabbedPaneInicial);
 		panel.setVisible(true);
 	}
 
@@ -432,6 +442,14 @@ public class SHMenuImp extends SHMenu {
 			listarUsua();
 		}
 		else if(r.getVista() == Eventos.Modificar_USUARIO_OK) {
+			JOptionPane.showMessageDialog(null, "Se ha modificado correctamente");
+			listarUsua();
+		}
+		else if(r.getVista() == Eventos.MODIFICAR_HABITACION_KO) {
+			JOptionPane.showMessageDialog(null, "La habitacion no se pudo modificar","Error", JOptionPane.ERROR_MESSAGE);
+			listarUsua();
+		}
+		else if(r.getVista() == Eventos.MODIFICAR_HABITACION_OK) {
 			JOptionPane.showMessageDialog(null, "Se ha modificado correctamente");
 			listarUsua();
 		}
@@ -486,7 +504,7 @@ public class SHMenuImp extends SHMenu {
 		else if (temp == 32)
 			lblTemperatura2.setText("Maximo");
 		else
-		lblTemperatura2.setText(temp.toString() + "ºC");
+		lblTemperatura2.setText(temp.toString() + "ÂºC");
 	}
 	
 	public void modificarLabelHumedad(Double hum) {
@@ -529,22 +547,19 @@ public class SHMenuImp extends SHMenu {
 	public void listarUsua() {	
 		RequestContext rContext = new RequestContext(Eventos.Listar_USUARIO, null);
 		Controller.getInstance().handleRequest(rContext);
-		
-		//datosHab.inicializarHabitaciones();
-		
 	}	
 	
 	public void modificarHum(TComponentesGenerales casa) {	
 		RequestContext rContext = new RequestContext(Eventos.MODIFICAR_HUMEDAD, casa);
 		Controller.getInstance().handleRequest(rContext);
 	}	
-	
-	public void buscarHabitacion(String nameHabitacion) {	
-		//RequestContext rContext = new RequestContext(Eventos.BUSCAR_HABITACION, casa);
-		//Controller.getInstance().handleRequest(rContext);
-		
-	}	
-	
+//	
+//	public void buscarHabitacion(String nameHabitacion) {	
+//		//RequestContext rContext = new RequestContext(Eventos.BUSCAR_HABITACION, casa);
+//		//Controller.getInstance().handleRequest(rContext);
+//		
+//	}	
+//	
 	public void listarHabitaciones() {	
 		RequestContext rContext = new RequestContext(Eventos.LISTAR_HABITACIONES, null);
 		Controller.getInstance().handleRequest(rContext);
