@@ -84,7 +84,7 @@ public class SHMenuImp extends SHMenu {
 		y = 531;
 		this.tempExt = new TemperaturaExteriorImp();
 		// msg = this.tempExt.getWeather();
-		msg = "Temperatura: 14.91�C   Humedad: 54%   Presion: 1016hPa";
+		msg = "Temperatura: 14.91ºC   Humedad: 54%   Presion: 1016hPa";
 	//	this.modHab = new ModificarHabitacionImp();
 		this.listar = new ListarUsuarioImp();
 		this.addDisp = new AniadirDispositivoImp();
@@ -114,7 +114,7 @@ public class SHMenuImp extends SHMenu {
 		panel.setLayout(null);
 
 		
-		lblTemperatura2 = new JLabel("25�C");
+		lblTemperatura2 = new JLabel("25ºC");
 		lblTemperatura2.setBounds(270, 260, 123, 33);
 		lblTemperatura2.setFont(new Font("Arial", Font.BOLD, 15));
 		panel.add(lblTemperatura2);
@@ -200,11 +200,11 @@ public class SHMenuImp extends SHMenu {
 		slidergrados.setMinorTickSpacing(5);
 		slidergrados.setPaintTicks(true);
 		Hashtable<Integer, JLabel> position1 = new Hashtable();
-		position1.put(12, new JLabel("12�C"));
-		position1.put(17, new JLabel("17�C"));
-		position1.put(22, new JLabel("22�C"));
-		position1.put(27, new JLabel("27�C"));
-		position1.put(32, new JLabel("32�C"));
+		position1.put(12, new JLabel("12ºC"));
+		position1.put(17, new JLabel("17ºC"));
+		position1.put(22, new JLabel("22ºC"));
+		position1.put(27, new JLabel("27ºC"));
+		position1.put(32, new JLabel("32ºC"));
 		slidergrados.setLabelTable(position1);
 		slidergrados.setValue(22);
 		panel.add(slidergrados);
@@ -382,15 +382,7 @@ public class SHMenuImp extends SHMenu {
 		});
 		mnAjustes.add(mntmModificarUsuario);
 		
-		JMenuItem mntmModificarHabitacion = new JMenuItem("Listar Habitaciones");
-		mntmModificarHabitacion.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				listarHabitaciones();
-			}
-		});
-		mnAjustes.add(mntmModificarHabitacion);
-
+		
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/user.png")));
 		label_1.setBounds(32, 11, 60, 70);
@@ -451,11 +443,11 @@ public class SHMenuImp extends SHMenu {
 		}
 		else if(r.getVista() == Eventos.MODIFICAR_HABITACION_KO) {
 			JOptionPane.showMessageDialog(null, "La habitacion no se pudo modificar","Error", JOptionPane.ERROR_MESSAGE);
-			listarUsua();
+			listarHabitaciones();
 		}
 		else if(r.getVista() == Eventos.MODIFICAR_HABITACION_OK) {
-			JOptionPane.showMessageDialog(null, "Se ha modificado correctamente");
-			listarUsua();
+			JOptionPane.showMessageDialog(null, "Se ha modificado el usuario correctamente");
+			listarHabitaciones();
 		}
 
 	}

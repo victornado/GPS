@@ -44,7 +44,7 @@ public class ListarUsuarioImp extends ListarUsuario{
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.setBackground(SystemColor.LIGHT_GRAY);
-		String[] names = {"Id", "Id Casa", "correo", "tipo", "contraseña", "edad", "nombre", "apellidos"};
+		String[] names = {"Id", "Id Casa", "correo", "tipo", "contraseï¿½a", "edad", "nombre", "apellidos"};
 		table = new JTable();
 		model = new DefaultTableModel() {
 			private static final long serialVersionUID = 1L;
@@ -95,7 +95,7 @@ public class ListarUsuarioImp extends ListarUsuario{
 					panel.add(tipo);
 					
 					panel.add(new JLabel("Antiguo valor: " + table.getValueAt(table.getSelectedRow(), 4), 0));
-					panel.add(new JLabel("Contraseña de usuario: "));
+					panel.add(new JLabel("Contraseï¿½a de usuario: "));
 					contrasena.setText(String.valueOf(table.getValueAt(table.getSelectedRow(), 4)));
 					panel.add(contrasena);
 					
@@ -122,7 +122,7 @@ public class ListarUsuarioImp extends ListarUsuario{
 						String contr = contrasena.getText();
 						
 						if (contr.equals(""))
-							JOptionPane.showMessageDialog(null, "La contraseña no puede estar en blanco",
+							JOptionPane.showMessageDialog(null, "La contraseï¿½a no puede estar en blanco",
 									"Completar todos los campos", JOptionPane.WARNING_MESSAGE);
 						else {
 							TUsuario usuario = null;
@@ -155,8 +155,8 @@ public class ListarUsuarioImp extends ListarUsuario{
 					Object n = table.getValueAt(table.getSelectedRow(), 0);
 					String id = n.toString();
 					
-					int result2 = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas eliminar " + id + "?",
-							"Confirmación para borrar", JOptionPane.WARNING_MESSAGE);
+					int result2 = JOptionPane.showConfirmDialog(null, "Â¿Seguro que deseas eliminar " + id + "?",
+							"Confirmaciï¿½n para borrar", JOptionPane.WARNING_MESSAGE);
 					if (result2 == JOptionPane.OK_OPTION) {
 						
 						RequestContext rContext = new RequestContext(Eventos.Eliminar_USUARIO, Integer.parseInt(id));

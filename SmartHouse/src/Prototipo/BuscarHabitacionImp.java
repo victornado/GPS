@@ -9,6 +9,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.border.EmptyBorder;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
@@ -17,7 +18,11 @@ import java.awt.event.FocusEvent;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
+import javax.swing.RootPaneContainer;
+
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
@@ -54,15 +59,26 @@ public class BuscarHabitacionImp extends BuscarHabitacion{
 		super();
 		this.setFocusable(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		initGUI();
+		initGUI("0", 0, " ", " ");
 	}
+	
+	public BuscarHabitacionImp(String idHab, int idCasa, String nombre, String tipo) {
+		super();
+		this.setFocusable(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		initGUI(idHab, idCasa, nombre, tipo);
+	}
+	
 	
 	
 
 	/**
 	 * Create the frame.
 	 */
-	public void initGUI() {
+	public void initGUI(String idHab, int idCasa, String nombre, String tipo) {
+		
+		
+		
 		
 		setBounds(100, 100, 497, 480);
 		contentPane = new JPanel();
@@ -89,7 +105,7 @@ public class BuscarHabitacionImp extends BuscarHabitacion{
 		tabbedPane.addTab("Buscar habitación", null, tabbedPane_0, null);
 
 		JPanel busqueda = new JPanel();
-		tabbedPane_0.addTab("Introduce el nombre de la habitación:", null, busqueda, null);
+		tabbedPane_0.addTab("Has seleccionado la habitación:"+ nombre, null, busqueda, null);
 		busqueda.setLayout(null);	
 		
 		JSeparator separator_b = new JSeparator();
@@ -98,7 +114,7 @@ public class BuscarHabitacionImp extends BuscarHabitacion{
 		
 		//titulo
 		
-		JLabel lblNewLabel_b = new JLabel("HABITACIONES");
+		JLabel lblNewLabel_b = new JLabel("HABITACION");
 		lblNewLabel_b.setFont(new Font("Arial", Font.PLAIN, 17));
 		lblNewLabel_b.setBounds(22, 11, 149, 14);
 		busqueda.add(lblNewLabel_b);
@@ -109,55 +125,46 @@ public class BuscarHabitacionImp extends BuscarHabitacion{
 		label_b1.setBounds(395, 4, 30, 25);
 		busqueda.add(label_b1);
 		
-		//panel de busqueda
-		JPanel JPanelBusqueda = new JPanel();
-		JPanelBusqueda.setBounds(10, 30, 420, 320);
-		JPanelBusqueda.setBackground(Color.WHITE);
-		busqueda.add(JPanelBusqueda);
+		JLabel label_IDH = new JLabel("ID de la habitación:" + idHab);
+		label_IDH.setFont(new Font("Arial", Font.PLAIN, 12));
+		label_IDH.setBounds(130, -160, 500, 500);
+		busqueda.add(label_IDH);
 		
-		//JTextField con boton de busqueda
+		JLabel label_ID = new JLabel("Nombre de la habitación:" + nombre);
+		label_ID.setFont(new Font("Arial", Font.PLAIN, 12));
+		label_ID.setBounds(130, -100, 500, 500);
+		busqueda.add(label_ID);
 		
-		JTextField textfieldBusqueda = new JTextField();
-		textfieldBusqueda.setToolTipText("");
-		textfieldBusqueda.setText("Introduce el nombre de la habitacion");
-		textfieldBusqueda.setForeground(Color.DARK_GRAY);
-		textfieldBusqueda.setFont(new Font("Tahoma", Font.ITALIC, 11));
-		textfieldBusqueda.setColumns(30);
-		textfieldBusqueda.setBounds(0, 20, 10, 20);
-		textfieldBusqueda.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				if (textfieldBusqueda.getText().equals("Introduce el nombre de la habitacion")) {
-					textfieldBusqueda.setText("");
-				}
-			}
 
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (textfieldBusqueda.getText().equals("")) {
-					textfieldBusqueda.setText("Introduce el nombre de la habitacion");
-				}
-			}
-		});
-		JPanelBusqueda.add(textfieldBusqueda);
+		JLabel label_Nombre = new JLabel("Tipo de habitación:" + tipo);
+		label_Nombre.setFont(new Font("Arial", Font.PLAIN, 12));
+		label_Nombre.setBounds(130, -40, 250, 500);
+		busqueda.add(label_Nombre);
 		
-		JButton buttonBusqueda = new JButton("Buscar");
-		buttonBusqueda.setBounds(120, 20, 20, 20);		
-		JPanelBusqueda.add(buttonBusqueda);
-		buttonBusqueda.addActionListener(new ActionListener(){
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String nombre = textfieldBusqueda.getText();
-				
-				
-			} });
+		JLabel label_Tipo = new JLabel("ID de la casa:" + idCasa);
+		label_Tipo.setFont(new Font("Arial", Font.PLAIN, 12));
+		label_Tipo.setBounds(130, 140, 500, 250);
+		busqueda.add(label_Tipo);
+		
+		
+		JLabel img = new JLabel("");
+		img.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/tipo.png")));
+		img.setBounds(350, 280, 60, 60);
+		busqueda.add(img);
+	
+	
+	
+	
+	
+	
+	
+	
+	};
 		
 		//
 		
 		
-		
-		 }
 		
 
 	@Override

@@ -1,5 +1,6 @@
 package Prototipo;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.SystemColor;
@@ -81,12 +82,12 @@ public class ListarHabitacionesImp extends ListarHabitaciones {
 					panel.add(IDCasa);
 
 					panel.add(new JLabel("Antiguo valor: " + table.getValueAt(table.getSelectedRow(), 2), 0));
-					panel.add(new JLabel("Nombre de la habitacion: "));
+					panel.add(new JLabel("Tipo de la habitacion: "));
 					nombre.setText(String.valueOf(table.getValueAt(table.getSelectedRow(), 2)));
 					panel.add(nombre);
 
 					panel.add(new JLabel("Antiguo valor: " + table.getValueAt(table.getSelectedRow(), 3), 0));
-					panel.add(new JLabel("Tipo de habitacion: "));
+					panel.add(new JLabel("Nombre de habitacion: "));
 					tipo.setText(String.valueOf(table.getValueAt(table.getSelectedRow(), 3)));
 					panel.add(tipo);
 
@@ -132,8 +133,8 @@ public class ListarHabitacionesImp extends ListarHabitaciones {
 					Object n = table.getValueAt(table.getSelectedRow(), 0);
 					String id = n.toString();
 
-					int result2 = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas eliminar " + id + "?",
-							"Confirmación para borrar", JOptionPane.WARNING_MESSAGE);
+					int result2 = JOptionPane.showConfirmDialog(null, "Â¿Seguro que deseas eliminar " + id + "?",
+							"Confirmacion para borrar", JOptionPane.WARNING_MESSAGE);
 					if (result2 == JOptionPane.OK_OPTION) {
 
 						RequestContext rContext = new RequestContext(Eventos.ELIMINAR_HABITACION, Integer.parseInt(id));
@@ -147,6 +148,58 @@ public class ListarHabitacionesImp extends ListarHabitaciones {
 			}
 
 		});
+		
+		
+		
+		
+		// boton buscar
+		
+		
+
+		JButton buscaryHabitacionBtn = new JButton();
+//		buscaryHabitacionBtn.setBounds(280, 35, 24, 21);
+		buscaryHabitacionBtn.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/lupa.png")));
+		buscaryHabitacionBtn.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if (!table.getSelectionModel().isSelectionEmpty()) {
+					Object n = table.getValueAt(table.getSelectedRow(), 0);
+					String idHab = n.toString();
+					//ABRO EL PANEL CON LOS DATOS
+					int idCasa = (int) table.getValueAt(table.getSelectedRow(), 1);
+					String nombre = (String) table.getValueAt(table.getSelectedRow(), 3);
+					String tipo = (String) table.getValueAt(table.getSelectedRow(), 2);
+					BuscarHabitacionImp buscarHab;
+					buscarHab = new BuscarHabitacionImp(idHab, idCasa, nombre, tipo);
+					buscarHab.setVisible(true);
+
+
+					
+			
+					
+					
+				} else {
+					
+					JOptionPane.showMessageDialog(null, "Debes seleccionar un elemento de la tabla",
+							"Selecciona un elemento", JOptionPane.WARNING_MESSAGE);
+				}
+
+			}
+
+		});
+
+
+		//panel.add(buscaryHabitacionBtn);
+		
+		
+		
+
+
+		
+
+			
+		
 		
 		
 		// boton listar componentes
@@ -163,6 +216,7 @@ public class ListarHabitacionesImp extends ListarHabitaciones {
 		
 		
 		buttons_actions.add(delete_button);
+		buttons_actions.add(buscaryHabitacionBtn);
 		buttons_actions.add(modify_button);
 		buttons_actions.add(comp_button);
 		table.getTableHeader().setReorderingAllowed(false);
@@ -184,7 +238,7 @@ public class ListarHabitacionesImp extends ListarHabitaciones {
 		model.setRowCount(0);
 		ArrayList<THabitacion> array = (ArrayList<THabitacion>) r.getData();
 		for (THabitacion th : array) {
-			model.addRow(new Object[] { th.getID(), th.getIDCasa(),th.getNombre(), th.getTipo()});
+			model.addRow(new Object[] { th.getID(), th.getIDCasa(),th.getTipo(), th.getNombre()});
 		}
 		frame.setVisible(true);
 	}
