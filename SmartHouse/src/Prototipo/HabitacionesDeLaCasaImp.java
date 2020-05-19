@@ -88,15 +88,26 @@ public class HabitacionesDeLaCasaImp extends HabitacionesDeLaCasa {
 		if (r.getVista() == Eventos.MODIFICAR_ILUMINACION_HABITACION_KO)
 			JOptionPane.showMessageDialog(null, "Fallo");
 		else if (r.getVista() == Eventos.MODIFICAR_ILUMINACION_HABITACION_OK) {
-			JOptionPane.showMessageDialog(null, "Iluminaci�n cambiada");
-		} else if (r.getVista() == Eventos.ACTIVAR_CHROMCAST_OK) {
+			JOptionPane.showMessageDialog(null, "Iluminacion cambiada");
+		} 
+		if (r.getVista() == Eventos.MODIFICAR_HUMEDAD_OBJETO_KO)
+			JOptionPane.showMessageDialog(null, "Fallo");
+		else if (r.getVista() == Eventos.MODIFICAR_HUMEDAD_OBJETO_OK) {
+			JOptionPane.showMessageDialog(null, "Humedad cambiada");
+		}
+		if (r.getVista() == Eventos.MODIFICAR_TEMPERATURA_OBJETO_KO)
+			JOptionPane.showMessageDialog(null, "Fallo");
+		else if (r.getVista() == Eventos.MODIFICAR_TEMPERATURA_OBJETO_OK) {
+			JOptionPane.showMessageDialog(null, "Temperatura cambiada");
+		}
+		else if (r.getVista() == Eventos.ACTIVAR_CHROMCAST_OK) {
 
 			for (int i = 0; i < listaClases.size(); i++) {
 
 				// THabitacion h = (THabitacion) r.getData();
 				ArrayList<Integer> li = (ArrayList<Integer>) r.getData();
 				DatosHabitacionImp h2 = (DatosHabitacionImp) listaClases.get(i);
-
+				System.out.println(li.get(1));
 				if (h2.IdHab == li.get(1)) {
 					h2.Update(r);
 				}
@@ -152,7 +163,6 @@ public class HabitacionesDeLaCasaImp extends HabitacionesDeLaCasa {
 				listaClases.add(h);
 				h.inicializarHabitaciones(habitacion.getID());
 				tabbedPane.addTab(habitacion.getNombre() + " : " + habitacion.getTipo(), h.panel_1);
-
 			}
 
 		} else if (r.getVista() == Eventos.MOSTRAR_HABITACIONES_KO) {
@@ -165,7 +175,28 @@ public class HabitacionesDeLaCasaImp extends HabitacionesDeLaCasa {
 			lblNewLabel.setBounds(150, 110, 220, 140);
 			panel_1.add(lblNewLabel);
 		}
+		else if(r.getVista() == Eventos.MOSTRAR_ILUMINACION_OBJETO_KO ||r.getVista() == Eventos.MOSTRAR_HUMEDAD_OBJETO_KO || r.getVista() == Eventos.MOSTRAR_TEMPERATURA_OBJETO_KO) {
+			JOptionPane.showMessageDialog(null, "Algo salio mal al mostrar los datos del objeto", "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
+		else if(r.getVista() == Eventos.MOSTRAR_ILUMINACION_OBJETO_OK ||r.getVista() == Eventos.MOSTRAR_HUMEDAD_OBJETO_OK || r.getVista() == Eventos.MOSTRAR_TEMPERATURA_OBJETO_OK)
+		{
+			//la respuesta en el conexto viene de forma Pair<int,pair<int,int>> en orden, dato,habitacion,objeto
+			Pair<Integer, Pair<Integer, Integer>> data = (Pair<Integer, Pair<Integer, Integer>>) r.getData();
+			int ilum = data.getFirst();
+			int obj = data.getSecond().getFirst();
+			int habit = data.getSecond().getSecond();
+			//busco la habiatacion(GUI) que devo actualizar
+			for(int i=0;i<this.listaClases.size();i++)
+			{
+				// THabitacion h = (THabitacion) r.getData();
+				DatosHabitacionImp h = (DatosHabitacionImp) listaClases.get(i);
 
+				if (h.IdHab == habit) {
+					h.Update(r);
+				}
+			}
+		}
 	}
 
 }

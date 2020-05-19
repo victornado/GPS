@@ -38,7 +38,6 @@ private boolean actv;
 		ChromeCastActivo=false;
 		this.id = id;
 		idHab = hab;
-		
 		initGUI();
 	}
 	

@@ -16,4 +16,6 @@ public interface SAHabitacion {
 	public abstract int mostrarHumedadObjeto(int idHabitacion, int idObjeto);
 	public ArrayList<THabitacion> ListarHabitaciones();
 	public THabitacion modificarHabitacion(THabitacion tHabitacion);
+	public int mostrarIluminacionObjeto(int idHabitacion, int idObjeto);
+
 }

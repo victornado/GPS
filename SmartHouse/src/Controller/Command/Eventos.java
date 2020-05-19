@@ -46,11 +46,27 @@ public class Eventos {
 	public static final int LISTAR_COMPONENTES_HABITACION = 218;
 	public static final int LISTAR_COMPONENTES_HABITACION_KO = 219;
 	public static final int LISTAR_COMPONENTES_HABITACION_OK = 220;
+	public static final int MOSTRAR_ILUMINACION_OBJETO = 221;
+	public static final int MOSTRAR_ILUMINACION_OBJETO_OK = 222;
+	public static final int MOSTRAR_ILUMINACION_OBJETO_KO = 223;
+	public static final int MOSTRAR_TEMPERATURA_OBJETO = 224;
+	public static final int MOSTRAR_TEMPERATURA_OBJETO_OK = 225;
+	public static final int MOSTRAR_TEMPERATURA_OBJETO_KO = 226;
+	public static final int MOSTRAR_HUMEDAD_OBJETO = 227;
+	public static final int MOSTRAR_HUMEDAD_OBJETO_OK = 228;
+	public static final int MOSTRAR_HUMEDAD_OBJETO_KO = 229;
+	public static final int MODIFICAR_TEMPERATURA_OBJETO= 230; 
+	public static final int MODIFICAR_TEMPERATURA_OBJETO_OK= 231; 
+	public static final int MODIFICAR_TEMPERATURA_OBJETO_KO= 232; 
+	public static final int MODIFICAR_HUMEDAD_OBJETO= 233; 
+	public static final int MODIFICAR_HUMEDAD_OBJETO_OK= 234; 
+	public static final int MODIFICAR_HUMEDAD_OBJETO_KO= 235; 
+
 	
 	//Mostrar habitaciones
-	public static final int MOSTRAR_HABITACIONES= 221; 
-	public static final int MOSTRAR_HABITACIONES_OK= 222; 
-	public static final int MOSTRAR_HABITACIONES_KO= 223; 
+	public static final int MOSTRAR_HABITACIONES= 236; 
+	public static final int MOSTRAR_HABITACIONES_OK= 237; 
+	public static final int MOSTRAR_HABITACIONES_KO= 238; 
 	
 
 

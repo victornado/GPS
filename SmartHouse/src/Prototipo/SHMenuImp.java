@@ -84,7 +84,7 @@ public class SHMenuImp extends SHMenu {
 		y = 531;
 		this.tempExt = new TemperaturaExteriorImp();
 		// msg = this.tempExt.getWeather();
-		msg = "Temperatura: 14.91ÂºC   Humedad: 54%   Presion: 1016hPa";
+		msg = "Temperatura: 14.91ºC   Humedad: 54%   Presion: 1016hPa";
 	//	this.modHab = new ModificarHabitacionImp();
 		this.listar = new ListarUsuarioImp();
 		this.addDisp = new AniadirDispositivoImp();
@@ -114,7 +114,7 @@ public class SHMenuImp extends SHMenu {
 		panel.setLayout(null);
 
 		
-		lblTemperatura2 = new JLabel("25ÂºC");
+		lblTemperatura2 = new JLabel("25ºC");
 		lblTemperatura2.setBounds(270, 260, 123, 33);
 		lblTemperatura2.setFont(new Font("Arial", Font.BOLD, 15));
 		panel.add(lblTemperatura2);

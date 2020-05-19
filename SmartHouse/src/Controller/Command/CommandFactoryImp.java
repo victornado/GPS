@@ -11,14 +11,18 @@ import Controller.Command.ChromeCast.ActivarChromeCast;
 import Controller.Command.ChromeCast.SubirVolumen;
 import Controller.Command.Habitacion.ListarHabitaciones;
 import Controller.Command.Habitacion.ModificarIluminacionHabitacion;
+import Controller.Command.Habitacion.ModificarTemperaturaObjeto;
 import Controller.Command.Habitacion.MostrarHabitacion;
-import Controller.Command.Habitacion.MostrarIluminacionHabitacion;
+import Controller.Command.Habitacion.MostrarHumedadObjeto;
+import Controller.Command.Habitacion.MostrarIluminacionObjeto;
+import Controller.Command.Habitacion.MostrarTemperaturaObjeto;
 import Controller.Command.Usuario.AniadirUsuario;
 import Controller.Command.Usuario.EliminarUsuario;
 import Controller.Command.Usuario.ListarUsuarios;
 import Controller.Command.Usuario.LoginUsuario;
 import Controller.Command.Usuario.ModificarUsuario;
 import Controller.Command.Habitacion.ModificarHabitacion;
+import Controller.Command.Habitacion.ModificarHumedadObjeto;
 
 public class CommandFactoryImp extends CommandFactory{
 
@@ -28,7 +32,7 @@ public class CommandFactoryImp extends CommandFactory{
 		switch(commandName) {
 		
 		case Eventos.LOGIN_USUARIO: return new LoginUsuario();
-		case Eventos.MOSTRAR_ILUMINACION_HABITACION: return new MostrarIluminacionHabitacion();
+		case Eventos.MOSTRAR_ILUMINACION_HABITACION: return new MostrarIluminacionObjeto();
 		case Eventos.Aniadir_USUARIO: return new AniadirUsuario();
 		case Eventos.MOSTRAR_ILUMINACION : return new MostrarDatosIluminacion();
 		case Eventos.MOSTRAR_TEMPERATURA : return new MostrarDatosTemperatura();
@@ -46,6 +50,13 @@ public class CommandFactoryImp extends CommandFactory{
 		case Eventos.LISTAR_HABITACIONES: return new ListarHabitaciones();
 		case Eventos.MOSTRAR_HABITACIONES: return new MostrarHabitaciones();
 		case Eventos.MODIFICAR_HABITACION: return new ModificarHabitacion();
+		case Eventos.MOSTRAR_HUMEDAD_OBJETO: return new MostrarHumedadObjeto();
+		case Eventos.MOSTRAR_ILUMINACION_OBJETO: return new MostrarIluminacionObjeto();
+		case Eventos.MOSTRAR_TEMPERATURA_OBJETO: return new MostrarTemperaturaObjeto();
+		case Eventos.MODIFICAR_TEMPERATURA_OBJETO: return new ModificarTemperaturaObjeto();
+		case Eventos.MODIFICAR_HUMEDAD_OBJETO: return new ModificarHumedadObjeto();
+
+
 		default: return null;
 		
 		}

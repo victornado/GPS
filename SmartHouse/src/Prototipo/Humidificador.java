@@ -8,18 +8,24 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
+import Controller.Controller;
+import Controller.Command.Eventos;
+import Negocio.SA.Habitacion.TComponentesEnHabitacion;
+
 public class Humidificador extends JPanel implements GUI{
 	
 	public JPanel panel;
 	public String nombre;
 	public int id;
 	public int idHab;
+	private JSlider slider_4 ;
 	
 	public Humidificador(String Nombre, int id, int idHab) {
 		super();
 		panel = new JPanel();
 		nombre = Nombre;
 		this.id = id;
+		this.idHab=idHab;
 		
 		initGUI();
 	}
@@ -31,7 +37,7 @@ public void initGUI() {
 		lblNewLabel_1.setBounds(22, 57, 103, 14);
 		panel.add(lblNewLabel_1);
 		
-		JSlider slider_4 = new JSlider(); 
+		slider_4 = new JSlider(); 
 		slider_4.setBounds(135, 55, 200, 26);
 		panel.add(slider_4);
 		slider_4.setMinimum(12);
@@ -49,9 +55,9 @@ public void initGUI() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// hardcodeado id del componente y de la habitacion TODO
-				/*TComponentesEnHabitacion tRadiador = new TComponentesEnHabitacion(1, 1, lblNewLabel_1.getText(),slider_4.getValue());
-				RequestContext rContext = new RequestContext(Eventos.MODIFICAR_ILUMINACION_HABITACION, tRadiador);
-				Controller.getInstance().handleRequest(rContext);*/
+				TComponentesEnHabitacion tRadiador = new TComponentesEnHabitacion(id, idHab, lblNewLabel_1.getText(),slider_4.getValue());
+				RequestContext rContext = new RequestContext(Eventos.MODIFICAR_HUMEDAD_OBJETO, tRadiador);
+				Controller.getInstance().handleRequest(rContext);
 				
 			}
 		});
@@ -63,6 +69,8 @@ public void initGUI() {
 	
 	@Override
 	public void Update(ResponseContext r) {
+		Pair<Integer, Pair<Integer, Integer>> data = (Pair<Integer, Pair<Integer, Integer>>) r.getData();
+		slider_4.setValue(data.getFirst());
 
 		
 	}

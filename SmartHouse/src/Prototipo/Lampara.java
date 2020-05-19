@@ -2,6 +2,8 @@ package Prototipo;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -19,13 +21,13 @@ public class Lampara extends JPanel implements GUI {
 	public String nombre;
 	public int id;
 	public int idHab;
-	
+	private JSlider slider_4;
 	public Lampara(String Nombre, int id, int idHab) {
 		super();
 		panel = new JPanel();
 		nombre = Nombre;
 		this.id = id;
-		
+		this.idHab= idHab;
 		initGUI();
 	}
 	
@@ -37,7 +39,8 @@ public class Lampara extends JPanel implements GUI {
 		lblNewLabel_1.setBounds(22, 57, 103, 14);
 		panel.add(lblNewLabel_1);
 		
-		JSlider slider_4 = new JSlider(); // lampara 1
+		slider_4 = new JSlider(); // lampara 1
+
 		slider_4.setBounds(135, 55, 200, 26);
 		panel.add(slider_4);
 		slider_4.setMinimum(12);
@@ -54,7 +57,7 @@ public class Lampara extends JPanel implements GUI {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// hardcodeado id del componente y de la habitacion TODO
+				
 				TComponentesEnHabitacion tLampara = new TComponentesEnHabitacion(1, 1, lblNewLabel_1.getText(),slider_4.getValue());
 				RequestContext rContext = new RequestContext(Eventos.MODIFICAR_ILUMINACION_HABITACION, tLampara);
 				Controller.getInstance().handleRequest(rContext);
@@ -69,8 +72,9 @@ public class Lampara extends JPanel implements GUI {
 	
 	@Override
 	public void Update(ResponseContext r) {
+		Pair<Integer, Pair<Integer, Integer>> data = (Pair<Integer, Pair<Integer, Integer>>) r.getData();
+		slider_4.setValue(data.getFirst());
 
-		
 	}
 	
 	

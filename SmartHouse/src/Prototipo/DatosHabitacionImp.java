@@ -151,6 +151,10 @@ public class DatosHabitacionImp extends DatosHabitacion {
 					Lampara l = new Lampara(lista.get(i).getNombre(),lista.get(i).getIDComponente(),lista.get(i).getIDhabitacion());
 					panelInterno.add(l.panel);
 					listaClases.add(l);
+					Pair<Integer,Integer> datos = new Pair<Integer, Integer>(lista.get(i).getIDComponente(),lista.get(i).getIDhabitacion());
+					RequestContext con = new RequestContext(Eventos.MOSTRAR_ILUMINACION_OBJETO,datos) ;
+					Controller.getInstance().handleRequest(con);
+					
 				}
 				else if(lista.get(i).getTipo().equals("ChromeCast")) {
 					ChromeCast c = new ChromeCast(lista.get(i).getNombre(),lista.get(i).getIDComponente(), lista.get(i).getIDhabitacion());
@@ -161,12 +165,19 @@ public class DatosHabitacionImp extends DatosHabitacion {
 					Radiador c = new Radiador(lista.get(i).getNombre(),lista.get(i).getIDComponente(), lista.get(i).getIDhabitacion());
 					panelInterno.add(c.panel);
 					listaClases.add(c);
+					Pair<Integer,Integer> datos = new Pair<Integer, Integer>(lista.get(i).getIDComponente(),lista.get(i).getIDhabitacion());
+					RequestContext con = new RequestContext(Eventos.MOSTRAR_TEMPERATURA_OBJETO,datos) ;
+					Controller.getInstance().handleRequest(con);
 				}
 				else if(lista.get(i).getTipo().equals("Humedad")) {
 					Humidificador c = new Humidificador(lista.get(i).getNombre(),lista.get(i).getIDComponente(), lista.get(i).getIDhabitacion());
 					panelInterno.add(c.panel);
 					listaClases.add(c);
+					Pair<Integer,Integer> datos = new Pair<Integer, Integer>(lista.get(i).getIDComponente(),lista.get(i).getIDhabitacion());
+					RequestContext con = new RequestContext(Eventos.MOSTRAR_HUMEDAD_OBJETO,datos) ;
+					Controller.getInstance().handleRequest(con);
 				}
+
 			}
 			
 			if(lista.size() == 0) {
@@ -194,6 +205,24 @@ public class DatosHabitacionImp extends DatosHabitacion {
 			lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 17));
 			lblNewLabel.setBounds(300, 300, 400, 140);
 			panel_1.add(lblNewLabel);
+		}
+		else if(r.getVista() == Eventos.MOSTRAR_ILUMINACION_OBJETO_KO ||r.getVista() == Eventos.MOSTRAR_TEMPERATURA_OBJETO_KO || r.getVista() == Eventos.MOSTRAR_HUMEDAD_OBJETO_KO) {
+			JOptionPane.showMessageDialog(null, "Algo salio mal al mostrar los datosdel objeto", "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
+		else if(r.getVista() == Eventos.MOSTRAR_ILUMINACION_OBJETO_OK ||r.getVista() == Eventos.MOSTRAR_TEMPERATURA_OBJETO_OK || r.getVista() == Eventos.MOSTRAR_HUMEDAD_OBJETO_OK)
+		{
+			//necesito el dato del objeto y el id del componente (primer y tercer dato)
+			Pair<Integer, Pair<Integer, Integer>> data = (Pair<Integer, Pair<Integer, Integer>>) r.getData();
+			int comp= data.getSecond().getFirst();
+			for(int i=0;i<this.lista.size();i++)
+			{
+
+				if (lista.get(i).getIDComponente() == comp) {
+					listaClases.get(i).Update(r);
+					break;
+				}
+			}
 		}
 		
 	}

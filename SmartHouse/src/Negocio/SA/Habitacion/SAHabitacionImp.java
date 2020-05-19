@@ -111,7 +111,7 @@ public class SAHabitacionImp implements SAHabitacion {
 		return t;
 	}
 
-	public int mostrarHumedadObjeto(int idHabitacion, int idObjeto)
+	public int mostrarHumedadObjeto(int idObjeto, int idHabitacion)
 	{
 		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
 		try {
@@ -121,9 +121,14 @@ public class SAHabitacionImp implements SAHabitacion {
 		}
 		if(trans != null) {
 			List<TComponentesEnHabitacion> lista;
+			System.out.println(idHabitacion);
 			lista = FactoryDAO.getInstance().createDAOHabitacion().getComponents(idHabitacion);
 			if(lista!= null && lista.size()>0) {
-				TComponentesEnHabitacion objeto = lista.get(idObjeto);
+				TComponentesEnHabitacion objeto = null;
+				for(TComponentesEnHabitacion aux : lista){
+					if(aux.getIDComponente()==idObjeto)
+						objeto= aux;
+				}
 				if(objeto != null){
 						trans.commit();
 						return  objeto.getDato();
@@ -135,7 +140,35 @@ public class SAHabitacionImp implements SAHabitacion {
 		return -1;
 	}
 
-	public int mostrarTemperaturaObjeto(int idHabitacion, int idObjeto)
+	public int mostrarTemperaturaObjeto(int idObjeto, int idHabitacion)
+	{
+		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
+		try {
+			trans.init();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if(trans != null) {
+			List<TComponentesEnHabitacion> lista;
+			System.out.println(idHabitacion);
+			lista = FactoryDAO.getInstance().createDAOHabitacion().getComponents(idHabitacion);
+			if(lista!= null && lista.size()>0) {
+				TComponentesEnHabitacion objeto = null;
+				for(TComponentesEnHabitacion aux : lista){
+					if(aux.getIDComponente()==idObjeto)
+						objeto= aux;
+				}
+				if(objeto != null){
+						trans.commit();
+						return  objeto.getDato();
+				}
+			}
+			else
+				trans.rollback();
+		}
+		return -1;
+	}
+	public int mostrarIluminacionObjeto(int idObjeto, int idHabitacion)
 	{
 		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
 		try {
@@ -147,7 +180,11 @@ public class SAHabitacionImp implements SAHabitacion {
 			List<TComponentesEnHabitacion> lista;
 			lista = FactoryDAO.getInstance().createDAOHabitacion().getComponents(idHabitacion);
 			if(lista!= null && lista.size()>0) {
-				TComponentesEnHabitacion objeto = lista.get(idObjeto);
+				TComponentesEnHabitacion objeto = null;
+				for(TComponentesEnHabitacion aux : lista){
+					if(aux.getIDComponente()==idObjeto)
+						objeto= aux;
+				}
 				if(objeto != null){
 						trans.commit();
 						return  objeto.getDato();
