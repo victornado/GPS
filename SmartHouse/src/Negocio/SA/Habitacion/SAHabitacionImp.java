@@ -211,6 +211,23 @@ public class SAHabitacionImp implements SAHabitacion {
 		}
 		return arrayHabitaciones;
 	}
+	
+	@Override
+	public List<TComponentesEnHabitacion> ListarComponentesHabitaciones(Integer idHabitacion) {
+		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
+		List<TComponentesEnHabitacion> arrayComponentesHabitacion = new ArrayList<TComponentesEnHabitacion>();
+		try {
+			trans.init();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if(trans!=null){
+			DAOHabitacion daoHab  = FactoryDAO.getInstance().createDAOHabitacion();
+			arrayComponentesHabitacion = daoHab.getComponents(idHabitacion);
+			trans.commit();
+		}
+		return arrayComponentesHabitacion;
+	}
 
 	@Override
 	public THabitacion modificarHabitacion(THabitacion tHabitacion) {
@@ -235,6 +252,23 @@ public class SAHabitacionImp implements SAHabitacion {
 			trans.rollback();
 		}
 		return tHabitacionModificada;
+	}
+
+	@Override
+	public ArrayList<THabitacion> ListarHabitacionesPorTipo(String tipo) {
+		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
+		ArrayList<THabitacion> arrayHabitaciones = new ArrayList<THabitacion>();
+		try {
+			trans.init();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if(trans!=null){
+			DAOHabitacion daoHab  = FactoryDAO.getInstance().createDAOHabitacion();
+			arrayHabitaciones = daoHab.ListarHabitacionesPorTipo(tipo);
+			trans.commit();
+		}
+		return arrayHabitaciones;
 	}
 
 

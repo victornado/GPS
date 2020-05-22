@@ -174,12 +174,8 @@ public class ListarHabitacionesImp extends ListarHabitaciones {
 					buscarHab = new BuscarHabitacionImp(idHab, idCasa, nombre, tipo);
 					buscarHab.setVisible(true);
 
-
-					
-			
-					
-					
-				} else {
+				} 
+				else {
 					
 					JOptionPane.showMessageDialog(null, "Debes seleccionar un elemento de la tabla",
 							"Selecciona un elemento", JOptionPane.WARNING_MESSAGE);
@@ -191,15 +187,7 @@ public class ListarHabitacionesImp extends ListarHabitaciones {
 
 
 		//panel.add(buscaryHabitacionBtn);
-		
-		
-		
 
-
-		
-
-			
-		
 		
 		
 		// boton listar componentes
@@ -209,12 +197,43 @@ public class ListarHabitacionesImp extends ListarHabitaciones {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				if (!table.getSelectionModel().isSelectionEmpty()) {
+					Object n = table.getValueAt(table.getSelectedRow(), 0);
+					int id = (int)n;
 
+					RequestContext rContext = new RequestContext(Eventos.LISTAR_COMPONENTES_HABITACION, id);
+					Controller.getInstance().handleRequest(rContext);
+					
+				} else {
+					JOptionPane.showMessageDialog(null, "Debes seleccionar un elemento de la tabla",
+							"Selecciona un elemento", JOptionPane.WARNING_MESSAGE);
+				}
 			}
 		});
 		
 		
 		
+		
+		
+		// boton listar por tipo
+				JButton tipo_button = new JButton("Listar por tipo");
+				//delete_button.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/papelera.png")));
+				tipo_button.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+
+							String tipo = JOptionPane.showInputDialog("Introduca el tipo");
+							
+							
+							RequestContext rContext = new RequestContext(Eventos.LISTAR_HABITACIONES_POR_TIPO, tipo);
+							Controller.getInstance().handleRequest(rContext);
+
+					}
+				});
+		
+		
+		buttons_actions.add(tipo_button);
 		buttons_actions.add(delete_button);
 		buttons_actions.add(buscaryHabitacionBtn);
 		buttons_actions.add(modify_button);
@@ -228,13 +247,18 @@ public class ListarHabitacionesImp extends ListarHabitaciones {
 	}
 
 	
-	public void listarComponentesHabitaciones() {	
-		RequestContext rContext = new RequestContext(Eventos.LISTAR_HABITACIONES, null);
-		Controller.getInstance().handleRequest(rContext);
-	}	
 	
 	@Override
 	public void Update(ResponseContext r) {
+		model.setRowCount(0);
+		ArrayList<THabitacion> array = (ArrayList<THabitacion>) r.getData();
+		for (THabitacion th : array) {
+			model.addRow(new Object[] { th.getID(), th.getIDCasa(),th.getTipo(), th.getNombre()});
+		}
+		frame.setVisible(true);
+	}
+	
+	public void UpdateTipo(ResponseContext r) {
 		model.setRowCount(0);
 		ArrayList<THabitacion> array = (ArrayList<THabitacion>) r.getData();
 		for (THabitacion th : array) {

@@ -19,6 +19,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.SystemColor;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.DataBufferDouble;
@@ -107,6 +108,11 @@ public class SHMenuImp extends SHMenu {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		
+		if (833 > getWidth() || 547 > getHeight()) {
+            setPreferredSize(new Dimension(833, 547));
+           setSize(new Dimension(833, 547));
+        }
 
 		JPanel panel = new JPanel();
 		panel.setBackground(SystemColor.activeCaption);
@@ -349,7 +355,6 @@ public class SHMenuImp extends SHMenu {
 		habitacion.setBounds(145, 10, 74, 21);
 		habitacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//listHab.setVisible(true);
 				listarHabitaciones();
 			}
 

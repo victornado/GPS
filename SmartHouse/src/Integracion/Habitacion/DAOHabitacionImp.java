@@ -192,7 +192,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 			Connection cn = (Connection) transaction.getResource();
 	
 			try {
-				PreparedStatement ps = cn.prepareStatement("select * from habitacion");//COMPROBAR NOMBRE
+				PreparedStatement ps = cn.prepareStatement("select * from habitacion");
 				ResultSet rs = ps.executeQuery();
 				THabitacion habitacion = null;
 			
@@ -211,33 +211,34 @@ public class DAOHabitacionImp implements DAOHabitacion {
 		return arrayHabitaciones;
 	}
 
+
 	@Override
-	public ArrayList<TComponentesEnHabitacion> ListarComponentesHabitaciones() {
+	public ArrayList<THabitacion> ListarHabitacionesPorTipo(String tipo) {
 		TransactionManager tm = TransactionManager.getInstance();
 		Transaction transaction = tm.getTransaction();
-		ArrayList<TComponentesEnHabitacion> arrayComponentesHabitaciones = new ArrayList<TComponentesEnHabitacion>();
+		ArrayList<THabitacion> arrayHabitaciones = new ArrayList<THabitacion>();
 
 		if(transaction != null) {
 			Connection cn = (Connection) transaction.getResource();
 	
 			try {
-				PreparedStatement ps = cn.prepareStatement("select * from componentesEnHabitacion");//COMPROBAR BBDD
+				PreparedStatement ps = cn.prepareStatement("select * from habitacion where tipo = '"+tipo+"'" );
 				ResultSet rs = ps.executeQuery();
-				TComponentesEnHabitacion compHabitacion = null;
+				THabitacion habitacion = null;
 			
 				while (rs.next()) {
-					compHabitacion = new TComponentesEnHabitacion();
-					compHabitacion.setIDComponente(rs.getInt("ID"));
-					compHabitacion.setIDhabitacion(rs.getInt("IDCasa"));
-					compHabitacion.setDato(rs.getInt("tipo"));
-					compHabitacion.setNombre(rs.getString("nombre"));
-					arrayComponentesHabitaciones.add(compHabitacion);
+					habitacion = new THabitacion();
+					habitacion.setID(rs.getInt("ID"));
+					habitacion.setIDCasa(rs.getInt("IDCasa"));
+					habitacion.setTipo(rs.getString("tipo"));
+					habitacion.setNombre(rs.getString("nombre"));
+					arrayHabitaciones.add(habitacion);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		return arrayComponentesHabitaciones;
+		return arrayHabitaciones;
 	}
 
 }

@@ -1,6 +1,7 @@
 package Negocio.SA.Habitacion;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import Negocio.SA.Usuario.TUsuario;
 
@@ -15,6 +16,8 @@ public interface SAHabitacion {
 	public abstract int mostrarTemperaturaObjeto(int idHabitacion, int idObjeto);
 	public abstract int mostrarHumedadObjeto(int idHabitacion, int idObjeto);
 	public ArrayList<THabitacion> ListarHabitaciones();
+	public ArrayList<THabitacion> ListarHabitacionesPorTipo(String tipo);
+	public List<TComponentesEnHabitacion> ListarComponentesHabitaciones(Integer idHabitacion);
 	public THabitacion modificarHabitacion(THabitacion tHabitacion);
 	public int mostrarIluminacionObjeto(int idHabitacion, int idObjeto);
 

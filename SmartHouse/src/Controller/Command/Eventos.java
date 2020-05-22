@@ -61,6 +61,10 @@ public class Eventos {
 	public static final int MODIFICAR_HUMEDAD_OBJETO= 233; 
 	public static final int MODIFICAR_HUMEDAD_OBJETO_OK= 234; 
 	public static final int MODIFICAR_HUMEDAD_OBJETO_KO= 235; 
+	
+	public static final int LISTAR_HABITACIONES_POR_TIPO = 239;
+	public static final int LISTAR_HABITACIONES_POR_TIPO_KO = 240;
+	public static final int LISTAR_HABITACIONES_POR_TIPO_OK = 241;
 
 	
 	//Mostrar habitaciones

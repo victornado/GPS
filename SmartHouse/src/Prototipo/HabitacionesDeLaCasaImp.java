@@ -179,6 +179,26 @@ public class HabitacionesDeLaCasaImp extends HabitacionesDeLaCasa {
 			JOptionPane.showMessageDialog(null, "Algo salio mal al mostrar los datos del objeto", "Error",
 					JOptionPane.ERROR_MESSAGE);
 		}
+		else if(r.getVista() == Eventos.LISTAR_HABITACIONES_OK) {
+			ListarHabitaciones.getInstance().Update(r);
+		}
+		else if(r.getVista() == Eventos.LISTAR_HABITACIONES_KO) {
+			
+		}
+		else if(r.getVista() == Eventos.LISTAR_COMPONENTES_HABITACION_OK) {
+			ListarComponentesHabitacion.getInstance().Update(r);
+		}
+		else if(r.getVista() == Eventos.LISTAR_COMPONENTES_HABITACION_KO) {
+			JOptionPane.showMessageDialog(null, "No existen componentes en la habitación", "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
+		else if(r.getVista() == Eventos.LISTAR_HABITACIONES_POR_TIPO_OK) {
+			ListarHabitaciones.getInstance().UpdateTipo(r);
+		}
+		else if(r.getVista() == Eventos.LISTAR_HABITACIONES_POR_TIPO_KO) {
+			JOptionPane.showMessageDialog(null, "No existe ese tipo", "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
 		else if(r.getVista() == Eventos.MOSTRAR_ILUMINACION_OBJETO_OK ||r.getVista() == Eventos.MOSTRAR_HUMEDAD_OBJETO_OK || r.getVista() == Eventos.MOSTRAR_TEMPERATURA_OBJETO_OK)
 		{
 			//la respuesta en el conexto viene de forma Pair<int,pair<int,int>> en orden, dato,habitacion,objeto

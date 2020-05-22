@@ -15,6 +15,7 @@ public interface DAOHabitacion {
 	public abstract int modificarIluminacionHabitacion(TComponentesEnHabitacion componente);
 	public abstract String mostrarTipoHabitacion(int id);
 	public abstract ArrayList<THabitacion> ListarHabitaciones();
-	public abstract ArrayList<TComponentesEnHabitacion> ListarComponentesHabitaciones();
+	public abstract ArrayList<THabitacion> ListarHabitacionesPorTipo(String tipo);
+
 
 }
