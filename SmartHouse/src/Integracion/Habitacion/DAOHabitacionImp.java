@@ -291,5 +291,9 @@ public class DAOHabitacionImp implements DAOHabitacion {
 		}
 		return id2;
 	}
+	
+	public int aniadirComponente(TComponentesEnHabitacion componente) {
+		return -1;
+	}
 
 }
