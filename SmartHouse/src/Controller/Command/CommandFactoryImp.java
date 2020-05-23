@@ -13,6 +13,7 @@ import Controller.Command.Habitacion.AniadirHabitacion;
 import Controller.Command.Habitacion.ListarComponentesHabitacion;
 import Controller.Command.Habitacion.ListarHabitaciones;
 import Controller.Command.Habitacion.ListarHabitacionesPorTipo;
+import Controller.Command.Habitacion.ModificarFavoritoHabitacion;
 import Controller.Command.Habitacion.ModificarIluminacionHabitacion;
 import Controller.Command.Habitacion.ModificarTemperaturaObjeto;
 import Controller.Command.Habitacion.MostrarHabitacion;
@@ -61,6 +62,7 @@ public class CommandFactoryImp extends CommandFactory{
 		case Eventos.MODIFICAR_HUMEDAD_OBJETO: return new ModificarHumedadObjeto();
 		case Eventos.LISTAR_COMPONENTES_HABITACION: return new ListarComponentesHabitacion();
 		case Eventos.LISTAR_HABITACIONES_POR_TIPO: return new ListarHabitacionesPorTipo();
+		case Eventos.MODIFICAR_FAVORITO_HABITACION: return new ModificarFavoritoHabitacion();
 
 
 		default: return null;

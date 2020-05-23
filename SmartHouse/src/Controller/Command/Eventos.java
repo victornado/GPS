@@ -58,6 +58,9 @@ public class Eventos {
 	public static final int MODIFICAR_HUMEDAD_OBJETO= 233; 
 	public static final int MODIFICAR_HUMEDAD_OBJETO_OK= 234; 
 	public static final int MODIFICAR_HUMEDAD_OBJETO_KO= 235; 
+	public static final int MODIFICAR_FAVORITO_HABITACION = 250; //
+	public static final int MODIFICAR_FAVORITO_HABITACION_OK = 248; //
+	public static final int MODIFICAR_FAVORITO_HABITACION_KO = 249; //
 	
 	public static final int LISTAR_HABITACIONES_POR_TIPO = 239;
 	public static final int LISTAR_HABITACIONES_POR_TIPO_KO = 240;
@@ -105,12 +108,12 @@ public class Eventos {
 
 	
 	//Activa ChromeCast
-		public static final int ACTIVAR_CHROMCAST= 600; 
-		public static final int ACTIVAR_CHROMCAST_OK= 601; 
-		public static final int ACTIVAR_CHROMCAST_KO= 602;
-		
-		//Modifica volumen ChromeCast
-		public static final int MODIFICA_VOLUMEN_CHROMCAST= 700; 
-		public static final int MODIFICA_VOLUMEN_CHROMCAST_OK= 701; 
-		public static final int MODIFICA_VOLUMEN_CHROMCAST_KO= 702;
+	public static final int ACTIVAR_CHROMCAST= 600; 
+	public static final int ACTIVAR_CHROMCAST_OK= 601; 
+	public static final int ACTIVAR_CHROMCAST_KO= 602;
+	
+	//Modifica volumen ChromeCast
+	public static final int MODIFICA_VOLUMEN_CHROMCAST= 700; 
+	public static final int MODIFICA_VOLUMEN_CHROMCAST_OK= 701; 
+	public static final int MODIFICA_VOLUMEN_CHROMCAST_KO= 702;
 }
