@@ -293,7 +293,31 @@ public class DAOHabitacionImp implements DAOHabitacion {
 	}
 	
 	public int aniadirComponente(TComponentesEnHabitacion componente) {
-		return -1;
+		int id = -1;
+		Transaction t = TransactionManager.getInstance().getTransaction();
+		Connection con = null;
+		if (t != null) {
+			con = (Connection) t.getResource();
+			PreparedStatement ps;
+			try {
+			ps = con.prepareStatement(
+					"INSERT INTO componentesEnHabitacion(idComponente,ip,nombre,contrasena, idHabitacion) VALUES(?,?,?,?,?)");
+			
+			ps.setInt(1,componente.getIDComponente());
+			ps.setString(2, componente.getIp());
+			ps.setString(3, componente.getNombre());
+			ps.setString(4, componente.getContrasena());
+			ps.setInt(5, componente.getIDhabitacion());
+			
+			ps.executeUpdate();
+			
+			id=componente.getIDComponente();
+			
+			}catch(Exception e) {
+				return -1;
+			}
+		}
+		return id;
 	}
 
 }

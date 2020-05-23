@@ -8,6 +8,7 @@ public class TComponentesEnHabitacion {
 	private int dato;
 	private String tipo;//se encuentra en tabla compontentes
 	private String ip;
+	private String contrasena;
 	
 	public TComponentesEnHabitacion( int idComp, int hab, String nombre, int dato)
 	{
@@ -58,6 +59,14 @@ public class TComponentesEnHabitacion {
 
 	public void setIp(String ip) {
 		this.ip = ip;
+	}
+
+	public String getContrasena() {
+		return contrasena;
+	}
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 	
 }
