@@ -40,6 +40,7 @@ public class DatosHabitacionImp extends DatosHabitacion {
 	private BorrarDispositivoImp borrarDisp;
 	private boolean ChromeCastActivo;
 	private boolean actv;
+	private boolean fav;
 	public JPanel panel_1;
 	public List<TComponentesEnHabitacion> lista;
 	public List<GUI> listaClases;
@@ -92,7 +93,27 @@ public class DatosHabitacionImp extends DatosHabitacion {
 		button_8.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/+.png")));
 		button_8.setBounds(223, 336, 43, 40);
 		panel_1.add(button_8);
+		
+		JButton button_9 = new JButton("");
+		button_9.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (!fav) {
+					button_9.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/estrella.png")));
+					fav = true;
+				}
+				else if (fav) {
+					button_9.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/estrella_vacia.png")));
+					fav = false;
+				}
+			}
+			
+		});
+		button_9.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/estrella_vacia.png")));
+		button_9.setBounds(50, 20, 20, 20);
+		fav = false;
+		panel_1.add(button_9);
 		
 	}
 	

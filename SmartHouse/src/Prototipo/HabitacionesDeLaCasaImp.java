@@ -233,6 +233,13 @@ public class HabitacionesDeLaCasaImp extends HabitacionesDeLaCasa {
 			JOptionPane.showMessageDialog(null, "Error al eliminar", "Error",
 					JOptionPane.ERROR_MESSAGE);
 		}
+		else if(r.getVista() == Eventos.MODIFICAR_FAVORITO_HABITACION_OK) {
+			
+		}
+		else if (r.getVista() == Eventos.MODIFICAR_FAVORITO_HABITACION_KO) {
+			JOptionPane.showMessageDialog(null, "Error al marcar como favorito", "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 }
