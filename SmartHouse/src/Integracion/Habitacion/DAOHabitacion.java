@@ -18,7 +18,8 @@ public interface DAOHabitacion {
 	public abstract ArrayList<THabitacion> ListarHabitacionesPorTipo(String tipo);
 	public abstract int darDeAlta(THabitacion thab);
 	public abstract int eliminarhab(int id);
-	public int aniadirComponente(TComponentesEnHabitacion componente);
+	public abstract int aniadirComponente(TComponentesEnHabitacion componente);
+	public abstract int eliminarComponente(int id);
 
 
 }

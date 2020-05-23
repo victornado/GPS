@@ -292,6 +292,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 		return id2;
 	}
 	
+	@Override
 	public int aniadirComponente(TComponentesEnHabitacion componente) {
 		int id = -1;
 		Transaction t = TransactionManager.getInstance().getTransaction();
@@ -318,6 +319,25 @@ public class DAOHabitacionImp implements DAOHabitacion {
 			}
 		}
 		return id;
+	}
+	
+	@Override
+	public int eliminarComponente(int id) {
+		Transaction transaction = TransactionManager.getInstance().getTransaction();
+		int id2 = -1;
+		if(transaction != null) {
+			Connection cn = (Connection) transaction.getResource();
+	
+			try {
+				PreparedStatement query = cn.prepareStatement("DELETE FROM componentesEnHabitacion WHERE idComponente="+id);
+				query.executeUpdate();
+				id2 = id;
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		return id2;
 	}
 
 }
