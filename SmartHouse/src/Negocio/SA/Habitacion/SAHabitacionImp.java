@@ -10,6 +10,7 @@ import Integracion.Habitacion.DAOHabitacion;
 import Integracion.Transacciones.TransactionManager;
 import Integracion.Transacciones.TransactionSmartHouse;
 import Integracion.Usuario.DAOUsuario;
+import Negocio.SA.Casa.TCasa;
 import Negocio.SA.Usuario.TUsuario;
 
 public class SAHabitacionImp implements SAHabitacion {
@@ -295,8 +296,8 @@ public class SAHabitacionImp implements SAHabitacion {
 				else
 				{
 					DAOCasa daoc = FactoryDAO.getInstance().createDAOCasa();
-					int id2 = daoc.mostrarcasa(thab.getIDCasa());
-					if(id2 != -1)id= daoh.darDeAlta(thab);
+					TCasa casa = daoc.mostrarcasa(thab.getIDCasa());
+					if(casa != null)id= daoh.darDeAlta(thab);
 					trans.commit();
 				}
 			}

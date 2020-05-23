@@ -8,6 +8,7 @@ import Integracion.Casa.DAOCasa;
 import Integracion.Transacciones.TransactionManager;
 import Integracion.Transacciones.TransactionSmartHouse;
 import Integracion.Usuario.DAOUsuario;
+import Negocio.SA.Casa.TCasa;
 
 public class SAUsuarioImp implements SAUsuario{
 
@@ -59,8 +60,8 @@ public class SAUsuarioImp implements SAUsuario{
 				{
 					try {
 						DAOCasa daoc = FactoryDAO.getInstance().createDAOCasa();
-						int id2 = daoc.mostrarcasa(tUsuario.getIDCasa());
-						if(id2 != -1)id= daoU.darDeAlta(tUsuario);
+						TCasa casa = daoc.mostrarcasa(tUsuario.getIDCasa());
+						if(casa != null)id= daoU.darDeAlta(tUsuario);
 					} catch (SQLException e) {
 						trans.rollback();
 						e.printStackTrace();

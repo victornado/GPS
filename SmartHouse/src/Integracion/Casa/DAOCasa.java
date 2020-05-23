@@ -1,5 +1,6 @@
 package Integracion.Casa;
 
+import Negocio.SA.Casa.TCasa;
 import Negocio.SA.Casa.TComponentesGenerales;
 
 public interface DAOCasa {	
@@ -14,6 +15,6 @@ public interface DAOCasa {
 	public abstract int modificarHumedad(TComponentesGenerales componente);
 	
 	public abstract int modificarIluminacion(TComponentesGenerales componente);
-	 public abstract int mostrarcasa(int id);
+	 public abstract TCasa mostrarcasa(int id);
 
 }
