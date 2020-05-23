@@ -275,14 +275,4 @@ public class ListarHabitacionesImp extends ListarHabitaciones {
 		}
 		frame.setVisible(true);
 	}
-	
-	public void UpdateTipo(ResponseContext r) {
-		model.setRowCount(0);
-		ArrayList<THabitacion> array = (ArrayList<THabitacion>) r.getData();
-		for (THabitacion th : array) {
-			model.addRow(new Object[] { th.getID(), th.getIDCasa(),th.getTipo(), th.getNombre()});
-		}
-		frame.setVisible(true);
-	}
-
 }

@@ -325,6 +325,18 @@ public class SHMenuImp extends SHMenu {
 
 		});
 		panel.add(weatherBtn);
+		
+		JButton HabitacionBtn = new JButton();
+		HabitacionBtn.setBounds(245, 35, 24, 21);
+		HabitacionBtn.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/cuna.png")));
+		HabitacionBtn.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				listarHabitaciones();
+			}
+
+		});
+		panel.add(HabitacionBtn);
 
 //		JButton modifyHabitacionBtn = new JButton();
 //		modifyHabitacionBtn.setBounds(250, 35, 24, 21);
@@ -350,16 +362,7 @@ public class SHMenuImp extends SHMenu {
 //		});
 //		panel.add(buscaryHabitacionBtn);
 //		
-				
-		JButton habitacion = new JButton("Habitacion");
-		habitacion.setBounds(145, 10, 74, 21);
-		habitacion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				listarHabitaciones();
-			}
 
-		});
-		panel.add(habitacion);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(145, 35, 74, 21);

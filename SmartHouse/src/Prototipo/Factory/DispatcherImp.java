@@ -32,7 +32,7 @@ public class DispatcherImp extends Dispatcher {
 			ListarUsuario.getInstance().Update(r);
 		else if(r.getVista() >= 103 && r.getVista() < 112)
 			SHMenu.getInstance().Update(r);
-		else if(r.getVista() >= 200 && r.getVista() < 238)
+		else if(r.getVista() >= 200 && r.getVista() <= 241)
 			HabitacionesDeLaCasa.getInstance().Update(r);
 		else if(r.getVista() >=242 && r.getVista() <= 247)
 			HabitacionesDeLaCasa.getInstance().Update(r);

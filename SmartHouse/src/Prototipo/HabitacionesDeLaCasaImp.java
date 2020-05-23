@@ -193,7 +193,7 @@ public class HabitacionesDeLaCasaImp extends HabitacionesDeLaCasa {
 					JOptionPane.ERROR_MESSAGE);
 		}
 		else if(r.getVista() == Eventos.LISTAR_HABITACIONES_POR_TIPO_OK) {
-			ListarHabitaciones.getInstance().UpdateTipo(r);
+			ListarHabitaciones.getInstance().Update(r);
 		}
 		else if(r.getVista() == Eventos.LISTAR_HABITACIONES_POR_TIPO_KO) {
 			JOptionPane.showMessageDialog(null, "No existe ese tipo", "Error",
