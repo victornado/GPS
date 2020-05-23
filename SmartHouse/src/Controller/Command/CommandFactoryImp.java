@@ -9,6 +9,7 @@ import Controller.Command.Casa.MostrarDatosTemperatura;
 import Controller.Command.Casa.MostrarHabitaciones;
 import Controller.Command.ChromeCast.ActivarChromeCast;
 import Controller.Command.ChromeCast.SubirVolumen;
+import Controller.Command.Habitacion.AniadirHabitacion;
 import Controller.Command.Habitacion.ListarComponentesHabitacion;
 import Controller.Command.Habitacion.ListarHabitaciones;
 import Controller.Command.Habitacion.ListarHabitacionesPorTipo;
@@ -36,6 +37,7 @@ public class CommandFactoryImp extends CommandFactory{
 		case Eventos.LOGIN_USUARIO: return new LoginUsuario();
 		case Eventos.MOSTRAR_ILUMINACION_HABITACION: return new MostrarIluminacionObjeto();
 		case Eventos.Aniadir_USUARIO: return new AniadirUsuario();
+		case Eventos.ANIADIR_HABITACION: return new AniadirHabitacion();
 		case Eventos.MOSTRAR_ILUMINACION : return new MostrarDatosIluminacion();
 		case Eventos.MOSTRAR_TEMPERATURA : return new MostrarDatosTemperatura();
 		case Eventos.MOSTRAR_HUMEDAD : return new MostrarDatosHumedad();

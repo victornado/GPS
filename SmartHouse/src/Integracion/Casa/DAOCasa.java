@@ -14,4 +14,6 @@ public interface DAOCasa {
 	public abstract int modificarHumedad(TComponentesGenerales componente);
 	
 	public abstract int modificarIluminacion(TComponentesGenerales componente);
+	 public abstract int mostrarcasa(int id);
+
 }

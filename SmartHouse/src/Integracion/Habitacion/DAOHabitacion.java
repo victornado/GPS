@@ -16,6 +16,7 @@ public interface DAOHabitacion {
 	public abstract String mostrarTipoHabitacion(int id);
 	public abstract ArrayList<THabitacion> ListarHabitaciones();
 	public abstract ArrayList<THabitacion> ListarHabitacionesPorTipo(String tipo);
+	public abstract int darDeAlta(THabitacion thab);
 
 
 }

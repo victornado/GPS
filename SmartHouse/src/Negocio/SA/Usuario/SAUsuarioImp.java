@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Integracion.FactoryDAO;
+import Integracion.Casa.DAOCasa;
 import Integracion.Transacciones.TransactionManager;
 import Integracion.Transacciones.TransactionSmartHouse;
 import Integracion.Usuario.DAOUsuario;
@@ -57,7 +58,9 @@ public class SAUsuarioImp implements SAUsuario{
 				else
 				{
 					try {
-						id = daoU.darDeAlta(tUsuario);
+						DAOCasa daoc = FactoryDAO.getInstance().createDAOCasa();
+						int id2 = daoc.mostrarcasa(tUsuario.getIDCasa());
+						if(id2 != -1)id= daoU.darDeAlta(tUsuario);
 					} catch (SQLException e) {
 						trans.rollback();
 						e.printStackTrace();

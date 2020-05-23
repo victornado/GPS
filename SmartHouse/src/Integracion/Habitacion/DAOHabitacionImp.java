@@ -241,4 +241,35 @@ public class DAOHabitacionImp implements DAOHabitacion {
 		return arrayHabitaciones;
 	}
 
+
+	@Override
+	public int darDeAlta(THabitacion thab) {
+
+		int id = -1;
+		Transaction t = TransactionManager.getInstance().getTransaction();
+		Connection con = null;
+		if (t != null) {
+			con = (Connection) t.getResource();
+			PreparedStatement ps;
+			try {
+			ps = con.prepareStatement(
+					"INSERT INTO habitacion(tipo,IDCasa,nombre) VALUES(?,?,?)",
+					PreparedStatement.RETURN_GENERATED_KEYS);
+
+			ps.setString(1, thab.getTipo());
+			ps.setInt(2, thab.getIDCasa());
+			ps.setString(3, thab.getNombre());
+			ps.executeUpdate();
+			
+			ResultSet rs = ps.getGeneratedKeys();
+			if (rs.next()) {
+				id = rs.getInt(1);
+			}
+			}catch(Exception e) {
+				return -1;
+			}
+		}
+		return id;
+	}
+
 }

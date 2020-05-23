@@ -1,9 +1,11 @@
 package Negocio.SA.Habitacion;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import Integracion.FactoryDAO;
+import Integracion.Casa.DAOCasa;
 import Integracion.Habitacion.DAOHabitacion;
 import Integracion.Transacciones.TransactionManager;
 import Integracion.Transacciones.TransactionSmartHouse;
@@ -269,6 +271,46 @@ public class SAHabitacionImp implements SAHabitacion {
 			trans.commit();
 		}
 		return arrayHabitaciones;
+	}
+
+	@Override
+	public int aniadirhab(THabitacion thab) {
+		
+		THabitacion existe=null;
+		int id =-1;
+		
+		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
+		try {
+			trans.init();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		if(trans!=null)
+		{
+			if(thab != null) {
+				DAOHabitacion daoh  = FactoryDAO.getInstance().createDAOHabitacion();
+				existe = daoh.mostrarHabitacion(thab.getID());
+				if(existe != null)
+					trans.rollback();
+				else
+				{
+					DAOCasa daoc = FactoryDAO.getInstance().createDAOCasa();
+					int id2 = daoc.mostrarcasa(thab.getIDCasa());
+					if(id2 != -1)id= daoh.darDeAlta(thab);
+					trans.commit();
+				}
+			}
+			else 
+				trans.rollback();
+		}
+
+		return id;
+	}
+
+	@Override
+	public int eliminarhab(THabitacion thab) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 

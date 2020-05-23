@@ -374,6 +374,7 @@ public class SHMenuImp extends SHMenu {
 		mntmAadirUsuario.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				aniadiru = new AniadirUsuarioImp();
 				aniadiru.setVisible(true);
 			}
 		});

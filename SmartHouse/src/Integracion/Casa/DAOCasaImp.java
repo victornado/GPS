@@ -9,6 +9,7 @@ import Integracion.Transacciones.Transaction;
 import Integracion.Transacciones.TransactionManager;
 import Integracion.Transacciones.TransactionSmartHouse;
 import Negocio.SA.Casa.TComponentesGenerales;
+import Negocio.SA.Usuario.TUsuario;
 
 
 public class DAOCasaImp implements DAOCasa {
@@ -220,6 +221,29 @@ public class DAOCasaImp implements DAOCasa {
 		}
 		return nuevo;
 	 }
-
+	 public int mostrarcasa(int id) {
+			TransactionManager tm = TransactionManager.getInstance();
+			Transaction transaction = tm.getTransaction();
+			
+			if(transaction != null) {
+				Connection cn = (Connection) transaction.getResource();
+		
+				try {
+					
+					PreparedStatement query = cn.prepareStatement("SELECT * FROM casa WHERE ID =" +id);
+					ResultSet resultSet = query.executeQuery();
+					if(resultSet != null) {
+						return id;
+					}else {
+						return -1;
+					}
+					}catch(Exception e) {
+						return -1;
+					}
+		
+				}
+			else { return -1;
+			}
+	 }
 
 }

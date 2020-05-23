@@ -40,9 +40,6 @@ public class Eventos {
 	public static final int MODIFICAR_HABITACION= 212; 
 	public static final int MODIFICAR_HABITACION_OK= 213;
 	public static final int MODIFICAR_HABITACION_KO= 214;
-	public static final int ELIMINAR_HABITACION= 215; 
-	public static final int ELIMINAR_HABITACION_OK= 216;
-	public static final int ELIMINAR_HABITACION_KO= 217;
 	public static final int LISTAR_COMPONENTES_HABITACION = 218;
 	public static final int LISTAR_COMPONENTES_HABITACION_KO = 219;
 	public static final int LISTAR_COMPONENTES_HABITACION_OK = 220;
@@ -72,6 +69,13 @@ public class Eventos {
 	public static final int MOSTRAR_HABITACIONES_OK= 237; 
 	public static final int MOSTRAR_HABITACIONES_KO= 238; 
 	
+	//aniadir hab eliminar hab
+	public static final int ELIMINAR_HABITACION= 242; 
+	public static final int ELIMINAR_HABITACION_OK= 243;
+	public static final int ELIMINAR_HABITACION_KO= 244;
+	public static final int ANIADIR_HABITACION=245;
+	public static final int ANIADIR_HABITACION_OK=246;
+	public static final int ANIADIR_HABITACION_KO=247;
 
 
 	//HU CASA TEMP

@@ -1,11 +1,15 @@
 package Prototipo;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -18,11 +22,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Controller.Controller;
 import Controller.Command.Eventos;
 import Negocio.SA.Habitacion.THabitacion;
+import Negocio.SA.Usuario.TUsuario;
 
 public class ListarHabitacionesImp extends ListarHabitaciones {
 	JTable table = null;
@@ -148,7 +154,18 @@ public class ListarHabitacionesImp extends ListarHabitaciones {
 			}
 
 		});
-		
+		//boton aniadir
+		JButton add_button = new JButton();
+		add_button.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/cama.png")));
+		add_button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				AniadirHabitacionImp aniadirh = new AniadirHabitacionImp();
+				aniadirh.setVisible(true);
+			}
+
+		});
 		
 		
 		
@@ -235,6 +252,7 @@ public class ListarHabitacionesImp extends ListarHabitaciones {
 		
 		buttons_actions.add(tipo_button);
 		buttons_actions.add(delete_button);
+		buttons_actions.add(add_button);
 		buttons_actions.add(buscaryHabitacionBtn);
 		buttons_actions.add(modify_button);
 		buttons_actions.add(comp_button);

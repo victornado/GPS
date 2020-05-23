@@ -252,6 +252,7 @@ public class AniadirUsuarioImp extends AniadirUsuario{
 		
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
+				try {
 				String pass = textField.getText();
 				String hash = MD5Cypher.md5Java(pass); 
 				int edadparse = Integer.parseInt(txtedad.getText());
@@ -259,6 +260,10 @@ public class AniadirUsuarioImp extends AniadirUsuario{
 				TUsuario tusuario = new TUsuario(txtNuevoUsername.getText(),hash,resp,txtApellidos.getText(),edadparse,txtcorreo.getText(),IdCasaparse);
 				RequestContext rContext = new RequestContext(Eventos.Aniadir_USUARIO, tusuario);
 				Controller.getInstance().handleRequest(rContext);
+				}catch(Exception e) {
+					JOptionPane.showMessageDialog(null, "Error en la sintaxis ");
+
+				}
 			}
 		});
 		panel.add(btnGuardar);
@@ -271,7 +276,14 @@ public class AniadirUsuarioImp extends AniadirUsuario{
 
 	@Override
 	public void Update(ResponseContext r) {
-		// TODO Auto-generated method stub
-		
+
+			if (r.getVista()== Eventos.Aniadir_USUARIO_OK) {
+				
+				JOptionPane.showMessageDialog(null, "Usuario añadido");
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Error al añadir usuario ");
+
+			}
 	}
 }

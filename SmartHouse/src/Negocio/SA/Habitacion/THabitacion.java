@@ -16,6 +16,11 @@ public class THabitacion {
 		tipo = tipo2;
 		nombre = nombre2;
 	}
+	public THabitacion(String tipo, int idCasa, String nombre) {
+		this.tipo = tipo;
+		this.IDCasa = idCasa;
+		this.nombre=nombre;
+		}
 	
 	public THabitacion() {}
 	
