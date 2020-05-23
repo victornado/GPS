@@ -13,6 +13,9 @@ public class TCasa {
 		ID = id;
 		
 	}
+	public TCasa() {
+		// TODO Auto-generated constructor stub
+	}
 	public int getID() {
 		return ID;
 	}
