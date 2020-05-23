@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
@@ -17,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import Controller.Controller;
@@ -129,7 +131,7 @@ public class AniadirHabitacionImp extends AniadirHabitacion{
 		
 		txtNombre = new JTextField();
 		txtNombre.setFont(new Font("Tahoma", Font.ITALIC, 11));
-		txtNombre.setText("Apellidos");
+		txtNombre.setText("Nombre");
 		txtNombre.setToolTipText("");
 		txtNombre.setBounds(141, 125, 138, 20);
 		txtNombre.setForeground(Color.DARK_GRAY);
@@ -180,9 +182,13 @@ public class AniadirHabitacionImp extends AniadirHabitacion{
 		if (r.getVista()== Eventos.ANIADIR_HABITACION_OK) {
 			
 			JOptionPane.showMessageDialog(null, "Habitacion añadida");
+			RequestContext rContext = new RequestContext(Eventos.LISTAR_HABITACIONES, null);
+			Controller.getInstance().handleRequest(rContext);
+
 		}
 		else {
-			JOptionPane.showMessageDialog(null, "Error al añadir habitacion ");
+			JOptionPane.showMessageDialog(null, "Error al eliminar habitacion", "Error",
+					JOptionPane.ERROR_MESSAGE);
 
 				
 	}

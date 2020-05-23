@@ -21,6 +21,6 @@ public interface SAHabitacion {
 	public THabitacion modificarHabitacion(THabitacion tHabitacion);
 	public int mostrarIluminacionObjeto(int idHabitacion, int idObjeto);
 	public int aniadirhab(THabitacion thab);
-	public int eliminarhab(THabitacion thab);
+	public int eliminarhab(int i);
 
 }

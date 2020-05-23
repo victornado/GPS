@@ -1,6 +1,7 @@
 package Controller.Command;
 
 import Controller.Command.Casa.ModificarHumedadCasa;
+
 import Controller.Command.Casa.ModificarIluminacionCasa;
 import Controller.Command.Casa.ModificarTemperaturaCasa;
 import Controller.Command.Casa.MostrarDatosHumedad;
@@ -10,10 +11,11 @@ import Controller.Command.Casa.MostrarHabitaciones;
 import Controller.Command.ChromeCast.ActivarChromeCast;
 import Controller.Command.ChromeCast.SubirVolumen;
 import Controller.Command.Habitacion.AniadirHabitacion;
+import Controller.Command.Habitacion.EliminarHabitacion;
 import Controller.Command.Habitacion.ListarComponentesHabitacion;
 import Controller.Command.Habitacion.ListarHabitaciones;
 import Controller.Command.Habitacion.ListarHabitacionesPorTipo;
-//import Controller.Command.Habitacion.ModificarFavoritoHabitacion;
+import Controller.Command.Habitacion.ModificarFavoritoHabitacion;
 import Controller.Command.Habitacion.ModificarIluminacionHabitacion;
 import Controller.Command.Habitacion.ModificarTemperaturaObjeto;
 import Controller.Command.Habitacion.MostrarHabitacion;
@@ -38,6 +40,7 @@ public class CommandFactoryImp extends CommandFactory{
 		case Eventos.LOGIN_USUARIO: return new LoginUsuario();
 		case Eventos.MOSTRAR_ILUMINACION_HABITACION: return new MostrarIluminacionObjeto();
 		case Eventos.Aniadir_USUARIO: return new AniadirUsuario();
+		case Eventos.ELIMINAR_HABITACION: return new EliminarHabitacion();
 		case Eventos.ANIADIR_HABITACION: return new AniadirHabitacion();
 		case Eventos.MOSTRAR_ILUMINACION : return new MostrarDatosIluminacion();
 		case Eventos.MOSTRAR_TEMPERATURA : return new MostrarDatosTemperatura();
@@ -62,7 +65,7 @@ public class CommandFactoryImp extends CommandFactory{
 		case Eventos.MODIFICAR_HUMEDAD_OBJETO: return new ModificarHumedadObjeto();
 		case Eventos.LISTAR_COMPONENTES_HABITACION: return new ListarComponentesHabitacion();
 		case Eventos.LISTAR_HABITACIONES_POR_TIPO: return new ListarHabitacionesPorTipo();
-	//	case Eventos.MODIFICAR_FAVORITO_HABITACION: return new ModificarFavoritoHabitacion();
+		case Eventos.MODIFICAR_FAVORITO_HABITACION: return new ModificarFavoritoHabitacion();
 
 
 		default: return null;

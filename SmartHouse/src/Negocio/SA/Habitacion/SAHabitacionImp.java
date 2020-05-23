@@ -309,9 +309,24 @@ public class SAHabitacionImp implements SAHabitacion {
 	}
 
 	@Override
-	public int eliminarhab(THabitacion thab) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int eliminarhab(int id1) {
+		int id =-1;
+		THabitacion existe=null;
+
+		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
+		try {
+			trans.init();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			DAOHabitacion daoh  = FactoryDAO.getInstance().createDAOHabitacion();
+			id=daoh.eliminarhab(id1);
+			if(id != -1)trans.commit();
+			else
+				trans.rollback();
+			
+
+		return id;
 	}
 
 

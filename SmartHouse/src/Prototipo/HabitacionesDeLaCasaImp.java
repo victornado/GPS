@@ -217,6 +217,22 @@ public class HabitacionesDeLaCasaImp extends HabitacionesDeLaCasa {
 				}
 			}
 		}
+		else if(r.getVista()== Eventos.ANIADIR_HABITACION_OK) {
+				AniadirHabitacion.getInstance().Update(r);
+		}
+		else if(r.getVista()==Eventos.ANIADIR_HABITACION_KO) {
+			AniadirHabitacion.getInstance().Update(r);
+
+		}
+		else if(r.getVista()== Eventos.ELIMINAR_HABITACION_OK) {
+			JOptionPane.showMessageDialog(null, "Habitacion eliminada");
+			RequestContext rContext = new RequestContext(Eventos.LISTAR_HABITACIONES, null);
+			Controller.getInstance().handleRequest(rContext);
+		}
+		else if(r.getVista() == Eventos.ELIMINAR_HABITACION_KO) {
+			JOptionPane.showMessageDialog(null, "Error al eliminar", "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 }

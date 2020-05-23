@@ -272,4 +272,24 @@ public class DAOHabitacionImp implements DAOHabitacion {
 		return id;
 	}
 
+
+	@Override
+	public int eliminarhab(int id) {
+		Transaction transaction = TransactionManager.getInstance().getTransaction();
+		int id2 = -1;
+		if(transaction != null) {
+			Connection cn = (Connection) transaction.getResource();
+	
+			try {
+				PreparedStatement query = cn.prepareStatement("DELETE FROM habitacion WHERE ID="+id);
+				query.executeUpdate();
+				id2 = id;
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		return id2;
+	}
+
 }
