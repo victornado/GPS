@@ -366,7 +366,7 @@ public class SHMenuImp extends SHMenu {
 //		
 		JButton ObjetoBtn = new JButton();
 		ObjetoBtn.setBounds(270, 35, 24, 21);
-		ObjetoBtn.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/obj.jpg")));
+		ObjetoBtn.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/obj.png")));
 		ObjetoBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
