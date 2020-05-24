@@ -61,6 +61,9 @@ public class Eventos {
 	public static final int MODIFICAR_FAVORITO_HABITACION = 250; //
 	public static final int MODIFICAR_FAVORITO_HABITACION_OK = 248; //
 	public static final int MODIFICAR_FAVORITO_HABITACION_KO = 249; //
+	public static final int LISTAR_OBJETOS= 251;
+	public static final int LISTAR_OBJETOS_OK= 252;
+	public static final int LISTAR_OBJETOS_KO= 253;
 	
 	public static final int LISTAR_HABITACIONES_POR_TIPO = 239;
 	public static final int LISTAR_HABITACIONES_POR_TIPO_KO = 240;

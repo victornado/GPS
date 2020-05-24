@@ -34,7 +34,7 @@ public class DispatcherImp extends Dispatcher {
 			SHMenu.getInstance().Update(r);
 		else if(r.getVista() >= 200 && r.getVista() <= 241)
 			HabitacionesDeLaCasa.getInstance().Update(r);
-		else if(r.getVista() >=242 && r.getVista() <= 247)
+		else if(r.getVista() >=242 && r.getVista() <= 253)
 			HabitacionesDeLaCasa.getInstance().Update(r);
 	}
 }

@@ -22,5 +22,6 @@ public interface SAHabitacion {
 	public int mostrarIluminacionObjeto(int idHabitacion, int idObjeto);
 	public int aniadirhab(THabitacion thab);
 	public int eliminarhab(int i);
+	public ArrayList<TComponentesEnHabitacion> ListarObjetos();
 
 }

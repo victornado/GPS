@@ -45,6 +45,7 @@ public class SHMenuImp extends SHMenu {
 //	private BuscarHabitacionImp buscarHab;
 	private HabitacionesDeLaCasaImp datosHab;
 	private ListarHabitacionesImp listHab;
+	private ListarObjetos listObj;
 	private int x;
 	private int y;
 	private int hora;
@@ -94,6 +95,7 @@ public class SHMenuImp extends SHMenu {
 //		this.buscarHab = new BuscarHabitacionImp();
 		this.tempInt = (TemperaturaInteriorImp) TemperaturaInterior.getInstance();
 		this.listHab = new ListarHabitacionesImp();
+		this.listObj = new ListarObjetosImp();
 		tempInt.setMenu(this);
 		ChromeCastActivo=false;
 		initGUI();
@@ -362,7 +364,17 @@ public class SHMenuImp extends SHMenu {
 //		});
 //		panel.add(buscaryHabitacionBtn);
 //		
+		JButton ObjetoBtn = new JButton();
+		ObjetoBtn.setBounds(270, 35, 24, 21);
+		ObjetoBtn.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/obj.jpg")));
+		ObjetoBtn.addActionListener(new ActionListener() {
 
+			public void actionPerformed(ActionEvent e) {
+				listarObjetos();
+			}
+
+		});
+		panel.add(ObjetoBtn);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(145, 35, 74, 21);
@@ -458,6 +470,7 @@ public class SHMenuImp extends SHMenu {
 			JOptionPane.showMessageDialog(null, "Se ha modificado el usuario correctamente");
 			listarHabitaciones();
 		}
+		
 
 	}
 
@@ -567,6 +580,11 @@ public class SHMenuImp extends SHMenu {
 //	
 	public void listarHabitaciones() {	
 		RequestContext rContext = new RequestContext(Eventos.LISTAR_HABITACIONES, null);
+		Controller.getInstance().handleRequest(rContext);
+	}	
+	
+	public void listarObjetos() {	
+		RequestContext rContext = new RequestContext(Eventos.LISTAR_OBJETOS, null);
 		Controller.getInstance().handleRequest(rContext);
 	}	
 	

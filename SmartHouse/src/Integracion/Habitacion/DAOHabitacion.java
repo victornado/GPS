@@ -20,6 +20,7 @@ public interface DAOHabitacion {
 	public abstract int eliminarhab(int id);
 	public abstract int aniadirComponente(TComponentesEnHabitacion componente);
 	public abstract int eliminarComponente(int id);
+	public abstract ArrayList<TComponentesEnHabitacion> ListarObjetos();
 
 
 }

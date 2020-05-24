@@ -330,4 +330,21 @@ public class SAHabitacionImp implements SAHabitacion {
 	}
 
 
+	@Override
+	public ArrayList<TComponentesEnHabitacion> ListarObjetos() {
+		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
+		ArrayList<TComponentesEnHabitacion> arrayObjetos = new ArrayList<TComponentesEnHabitacion>();
+		try {
+			trans.init();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if(trans!=null){
+			DAOHabitacion daoHab  = FactoryDAO.getInstance().createDAOHabitacion();
+			arrayObjetos = daoHab.ListarObjetos();
+			trans.commit();
+		}
+		return arrayObjetos;
+	}
+	
 }

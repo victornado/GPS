@@ -240,6 +240,12 @@ public class HabitacionesDeLaCasaImp extends HabitacionesDeLaCasa {
 			JOptionPane.showMessageDialog(null, "Error al marcar como favorito", "Error",
 					JOptionPane.ERROR_MESSAGE);
 		}
+		else if(r.getVista() == Eventos.LISTAR_OBJETOS_OK) {
+			ListarObjetos.getInstance().Update(r);
+		}
+		else if(r.getVista() == Eventos.LISTAR_OBJETOS_KO) {
+			
+		}
 	}
 
 }

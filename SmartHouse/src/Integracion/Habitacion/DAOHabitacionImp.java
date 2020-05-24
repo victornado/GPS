@@ -340,4 +340,36 @@ public class DAOHabitacionImp implements DAOHabitacion {
 		return idalt;
 	}
 
+	@Override
+	public ArrayList<TComponentesEnHabitacion> ListarObjetos() {
+		TransactionManager tm = TransactionManager.getInstance();
+		Transaction transaction = tm.getTransaction();
+		ArrayList<TComponentesEnHabitacion> arrayObjetos = new ArrayList<TComponentesEnHabitacion>();
+
+		if(transaction != null) {
+			Connection cn = (Connection) transaction.getResource();
+	
+			try {
+				PreparedStatement ps = cn.prepareStatement("select * from componentesEnHabitacion");
+				ResultSet rs = ps.executeQuery();
+				TComponentesEnHabitacion objeto = null;
+				
+				while (rs.next()) {
+					objeto = new TComponentesEnHabitacion();
+					objeto.setIDComponente(rs.getInt("iDComponente"));
+					objeto.setIDhabitacion(rs.getInt("iDHabitacion"));
+					objeto.setNombre(rs.getString("nombre"));
+					objeto.setDato(rs.getInt("dato"));
+					//objeto.setTipo(rs.getString("tipo"));
+					//objeto.setIp(rs.getString("ip"));
+					//objeto.setContrasena(rs.getString("contrasena"));
+					arrayObjetos.add(objeto);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return arrayObjetos;
+	}
+	
 }
