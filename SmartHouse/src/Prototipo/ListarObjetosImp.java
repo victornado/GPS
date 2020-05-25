@@ -17,7 +17,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import Controller.Command.Eventos;
+import Controller.Controller;
 import Negocio.SA.Habitacion.TComponentesEnHabitacion;
+import Negocio.SA.Habitacion.THabitacion;
 
 
 public class ListarObjetosImp extends ListarObjetos {
@@ -58,6 +61,56 @@ public class ListarObjetosImp extends ListarObjetos {
 		buttons_actions.setLayout(new BoxLayout(buttons_actions, BoxLayout.X_AXIS));
 
 
+		// boton eliminar
+		JButton delete_button = new JButton();
+		delete_button.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/papelera.png")));
+		delete_button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (!table.getSelectionModel().isSelectionEmpty()) {
+					Object n = table.getValueAt(table.getSelectedRow(), 0);
+					String id = n.toString();
+
+					int result2 = JOptionPane.showConfirmDialog(null, "¿Seguro que deseas eliminar " + id + "?",
+							"Confirmacion para borrar", JOptionPane.WARNING_MESSAGE);
+					if (result2 == JOptionPane.OK_OPTION) {
+
+						RequestContext rContext = new RequestContext(Eventos.ELIMINAR_OBJETO, Integer.parseInt(id));
+						Controller.getInstance().handleRequest(rContext);
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "Debes seleccionar un elemento de la tabla",
+							"Selecciona un elemento", JOptionPane.WARNING_MESSAGE);
+				}
+
+			}
+
+		});
+		//boton aniadir
+		JButton add_button = new JButton();
+		add_button.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/cama.png")));
+		add_button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				AniadirObjetoImp aniadirOBJ = new AniadirObjetoImp();
+				aniadirOBJ.setVisible(true);
+			}
+
+		});
+
+
+
+		// boton buscar
+
+
+
+
+
+
+		buttons_actions.add(delete_button);
+		buttons_actions.add(add_button);
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setModel(model);
 		panel.add(tableContainer);
