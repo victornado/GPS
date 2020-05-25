@@ -61,10 +61,19 @@ public class Eventos {
 	public static final int MODIFICAR_FAVORITO_HABITACION = 250; //
 	public static final int MODIFICAR_FAVORITO_HABITACION_OK = 248; //
 	public static final int MODIFICAR_FAVORITO_HABITACION_KO = 249; //
+	//Listar Objetos
+
 	public static final int LISTAR_OBJETOS= 251;
 	public static final int LISTAR_OBJETOS_OK= 252;
 	public static final int LISTAR_OBJETOS_KO= 253;
-	
+	public static final int ELIMINAR_OBJETO=254;
+	public static final int ELIMINAR_OBJETO_OK= 255;
+	public static final int ELIMINAR_OBJETO_KO= 256;
+	public static final int ANIADIR_OBJETO=257;
+	public static final int ANIADIR_OBJETO_OK = 258;
+	public static final int ANIADIR_OBJETO_KO = 259;
+
+
 	public static final int LISTAR_HABITACIONES_POR_TIPO = 239;
 	public static final int LISTAR_HABITACIONES_POR_TIPO_KO = 240;
 	public static final int LISTAR_HABITACIONES_POR_TIPO_OK = 241;
@@ -119,4 +128,5 @@ public class Eventos {
 	public static final int MODIFICA_VOLUMEN_CHROMCAST= 700; 
 	public static final int MODIFICA_VOLUMEN_CHROMCAST_OK= 701; 
 	public static final int MODIFICA_VOLUMEN_CHROMCAST_KO= 702;
+
 }
