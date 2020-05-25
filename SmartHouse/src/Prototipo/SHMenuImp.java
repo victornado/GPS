@@ -13,6 +13,7 @@ import Controller.Controller;
 import Controller.Command.Eventos;
 import Negocio.SA.Casa.TComponentesGenerales;
 import Negocio.SA.Habitacion.TComponentesEnHabitacion;
+import Prototipo.Factory.Dispatcher;
 
 import java.awt.Font;
 import java.awt.Graphics;
@@ -23,6 +24,7 @@ import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.DataBufferDouble;
+import java.sql.SQLOutput;
 import java.util.Calendar;
 import java.util.Hashtable;
 import java.awt.event.ActionListener;
@@ -100,8 +102,6 @@ public class SHMenuImp extends SHMenu {
 		ChromeCastActivo=false;
 		initGUI();
 	}
-	
-	
 
 	public void initGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -269,6 +269,8 @@ public class SHMenuImp extends SHMenu {
 				modificarLabelHumedad(humedad); 
 			}
 		});
+
+
 		
 		JButton botonGuardar = new JButton("Guardar");
 		botonGuardar.setBounds(240, 460, 80, 20);
@@ -402,8 +404,20 @@ public class SHMenuImp extends SHMenu {
 			}
 		});
 		mnAjustes.add(mntmModificarUsuario);
-		
-		
+
+		JMenuItem mntmLogout= new JMenuItem("Cerrar Sesión");
+		mntmLogout.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				//Dispatcher.getInstance().actualizaVistas( new ResponseContext(Eventos.LOGIN_USUARIO, new Usuario()));
+				new LoginImp();
+				SHMenu.getInstance().setVisible(false);
+			}
+		});
+		mnAjustes.add(mntmLogout);
+
+
+
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/user.png")));
 		label_1.setBounds(32, 11, 60, 70);
