@@ -354,7 +354,7 @@ public class SAHabitacionImp implements SAHabitacion {
 	}
 	
 	@Override
-	public int eliminarComponente(int id) {
+	public int eliminarComponente(String nombre) {
 		int id2 =-1;
 
 		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
@@ -364,13 +364,13 @@ public class SAHabitacionImp implements SAHabitacion {
 			e.printStackTrace();
 		}
 			DAOHabitacion daoh  = FactoryDAO.getInstance().createDAOHabitacion();
-			id2=daoh.eliminarhab(id);
+			id2=daoh.eliminarComponente(nombre);
 			if(id2 != -1)trans.commit();
 			else
 				trans.rollback();
 			
 
-		return id;
+		return 1;
 	}
 	
 	
