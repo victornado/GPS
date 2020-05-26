@@ -15,7 +15,7 @@ public class EliminarObjeto implements Command {
 
         FactoriaNeg fact =  FactoriaNeg.getInstance();
         SAHabitacion saHab = fact.createSAHabitacion();
-        int respuesta = saHab.eliminarhab((int) requestContext.getData());
+        int respuesta = saHab.eliminarComponente((String) requestContext.getData());
 
         if (respuesta != -1)
             return new ResponseContext(Eventos.ELIMINAR_OBJETO_OK, respuesta);
