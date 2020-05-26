@@ -23,5 +23,6 @@ public interface SAHabitacion {
 	public int aniadirhab(THabitacion thab);
 	public int eliminarhab(int i);
 	public ArrayList<TComponentesEnHabitacion> ListarObjetos();
-
+	public abstract int aniadirComponente(TComponentesEnHabitacion componente);
+	public abstract int eliminarComponente(int id);
 }

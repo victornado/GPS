@@ -328,7 +328,52 @@ public class SAHabitacionImp implements SAHabitacion {
 
 		return id;
 	}
+	
+	@Override
+	public  int aniadirComponente(TComponentesEnHabitacion componente) {
+		int id =-1;
+		
+		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
+		try {
+			trans.init();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		if(trans!=null)
+		{
+			if(componente != null) {
+				DAOHabitacion daoh  = FactoryDAO.getInstance().createDAOHabitacion();
+				if(daoh != null)id= daoh.aniadirComponente(componente);
+				trans.commit();
+			}
+			else 
+				trans.rollback();
+		}
+	
+		return id;
+	}
+	
+	@Override
+	public int eliminarComponente(int id) {
+		int id2 =-1;
 
+		TransactionSmartHouse trans = (TransactionSmartHouse) TransactionManager.getInstance().newTransaction();
+		try {
+			trans.init();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			DAOHabitacion daoh  = FactoryDAO.getInstance().createDAOHabitacion();
+			id2=daoh.eliminarhab(id);
+			if(id2 != -1)trans.commit();
+			else
+				trans.rollback();
+			
+
+		return id;
+	}
+	
+	
 
 	@Override
 	public ArrayList<TComponentesEnHabitacion> ListarObjetos() {

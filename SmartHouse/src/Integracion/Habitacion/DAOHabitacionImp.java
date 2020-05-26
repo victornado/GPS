@@ -334,7 +334,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 				idalt = id;
 			}
 			catch(Exception e){
-				e.printStackTrace();
+				return -1;
 			}
 		}
 		return idalt;
