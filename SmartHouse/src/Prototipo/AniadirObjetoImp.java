@@ -82,14 +82,14 @@ public class AniadirObjetoImp extends AniadirObjeto {
 
         txtTipo = new JTextField();
         txtTipo.setFont(new Font("Tahoma", Font.ITALIC, 11));
-        txtTipo.setText("IDComponente");
+        txtTipo.setText("IDComponente entre 1 y 10");
         txtTipo.setToolTipText("");
         txtTipo.setBounds(141, 65, 138, 20);
         txtTipo.setForeground(Color.DARK_GRAY);
         txtTipo.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent arg0) {
-                if (txtTipo.getText().equals("IDComponente")) {
+                if (txtTipo.getText().equals("IDComponente entre 1 y 10")) {
                     txtTipo.setText("");
                 }
             }
@@ -97,7 +97,7 @@ public class AniadirObjetoImp extends AniadirObjeto {
             @Override
             public void focusLost(FocusEvent e) {
                 if (txtTipo.getText().equals("")) {
-                    txtTipo.setText("IDComponente");
+                    txtTipo.setText("IDComponente entre 1 y 10");
 
                 }
             }
@@ -163,7 +163,7 @@ public class AniadirObjetoImp extends AniadirObjeto {
                 try {
                     int IdCasaparse = Integer.parseInt(textField.getText());
                     TComponentesEnHabitacion thab = new TComponentesEnHabitacion(Integer.parseInt(txtTipo.getText()),IdCasaparse,txtNombre.getText(),0);
-                    RequestContext rContext = new RequestContext(Eventos.ANIADIR_HABITACION, thab);
+                    RequestContext rContext = new RequestContext(Eventos.ANIADIR_OBJETO, thab);
                     Controller.getInstance().handleRequest(rContext);
                 }catch(Exception e) {
                     JOptionPane.showMessageDialog(null, "Error en la sintaxis ");
@@ -183,13 +183,13 @@ public class AniadirObjetoImp extends AniadirObjeto {
 
         if (r.getVista()== Eventos.ANIADIR_OBJETO_OK) {
 
-            JOptionPane.showMessageDialog(null, "Objeto añadido");
+            JOptionPane.showMessageDialog(null, "Objeto aï¿½adido");
             RequestContext rContext = new RequestContext(Eventos.LISTAR_HABITACIONES, null);
             Controller.getInstance().handleRequest(rContext);
 
         }
         else {
-            JOptionPane.showMessageDialog(null, "Error al Añadir Objeto", "Error",
+            JOptionPane.showMessageDialog(null, "Error al Aï¿½adir Objeto", "Error",
                     JOptionPane.ERROR_MESSAGE);
 
 
