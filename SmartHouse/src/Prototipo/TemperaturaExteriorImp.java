@@ -55,7 +55,7 @@ public class TemperaturaExteriorImp extends TemperaturaExterior{
 		CloseableHttpClient client = HttpClients.createDefault();
 		HttpGet get = new HttpGet(url);
 		CloseableHttpResponse resp = null;
-		msg = "Temperatura: -    °C -    Humedad: -   Presión: -         ";
+		msg = "Temperatura: -    ÂºC -    Humedad: -   PresiÃ³n: -         ";
 		try {
 			resp = client.execute(get);
 			HttpEntity entity = resp.getEntity();
@@ -67,8 +67,8 @@ public class TemperaturaExteriorImp extends TemperaturaExterior{
 			pres = obj.getJSONObject("main").get("pressure").toString();
 			
 			
-			msg = "Temperatura: " + temp + "°C" + "    " + "   Humedad: " + hum + "%" 
-			+ "   " + "   Presión: " + pres + "hPa" +"        ";
+			msg = "Temperatura: " + temp + "ÂºC" + "    " + "   Humedad: " + hum + "%" 
+			+ "   " + "   PresiÃ³n: " + pres + "hPa" +"        ";
 
 			
 		} catch (IOException ioe) {
@@ -105,10 +105,10 @@ public class TemperaturaExteriorImp extends TemperaturaExterior{
 	    mes = calendario.get(Calendar.MONTH)+1;
 	    anio = calendario.get(Calendar.YEAR);
 		
-		txt.setText("Temperatura: " + getTemp() + "°C" + "\n" + "Humedad: " + getHum() + "%" 
-				+ "\n" + "Presión: " + getPres()  + "hPa" +"\n" +  "[Madrid   " + hora + ":" + minutos + "   " + dia +"/" + mes + "/" + anio + "]");
+		txt.setText("Temperatura: " + getTemp() + "ÂºC" + "\n" + "Humedad: " + getHum() + "%" 
+				+ "\n" + "PresiÃ³n: " + getPres()  + "hPa" +"\n" +  "[Madrid   " + hora + ":" + minutos + "   " + dia +"/" + mes + "/" + anio + "]");
 		
-		//txt.setText("Temperatura: 14.91°C"+"\n" +"Humedad: 54%"+"\n"+   "Presión: 1016hPa"+"\n"+"[Madrid   "+hora+":"+minutos+"   "+dia+"/"+mes+"/"+anio+"]");
+		//txt.setText("Temperatura: 14.91ï¿½C"+"\n" +"Humedad: 54%"+"\n"+   "Presiï¿½n: 1016hPa"+"\n"+"[Madrid   "+hora+":"+minutos+"   "+dia+"/"+mes+"/"+anio+"]");
 		txt.setEditable(false);
 		txt.setBounds(0, 0, 211, 251);
 	

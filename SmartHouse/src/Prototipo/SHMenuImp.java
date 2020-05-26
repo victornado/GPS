@@ -18,6 +18,7 @@ import Prototipo.Factory.Dispatcher;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.SystemColor;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -71,6 +72,12 @@ public class SHMenuImp extends SHMenu {
 				try {
 					SHMenu frame = new SHMenuImp();
 					frame.setVisible(true);
+					
+					ImageIcon icon = new ImageIcon(SHMenuImp.class.getResource("/Img/logo.png"));
+			        Image image = icon.getImage();
+			        frame.setIconImage(image);
+					
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -80,15 +87,16 @@ public class SHMenuImp extends SHMenu {
 
 	public SHMenuImp() {
 		super();
+		this.tempExt = new TemperaturaExteriorImp();
+		msg = this.tempExt.getWeather();
 		setTitle("SMART HOME");
 		this.contentPane = new JPanel();
 		this.setFocusable(true);
 		actv = false;
 		x = 610;
 		y = 531;
-		this.tempExt = new TemperaturaExteriorImp();
-		msg = this.tempExt.getWeather();
-		//msg = "Temperatura: 14.91ºC   Humedad: 54%   Presion: 1016hPa";
+
+		//msg = "Temperatura: 14.91ï¿½C   Humedad: 54%   Presion: 1016hPa";
 	//	this.modHab = new ModificarHabitacionImp();
 		this.listar = new ListarUsuarioImp();
 		this.addDisp = new AniadirDispositivoImp();
@@ -120,9 +128,22 @@ public class SHMenuImp extends SHMenu {
 		panel.setBackground(SystemColor.activeCaption);
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
+		
+		calendario = Calendar.getInstance();
+	    hora =calendario.get(Calendar.HOUR_OF_DAY);
+	    minutos = calendario.get(Calendar.MINUTE);
+	    dia = calendario.get(Calendar.DAY_OF_MONTH);
+	    mes = calendario.get(Calendar.MONTH)+1;
+	    anio = calendario.get(Calendar.YEAR);
+	    
+	   String msgDraw = msg+"     [Madrid  "+dia+"/"+mes+"/"+anio+"]";
+
+	   JLabel labelPaint = new JLabel(msgDraw);
+	   labelPaint.setBounds(150, 500, 700, 14);
+	   panel.add(labelPaint);
 
 		
-		lblTemperatura2 = new JLabel("25ºC");
+		lblTemperatura2 = new JLabel("25ÂºC");
 		lblTemperatura2.setBounds(270, 260, 123, 33);
 		lblTemperatura2.setFont(new Font("Arial", Font.BOLD, 15));
 		panel.add(lblTemperatura2);
@@ -385,7 +406,7 @@ public class SHMenuImp extends SHMenu {
 		JMenu mnAjustes = new JMenu("Ajustes");
 		menuBar.add(mnAjustes);
 
-		JMenuItem mntmAadirUsuario = new JMenuItem("Aniadir Usuario");
+		JMenuItem mntmAadirUsuario = new JMenuItem("AÃ±adir Usuario");
 		mnAjustes.add(mntmAadirUsuario);
 
 		mntmAadirUsuario.addActionListener(new ActionListener() {
@@ -405,7 +426,7 @@ public class SHMenuImp extends SHMenu {
 		});
 		mnAjustes.add(mntmModificarUsuario);
 
-		JMenuItem mntmLogout= new JMenuItem("Cerrar Sesión");
+		JMenuItem mntmLogout= new JMenuItem("Cerrar SesiÃ³n");
 		mntmLogout.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -488,36 +509,41 @@ public class SHMenuImp extends SHMenu {
 
 	}
 
-	@Override
-	public void paint(Graphics g) {
-		super.paint(g);
-		Graphics2D g2 = (Graphics2D) g;
-		Font font = new Font("Arial", Font.PLAIN, 13);
-		g2.setFont(font);
-		g2.setColor(Color.BLACK);
-
-		calendario = Calendar.getInstance();
-	    hora =calendario.get(Calendar.HOUR_OF_DAY);
-	    minutos = calendario.get(Calendar.MINUTE);
-	    dia = calendario.get(Calendar.DAY_OF_MONTH);
-	    mes = calendario.get(Calendar.MONTH)+1;
-	    anio = calendario.get(Calendar.YEAR);
-	    
-	   String msgDraw = msg+"     [Madrid   "+hora+":"+minutos+"   "+dia+"/"+mes+"/"+anio+"]";
-		g2.drawString(msgDraw, x, y);
-		try {
-			Thread.sleep(10);
-		} catch (Exception ex) {
-		}
-		;
-
-		x -= 1;
-
-		if (x == -7 * msgDraw.length()) {
-			x = 640;
-		}
-		repaint();
-	}
+//	@Override
+//	public void paint(Graphics g) {
+//		super.paint(g);
+//		Graphics2D g2 = (Graphics2D) g;
+//		Font font = new Font("Arial", Font.PLAIN, 13);
+//		g2.setFont(font);
+//		g2.setColor(Color.BLACK);
+//
+//		calendario = Calendar.getInstance();
+//	    hora =calendario.get(Calendar.HOUR_OF_DAY);
+//	    minutos = calendario.get(Calendar.MINUTE);
+//	    dia = calendario.get(Calendar.DAY_OF_MONTH);
+//	    mes = calendario.get(Calendar.MONTH)+1;
+//	    anio = calendario.get(Calendar.YEAR);
+//	    
+//	   String msgDraw = msg+"     [Madrid  "+dia+"/"+mes+"/"+anio+"]";
+//
+//
+//	   
+//	   
+////	   g2.drawString(msgDraw, x, y);
+////		try {
+////			
+////			Thread.sleep(1000);
+////		} catch (Exception ex) {
+////		}
+////		;
+////
+////		x -= 30;
+////
+////		if (x == -210 * msgDraw.length()) {
+////			x = 640;
+////		}
+////		repaint();
+//	}
 
 	public void modificarLabelIluminacion(Double ilum) {
 		if (ilum == 0)

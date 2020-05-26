@@ -100,7 +100,10 @@ public class ListarHabitacionesImp extends ListarHabitaciones {
 					int id = (int) table.getValueAt(table.getSelectedRow(), 0);
 					int result = JOptionPane.showConfirmDialog(null, panel, "Modificar Producto",
 							JOptionPane.OK_CANCEL_OPTION);
-
+					if (result == JOptionPane.OK_OPTION) {
+						
+						
+					
 					if (nombre.equals("")) {
 						JOptionPane.showMessageDialog(null, "El nombre no puede estar en blanco",
 								"Completar todos los campos", JOptionPane.WARNING_MESSAGE);
@@ -119,13 +122,15 @@ public class ListarHabitacionesImp extends ListarHabitaciones {
 						RequestContext rContext = new RequestContext(Eventos.MODIFICAR_HABITACION, habitacion);
 						Controller.getInstance().handleRequest(rContext);
 					}
-				} else {
-					JOptionPane.showMessageDialog(null, "Debes seleccionar un elemento de la tabla",
-							"Selecciona un elemento", JOptionPane.WARNING_MESSAGE);
-				}
-			}
 
-		});
+				}
+			} else {
+				JOptionPane.showMessageDialog(null, "Debes seleccionar un elemento de la tabla",
+						"Selecciona un elemento", JOptionPane.WARNING_MESSAGE);
+			}
+		}
+
+	});
 
 		// boton eliminar
 		JButton delete_button = new JButton();
@@ -259,7 +264,7 @@ public class ListarHabitacionesImp extends ListarHabitaciones {
 			model.addRow(new Object[] { th.getID(), th.getIDCasa(), th.getTipo(), th.getNombre() });
 		}
 		if (model.getRowCount() == 0)
-			JOptionPane.showMessageDialog(null, "No existe ninguna habitación", "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "No existe ninguna habitaciï¿½n", "Error", JOptionPane.ERROR_MESSAGE);
 		else
 			frame.setVisible(true);
 	}

@@ -67,7 +67,6 @@ public class LoginImp extends Login implements GUI {
 		panel.setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBackground(SystemColor.text);
 		textField.setBounds(164, 151, 102, 20);
 		panel.add(textField);
 		textField.setColumns(10);
@@ -78,13 +77,11 @@ public class LoginImp extends Login implements GUI {
 		panel.add(textField_1);
 		
 		lblUsuario = new JLabel("Usuario:");
-		lblUsuario.setBackground(UIManager.getColor("TextField.inactiveBackground"));
 		lblUsuario.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblUsuario.setBounds(87, 154, 67, 14);
 		panel.add(lblUsuario);
 		
-		lblContrasea = new JLabel("Contrasena:");
-		lblContrasea.setBackground(UIManager.getColor("TextField.inactiveBackground"));
+		lblContrasea = new JLabel("Contraseña:");
 		lblContrasea.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblContrasea.setBounds(70, 185, 84, 14);
 		panel.add(lblContrasea);
@@ -106,7 +103,7 @@ public class LoginImp extends Login implements GUI {
 		panel.add(btnLogIn);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(LoginImp.class.getResource("/img/logo.png")));
+		label.setIcon(new ImageIcon(LoginImp.class.getResource("/Img/logo.png")));
 		label.setBounds(135, 11, 200, 129);
 		panel.add(label);
 		
@@ -139,7 +136,7 @@ public class LoginImp extends Login implements GUI {
 			SHMenu.getInstance().setVisible(true);
 		}
 		else if(r.getVista() == Eventos.LOGIN_USUARIO_KO)
-			JOptionPane.showMessageDialog(null, "Usuario o contrase�a incorrectos", "Incorrecto", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos", "Incorrecto", JOptionPane.ERROR_MESSAGE);
 		
 	}
 }

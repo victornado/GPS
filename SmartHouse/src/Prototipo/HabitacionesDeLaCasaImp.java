@@ -107,7 +107,7 @@ public class HabitacionesDeLaCasaImp extends HabitacionesDeLaCasa {
 				// THabitacion h = (THabitacion) r.getData();
 				ArrayList<Integer> li = (ArrayList<Integer>) r.getData();
 				DatosHabitacionImp h2 = (DatosHabitacionImp) listaClases.get(i);
-				System.out.println(li.get(1));
+//				System.out.println(li.get(1));
 				if (h2.IdHab == li.get(1)) {
 					h2.Update(r);
 				}
@@ -189,7 +189,7 @@ public class HabitacionesDeLaCasaImp extends HabitacionesDeLaCasa {
 			ListarComponentesHabitacion.getInstance().Update(r);
 		}
 		else if(r.getVista() == Eventos.LISTAR_COMPONENTES_HABITACION_KO) {
-			JOptionPane.showMessageDialog(null, "No existen componentes en la habitación", "Error",
+			JOptionPane.showMessageDialog(null, "No existen componentes en la habitaciï¿½n", "Error",
 					JOptionPane.ERROR_MESSAGE);
 		}
 		else if(r.getVista() == Eventos.LISTAR_HABITACIONES_POR_TIPO_OK) {
@@ -245,6 +245,15 @@ public class HabitacionesDeLaCasaImp extends HabitacionesDeLaCasa {
 		}
 		else if(r.getVista() == Eventos.LISTAR_OBJETOS_KO) {
 			
+		}
+		else if(r.getVista()== Eventos.MODIFICAR_HABITACION_OK) {
+			JOptionPane.showMessageDialog(null, "Habitacion modificada");
+			RequestContext rContext = new RequestContext(Eventos.LISTAR_HABITACIONES, null);
+			Controller.getInstance().handleRequest(rContext);
+		}
+		else if(r.getVista() == Eventos.MODIFICAR_HABITACION_KO) {
+			JOptionPane.showMessageDialog(null, "Error al modificar", "Error",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

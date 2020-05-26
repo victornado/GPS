@@ -152,7 +152,7 @@ public class SAHabitacionImp implements SAHabitacion {
 		}
 		if(trans != null) {
 			List<TComponentesEnHabitacion> lista;
-			System.out.println(idHabitacion);
+//			System.out.println(idHabitacion);
 			lista = FactoryDAO.getInstance().createDAOHabitacion().getComponents(idHabitacion);
 			if(lista!= null && lista.size()>0) {
 				TComponentesEnHabitacion objeto = null;
