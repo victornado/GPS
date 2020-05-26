@@ -315,6 +315,7 @@ public class DAOHabitacionImp implements DAOHabitacion {
 			id=componente.getIDComponente();
 			
 			}catch(Exception e) {
+				e.printStackTrace();
 				return -1;
 			}
 		}
@@ -322,16 +323,16 @@ public class DAOHabitacionImp implements DAOHabitacion {
 	}
 	
 	@Override
-	public int eliminarComponente(int id) {
+	public int eliminarComponente(String nombre) {
 		Transaction transaction = TransactionManager.getInstance().getTransaction();
 		int idalt = -1;
 		if(transaction != null) {
 			Connection cn = (Connection) transaction.getResource();
 	
 			try {
-				PreparedStatement query = cn.prepareStatement("DELETE FROM componentesEnHabitacion WHERE idComponente="+id);
+				PreparedStatement query = cn.prepareStatement("DELETE FROM componentesEnHabitacion WHERE nombre='"+nombre+"';");
 				query.executeUpdate();
-				idalt = id;
+				idalt = 1;
 			}
 			catch(Exception e){
 				return -1;
