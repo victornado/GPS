@@ -19,7 +19,6 @@ import javax.swing.table.DefaultTableModel;
 
 import Negocio.SA.Habitacion.TComponentesEnHabitacion;
 
-
 public class ListarComponentesHabitacionImp extends ListarComponentesHabitacion {
 
 	JTable table = null;
@@ -57,7 +56,6 @@ public class ListarComponentesHabitacionImp extends ListarComponentesHabitacion 
 		JPanel buttons_actions = new JPanel();
 		buttons_actions.setLayout(new BoxLayout(buttons_actions, BoxLayout.X_AXIS));
 
-
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setModel(model);
 		panel.add(tableContainer);
@@ -66,15 +64,18 @@ public class ListarComponentesHabitacionImp extends ListarComponentesHabitacion 
 		frame.setSize(450, 300);
 	}
 
-
 	@Override
 	public void Update(ResponseContext r) {
 		model.setRowCount(0);
 		ArrayList<TComponentesEnHabitacion> array = (ArrayList<TComponentesEnHabitacion>) r.getData();
 		for (TComponentesEnHabitacion tch : array) {
-			model.addRow(new Object[] { tch.getIDComponente(), tch.getIDhabitacion(),tch.getNombre(), tch.getDato()});
+			model.addRow(new Object[] { tch.getIDComponente(), tch.getIDhabitacion(), tch.getNombre(), tch.getDato() });
 		}
-		frame.setVisible(true);
+		if (model.getRowCount() == 0)
+			JOptionPane.showMessageDialog(null, "Esta habitación no tiene componentes", "Error",
+					JOptionPane.ERROR_MESSAGE);
+		else
+			frame.setVisible(true);
 	}
 
 }

@@ -87,8 +87,8 @@ public class SHMenuImp extends SHMenu {
 		x = 610;
 		y = 531;
 		this.tempExt = new TemperaturaExteriorImp();
-		// msg = this.tempExt.getWeather();
-		msg = "Temperatura: 14.91ºC   Humedad: 54%   Presion: 1016hPa";
+		msg = this.tempExt.getWeather();
+		//msg = "Temperatura: 14.91ºC   Humedad: 54%   Presion: 1016hPa";
 	//	this.modHab = new ModificarHabitacionImp();
 		this.listar = new ListarUsuarioImp();
 		this.addDisp = new AniadirDispositivoImp();
@@ -503,7 +503,7 @@ public class SHMenuImp extends SHMenu {
 	    mes = calendario.get(Calendar.MONTH)+1;
 	    anio = calendario.get(Calendar.YEAR);
 	    
-	   String msgDraw = msg+"        [Madrid   "+hora+":"+minutos+"   "+dia+"/"+mes+"/"+anio+"]";
+	   String msgDraw = msg+"     [Madrid   "+hora+":"+minutos+"   "+dia+"/"+mes+"/"+anio+"]";
 		g2.drawString(msgDraw, x, y);
 		try {
 			Thread.sleep(10);

@@ -119,8 +119,7 @@ public class ListarHabitacionesImp extends ListarHabitaciones {
 						RequestContext rContext = new RequestContext(Eventos.MODIFICAR_HABITACION, habitacion);
 						Controller.getInstance().handleRequest(rContext);
 					}
-				} 
-				else {
+				} else {
 					JOptionPane.showMessageDialog(null, "Debes seleccionar un elemento de la tabla",
 							"Selecciona un elemento", JOptionPane.WARNING_MESSAGE);
 				}
@@ -154,7 +153,7 @@ public class ListarHabitacionesImp extends ListarHabitaciones {
 			}
 
 		});
-		//boton aniadir
+		// boton aniadir
 		JButton add_button = new JButton();
 		add_button.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/cama.png")));
 		add_button.addActionListener(new ActionListener() {
@@ -166,24 +165,20 @@ public class ListarHabitacionesImp extends ListarHabitaciones {
 			}
 
 		});
-		
-		
-		
+
 		// boton buscar
-		
-		
 
 		JButton buscaryHabitacionBtn = new JButton();
-//		buscaryHabitacionBtn.setBounds(280, 35, 24, 21);
+		// buscaryHabitacionBtn.setBounds(280, 35, 24, 21);
 		buscaryHabitacionBtn.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/lupa.png")));
 		buscaryHabitacionBtn.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				if (!table.getSelectionModel().isSelectionEmpty()) {
 					Object n = table.getValueAt(table.getSelectedRow(), 0);
 					String idHab = n.toString();
-					//ABRO EL PANEL CON LOS DATOS
+					// ABRO EL PANEL CON LOS DATOS
 					int idCasa = (int) table.getValueAt(table.getSelectedRow(), 1);
 					String nombre = (String) table.getValueAt(table.getSelectedRow(), 3);
 					String tipo = (String) table.getValueAt(table.getSelectedRow(), 2);
@@ -191,9 +186,8 @@ public class ListarHabitacionesImp extends ListarHabitaciones {
 					buscarHab = new BuscarHabitacionImp(idHab, idCasa, nombre, tipo);
 					buscarHab.setVisible(true);
 
-				} 
-				else {
-					
+				} else {
+
 					JOptionPane.showMessageDialog(null, "Debes seleccionar un elemento de la tabla",
 							"Selecciona un elemento", JOptionPane.WARNING_MESSAGE);
 				}
@@ -202,54 +196,47 @@ public class ListarHabitacionesImp extends ListarHabitaciones {
 
 		});
 
+		// panel.add(buscaryHabitacionBtn);
 
-		//panel.add(buscaryHabitacionBtn);
-
-		
-		
 		// boton listar componentes
 		JButton comp_button = new JButton("Listar Comp");
-		//delete_button.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/papelera.png")));
+		// delete_button.setIcon(new
+		// ImageIcon(SHMenuImp.class.getResource("/img/papelera.png")));
 		comp_button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (!table.getSelectionModel().isSelectionEmpty()) {
 					Object n = table.getValueAt(table.getSelectedRow(), 0);
-					int id = (int)n;
+					int id = (int) n;
 
 					RequestContext rContext = new RequestContext(Eventos.LISTAR_COMPONENTES_HABITACION, id);
 					Controller.getInstance().handleRequest(rContext);
-					
+
 				} else {
 					JOptionPane.showMessageDialog(null, "Debes seleccionar un elemento de la tabla",
 							"Selecciona un elemento", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});
-		
-		
-		
-		
-		
+
 		// boton listar por tipo
-				JButton tipo_button = new JButton("Listar por tipo");
-				//delete_button.setIcon(new ImageIcon(SHMenuImp.class.getResource("/img/papelera.png")));
-				tipo_button.addActionListener(new ActionListener() {
+		JButton tipo_button = new JButton("Listar por tipo");
+		// delete_button.setIcon(new
+		// ImageIcon(SHMenuImp.class.getResource("/img/papelera.png")));
+		tipo_button.addActionListener(new ActionListener() {
 
-					@Override
-					public void actionPerformed(ActionEvent arg0) {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
 
-							String tipo = JOptionPane.showInputDialog("Introduca el tipo");
-							
-							
-							RequestContext rContext = new RequestContext(Eventos.LISTAR_HABITACIONES_POR_TIPO, tipo);
-							Controller.getInstance().handleRequest(rContext);
+				String tipo = JOptionPane.showInputDialog("Introduca el tipo");
 
-					}
-				});
-		
-		
+				RequestContext rContext = new RequestContext(Eventos.LISTAR_HABITACIONES_POR_TIPO, tipo);
+				Controller.getInstance().handleRequest(rContext);
+
+			}
+		});
+
 		buttons_actions.add(tipo_button);
 		buttons_actions.add(delete_button);
 		buttons_actions.add(add_button);
@@ -264,15 +251,16 @@ public class ListarHabitacionesImp extends ListarHabitaciones {
 		frame.setSize(450, 300);
 	}
 
-	
-	
 	@Override
 	public void Update(ResponseContext r) {
 		model.setRowCount(0);
 		ArrayList<THabitacion> array = (ArrayList<THabitacion>) r.getData();
 		for (THabitacion th : array) {
-			model.addRow(new Object[] { th.getID(), th.getIDCasa(),th.getTipo(), th.getNombre()});
+			model.addRow(new Object[] { th.getID(), th.getIDCasa(), th.getTipo(), th.getNombre() });
 		}
-		frame.setVisible(true);
+		if (model.getRowCount() == 0)
+			JOptionPane.showMessageDialog(null, "No existe ninguna habitación", "Error", JOptionPane.ERROR_MESSAGE);
+		else
+			frame.setVisible(true);
 	}
 }
