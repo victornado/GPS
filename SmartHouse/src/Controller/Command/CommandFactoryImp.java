@@ -10,26 +10,12 @@ import Controller.Command.Casa.MostrarDatosTemperatura;
 import Controller.Command.Casa.MostrarHabitaciones;
 import Controller.Command.ChromeCast.ActivarChromeCast;
 import Controller.Command.ChromeCast.SubirVolumen;
-import Controller.Command.Habitacion.AniadirHabitacion;
-import Controller.Command.Habitacion.EliminarHabitacion;
-import Controller.Command.Habitacion.ListarComponentesHabitacion;
-import Controller.Command.Habitacion.ListarHabitaciones;
-import Controller.Command.Habitacion.ListarHabitacionesPorTipo;
-import Controller.Command.Habitacion.ListarObjetos;
-import Controller.Command.Habitacion.ModificarFavoritoHabitacion;
-import Controller.Command.Habitacion.ModificarIluminacionHabitacion;
-import Controller.Command.Habitacion.ModificarTemperaturaObjeto;
-import Controller.Command.Habitacion.MostrarHabitacion;
-import Controller.Command.Habitacion.MostrarHumedadObjeto;
-import Controller.Command.Habitacion.MostrarIluminacionObjeto;
-import Controller.Command.Habitacion.MostrarTemperaturaObjeto;
+import Controller.Command.Habitacion.*;
 import Controller.Command.Usuario.AniadirUsuario;
 import Controller.Command.Usuario.EliminarUsuario;
 import Controller.Command.Usuario.ListarUsuarios;
 import Controller.Command.Usuario.LoginUsuario;
 import Controller.Command.Usuario.ModificarUsuario;
-import Controller.Command.Habitacion.ModificarHabitacion;
-import Controller.Command.Habitacion.ModificarHumedadObjeto;
 
 public class CommandFactoryImp extends CommandFactory{
 
@@ -68,7 +54,8 @@ public class CommandFactoryImp extends CommandFactory{
 		case Eventos.LISTAR_HABITACIONES_POR_TIPO: return new ListarHabitacionesPorTipo();
 		case Eventos.MODIFICAR_FAVORITO_HABITACION: return new ModificarFavoritoHabitacion();
 		case Eventos.LISTAR_OBJETOS: return new ListarObjetos();
-
+		case Eventos.ANIADIR_OBJETO: return new AddObjeto();
+		case Eventos.ELIMINAR_OBJETO: return new EliminarObjeto();
 
 		default: return null;
 		
