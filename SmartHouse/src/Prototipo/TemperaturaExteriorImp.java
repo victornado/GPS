@@ -48,7 +48,7 @@ public class TemperaturaExteriorImp extends TemperaturaExterior{
 
 	public String getWeather() {
 		
-		String APPID = "509018354b7693fbf75ac5e2972c7788";
+		String APPID = "";
 		String url = "http://api.openweathermap.org/data/2.5/weather?q=Madrid,es&APPID=" + APPID
 				+ "&lang=sp&units=metric";
 
